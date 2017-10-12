@@ -50,12 +50,7 @@ const Station = sequelize.define('station', {
 });
 
 const Line_Station = sequelize.define('line_Station', {
-    id_line: {
-        type: Sequelize.INTEGER, primaryKey:true
-    },
-    id_station: {
-        type: Sequelize.INTEGER, primaryKey:true
-    }
+
 });
 
 const Login = sequelize.define('login', {
@@ -108,12 +103,7 @@ const Journey = sequelize.define('journey', {
 });
 
 const Journey_Reservation = sequelize.define('journey_Reservation', {
-    id_journey: {
-        type: Sequelize.INTEGER, primaryKey:true
-    },
-    id_reservation: {
-        type: Sequelize.INTEGER, primaryKey:true
-    }
+
 });
 
 const Reservation = sequelize.define('reservation', {
@@ -164,19 +154,21 @@ const Date = sequelize.define('date', {
     }
 });
 
+
+
+PersonContact.hasOne(Zone,{foreignKey: {name:'idPersonContact', AllowNull:false}});
+Zone.hasMany(Login,{foreignKey:{ name:'idZone', AllowNull:false}});
+Role.hasMany(Login,{foreignKey: {name:'idRole', AllowNull:false}});
+Zone.hasMany(Line,{foreignKey: {name:'idZone', AllowNull:false}});
+Line.hasMany(Line_Station,{foreignKey: {name:'idLine', AllowNull:false}});
+Station.hasMany(Line_Station,{foreignKey: {name:'idStation', AllowNull:false}});
+Line.hasMany(Journey,{foreignKey: {name:'idLine', AllowNull:false}});
+Journey.hasMany(Journey_Reservation,{foreignKey: {name:'idJourney', AllowNull:false}});
+Reservation.hasMany(Journey_Reservation,{foreignKey: {name:'idReservation', AllowNull:false}});
+Date.hasMany(Reservation,{foreignKey: {name:'idDate', AllowNull:false}});
+Login.hasMany(Reservation,{foreignKey: {name:'idLogin', AllowNull:false}});
+
 sequelize.sync({force: true}).then(() => {
     // Table created
     sequelize.close();
 });
-
-
-Zone.belongsTo(PersonContact,{as: ''});
-Zone.hasMany(Login,{as: ''});
-Role.hasMany(Login,{as: ''});
-Zone.hasMany(Line,{as: ''});
-Line.hasMany(Line_Station,{as: ''});
-Station.hasMany(Line_Station,{as: ''});
-Line.hasMany(Journey,{as: ''});
-Journey.hasMany(Journey_Reservation,{as: ''});
-Reservation.hasMany(Journey_Reservation,{as: ''});
-Date.hasMany(Reservation,{as: ''});
