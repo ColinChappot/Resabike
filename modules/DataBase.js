@@ -49,10 +49,6 @@ const Station = sequelize.define('station', {
     }
 });
 
-const Line_Station = sequelize.define('line_Station', {
-
-});
-
 const Login = sequelize.define('login', {
     id_login: {
         type: Sequelize.INTEGER, primaryKey:true
@@ -102,9 +98,6 @@ const Journey = sequelize.define('journey', {
     }
 });
 
-const Journey_Reservation = sequelize.define('journey_Reservation', {
-
-});
 
 const Reservation = sequelize.define('reservation', {
     id_reservation: {
@@ -156,15 +149,18 @@ const Date = sequelize.define('date', {
 
 
 
+Line.belongsToMany(Station,{ through: 'line_Station', foreignKey: {name:'idStation', AllowNull:false}});
+Station.belongsToMany(Line,{ through: 'line_Station', foreignKey: {name:'idLine', AllowNull:false}});
+
+Journey.belongsToMany(Reservation,{ through: 'journey_Reservation', foreignKey: {name:'idReservation', AllowNull:false}});
+Reservation.belongsToMany(Journey,{ through: 'journey_Reservation', foreignKey: {name:'idJourney', AllowNull:false}});
+
+
 PersonContact.hasOne(Zone,{foreignKey: {name:'idPersonContact', AllowNull:false}});
 Zone.hasMany(Login,{foreignKey:{ name:'idZone', AllowNull:false}});
 Role.hasMany(Login,{foreignKey: {name:'idRole', AllowNull:false}});
 Zone.hasMany(Line,{foreignKey: {name:'idZone', AllowNull:false}});
-Line.hasMany(Line_Station,{foreignKey: {name:'idLine', AllowNull:false}});
-Station.hasMany(Line_Station,{foreignKey: {name:'idStation', AllowNull:false}});
 Line.hasMany(Journey,{foreignKey: {name:'idLine', AllowNull:false}});
-Journey.hasMany(Journey_Reservation,{foreignKey: {name:'idJourney', AllowNull:false}});
-Reservation.hasMany(Journey_Reservation,{foreignKey: {name:'idReservation', AllowNull:false}});
 Date.hasMany(Reservation,{foreignKey: {name:'idDate', AllowNull:false}});
 Login.hasMany(Reservation,{foreignKey: {name:'idLogin', AllowNull:false}});
 
