@@ -1,5 +1,29 @@
 extends layout
 
+
+
 block content
+
+
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
+  link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
+  script(src='/javascripts/apiCompletion.js')
+  script(src='/javascripts/apiTrajet.js')
+
+
+
   h1= title
   p Welcome to #{title}
+
+
+  input(type='text',  placeholder='Type your username here', id='from', autofocus, onkeydown='autocomp(this.id)')
+  br
+  input(type='text',  placeholder='Type your username here', id='to', autofocus, onkeydown='autocomp(this.id)')
+  br
+
+  button(onclick='search()') recherche
+
+  table#stationboard
+    tbody
