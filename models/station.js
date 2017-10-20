@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     Station.associate=(models) =>{
-        Station.belongsToMany(models.Line,{ through: 'line_Station', foreignKey: {name:'idLine', allowNull:false}});
+        Station.hasMany(models.Line_Station,{foreignKey: {name:'idStation', allowNull:false}});
     }
 
     return Station;

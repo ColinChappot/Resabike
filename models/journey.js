@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     Journey.associate=(models) =>{
-        Journey.belongsToMany(models.Reservation,{ through: 'journey_Reservation', foreignKey: {name:'idReservation', allowNull:false}});
         Journey.belongsTo(models.Line,{foreignKey: {name:'idLine', allowNull:false}});
+        Journey.hasMany(models.Journey_Reservation,{foreignKey: {name:'idJourney', allowNull:false}});
     }
 
     return Journey;

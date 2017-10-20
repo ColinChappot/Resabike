@@ -13,17 +13,19 @@ block content
   script(src='/javascripts/apiTrajet.js')
 
 
-
-  h1= title
-  p Welcome to #{title}
-
-
-  input(type='text',  placeholder='Type your username here', id='from', autofocus, onkeydown='autocomp(this.id)')
-  br
-  input(type='text',  placeholder='Type your username here', id='to', autofocus, onkeydown='autocomp(this.id)')
-  br
-
-  button(onclick='search()') recherche
-
-  table#stationboard
-    tbody
+  form(method='post' action='/')
+    input(type='text', name='firstname')
+    br
+    input(type='text', name='lastname')
+    br
+    input(type='text', name='telephone')
+    br
+    input(type='text', name='mail')
+    br
+    input(type='text', name='name')
+    br
+    input(type='text', name='username')
+    br
+    input(type='text', name='password')
+    br
+    button(type=submit) recherche
