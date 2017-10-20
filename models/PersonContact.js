@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) =>{
     var PersonContact = sequelize.define('PersonContact', {
         id_personContact: {
-            type: DataTypes.INTEGER, primaryKey:true
+            type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
         },
         lastname: {
             type: DataTypes.STRING

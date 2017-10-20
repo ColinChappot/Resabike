@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) =>{
     var Date = sequelize.define('Date', {
         id_date: {
-            type: DataTypes.INTEGER, primaryKey:true
+            type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
         },
         year: {
             type: DataTypes.STRING

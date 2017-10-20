@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) =>{
     var Journey = sequelize.define('Journey', {
         id_journey: {
-            type: DataTypes.INTEGER, primaryKey:true
+            type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
         },
         journeyNumber: {
             type: DataTypes.STRING

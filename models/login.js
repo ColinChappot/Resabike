@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) =>{
     var Login = sequelize.define('Login', {
         id_login: {
-            type: DataTypes.INTEGER, primaryKey:true
+            type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
         },
         username: {
             type: DataTypes.STRING

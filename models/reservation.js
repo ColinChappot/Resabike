@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) =>{
     const Reservation = sequelize.define('Reservation', {
         id_reservation: {
-            type: DataTypes.INTEGER, primaryKey:true
+            type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
         },
         lastname: {
             type: DataTypes.STRING

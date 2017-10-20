@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) =>{
 
     var Line = sequelize.define('Line', {
         id_line: {
-            type: DataTypes.INTEGER, primaryKey:true
+            type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
         },
         name: {
             type: DataTypes.STRING

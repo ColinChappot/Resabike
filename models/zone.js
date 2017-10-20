@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) =>{
 var Zone = sequelize.define('Zone', {
     id_zone: {
-        type: DataTypes.INTEGER, primaryKey:true
+        type: DataTypes.INTEGER, primaryKey:true, autoIncrement: true
     },
     name: {
         type: DataTypes.STRING
