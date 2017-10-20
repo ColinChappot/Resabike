@@ -1,0 +1,23 @@
+head
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(type='text/css', rel='stylesheet', href='css/materialize.min.css', media='screen,projection')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+body
+    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(type='text/javascript', src='js/materialize.min.js')
+
+    block content
+        div styles (class="card-panel teal lighten-2")
+            Label Log in on your account
+            br
+            br
+            label(for='idLogin') login
+            input(type='text', id='idLogin', name='input_login', placeholder='Type your login here')
+            br
+            label(for='idpassword') FirstName
+            input(type='text', id='idpassword',name='input_password', placeholder='Type your password here')
+
+    block foot
+        #footer
+            p some footer content
