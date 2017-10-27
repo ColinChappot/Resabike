@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) =>{
     });
 
     Line.associate=(models) =>{
-        Line.hasMany(models.Journey,{foreignKey: {name:'idLine', allowNull:false}});
-        Line.belongsTo(models.Zone,{foreignKey: {name:'idZone', allowNull:false}});
+        Line.hasMany(models.Journey,{foreignKey: {name:'idLine', allowNull:false}, as:'journey' });
+        Line.belongsTo(models.Zone,{foreignKey: {name:'idZone', allowNull:false}, as: 'line'});
         Line.hasMany(models.Line_Station,{foreignKey: {name:'idLine', allowNull:false}});
     }
 

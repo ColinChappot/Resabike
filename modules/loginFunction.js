@@ -2,11 +2,11 @@
 var models = require('../models');
 
 module.exports = {
-    insertLogin(body, zone, role){
+    insertLogin(username,password, zone, role){
         return new Promise(function (resolve, reject) {
             models.Login.create({
-                username: body.username,
-                password: body.password,
+                username: username,
+                password: password,
                 idZone: zone.id_zone,
                 idRole: role
             }).then(function (login) {

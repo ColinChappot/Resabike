@@ -45,5 +45,17 @@ module.exports = {
                 resolve(zone)
             })
         })
+    },
+    GetZoneWithAllChild()
+    {
+        return new Promise(function (resolve, reject) {
+            models.Zone.findAll(
+                {
+
+                }
+            ).then(function (zone) {
+                resolve(zone)
+            })
+        })
     }
 }

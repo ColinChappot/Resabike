@@ -2,14 +2,10 @@ var models = require('../models');
 
 
 module.exports = {
-    insertPersonContact(body, zone){
+    insertPersonContact(id_zone){
         return new Promise(function (resolve, reject) {
             models.PersonContact.create({
-                lastname: body.lastname,
-                firstname: body.firstname,
-                mail: body.mail,
-                telephone: body.telephone,
-                idZone: zone.id_zone
+                idZone: id_zone
             }).then(function (personcontact) {
                 resolve(personcontact)
             })

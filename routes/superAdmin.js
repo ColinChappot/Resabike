@@ -9,6 +9,10 @@ var personcontactFunction = require('../modules/personContactFunction')
 
 //Permet d'accèder à la page
 router.get('/', function(req, res, next) {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     zoneFunction.GetAllZone().then(function (zones) {
         res.render('admin', { zones: zones});
     })
@@ -16,10 +20,18 @@ router.get('/', function(req, res, next) {
 
 //permet de créer une nouvelle zone
 router.post('/', (req, res, next) => {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     zoneFunction.insertZone(req.body).then(function (zone) {
         lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
-            loginFunction.insertLogin(req.body,zone,2).then(function () {
-                res.render('zone', {zone: zone, lines: lines});
+            loginFunction.insertLogin(req.body.username, req.body.password,zone,2).then(function () {
+                personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
+                    loginFunction.insertLogin(zone.name,'password',zone,1).then(function () {
+                        res.render('zone', {zone: zone, lines: lines});
+                    })
+                })
             })
         })
     })
@@ -27,6 +39,10 @@ router.post('/', (req, res, next) => {
 
 //permet d'accèder à une zone spécifique
 router.get('/zone/:idzone', function(req, res, next) {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     let idzone = req.params.idzone;
     zoneFunction.GetOneZone(idzone).then(function (zone) {
         lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
@@ -37,6 +53,10 @@ router.get('/zone/:idzone', function(req, res, next) {
 
 //permet de delete une zone
 router.delete('/zone/:idzone', function(req, res, next) {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     let idzone = req.params.idzone;
     lineFunction.GetAllLine(idzone).then(function (lines) {
         lines.idline.each(function (idline) {
@@ -58,6 +78,10 @@ router.delete('/zone/:idzone', function(req, res, next) {
 
 //permet de créer une ligne dans la zone
 router.post('/zone/:idzone', (req, res, next) => {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     let idzone = req.params.idzone;
     lineFunction.CreateLine(req.body).then(function (data) {
         if (data.connections[0].legs.size() <= 2)
@@ -86,6 +110,10 @@ router.post('/zone/:idzone', (req, res, next) => {
 
 //permet d'accèder à une ligne
 router.get('/zone/line/:idline', function(req, res, next) {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     let idline = req.params.idline;
     lineFunction.GetOneLine(idline).then(function (line) {
         station_line.GetAllStation(line).then(function (idStation) {
@@ -98,6 +126,10 @@ router.get('/zone/line/:idline', function(req, res, next) {
 
 //permet de delete une ligne
 router.delete('/zone/line/:idline', function(req, res, next) {
+    if(req.session.idrole != 3)
+    {
+        return;
+    }
     let idline = req.params.idline;
     station_line.deleteLine_Station(idline).then(function () {
         lineFunction.deleteLine(line).then(function () {

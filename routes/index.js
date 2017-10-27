@@ -7,9 +7,7 @@ var models = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    zone.GetAllZone().then(function (zone) {
-        res.render('index', { title: 'Express' });
-    })
+        res.render('index');
 });
 
 router.post('/', (req, res, next) => {

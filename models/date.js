@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) =>{
     });
 
     Date.associate=(models) => {
-        Date.hasMany(models.Reservation,{foreignKey: {name:'idDate', allowNull:false}});
+        Date.hasMany(models.Reservation,{foreignKey: {name:'idDate', allowNull:false}, as: 'date'});
     }
 
     return Date;

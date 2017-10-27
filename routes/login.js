@@ -14,11 +14,7 @@ router.get('/', function(req, res, next) {
 router.post('/', (req, res, next) => {
 
     loginFunction.CheckLogin(req.body).then(function (check) {
-        if(check = null)
-        {
-
-        }
-        else
+        if(check != null)
         {
             req.session.authenticated = true;
             req.session.idzone = check.idzone;
@@ -26,13 +22,13 @@ router.post('/', (req, res, next) => {
 
             switch(idrole)
             {
-                case 0: res.redirect('user')
+                case 0: res.redirect('/user')
                     break;
-                case 1: res.redirect('driver')
+                case 1: res.redirect('/driver')
                     break;
-                case 2: res.redirect('admin')
+                case 2: res.redirect('/admin')
                     break;
-                case 3: res.redirect('superAdmin')
+                case 3: res.redirect('/superAdmin')
                     break;
             }
         }
