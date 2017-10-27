@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     PersonContact.associate=(models) =>{
-        PersonContact.hasOne(models.Zone,{foreignKey: {name:'idPersonContact', allowNull:false}});
+        PersonContact.belongsTo(models.Zone,{foreignKey: {name:'idZone', allowNull:false}});
     }
 
     return PersonContact;

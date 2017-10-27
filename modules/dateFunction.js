@@ -20,7 +20,7 @@ module.exports = {
     deleteDate(body){
         return new Promise(function (resolve, reject) {
             models.Date.destroy({
-                where:{id: body.id  }
+                where:{id_date: body.id_date  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
@@ -32,7 +32,7 @@ module.exports = {
                 {   year: body.year,
                     month: body.month,
                     day: body.day},
-                {   where: {id: body.id}
+                {   where: {id_date: body.id_date}
                 }).then(function (date) {
                 resolve(date)
             })

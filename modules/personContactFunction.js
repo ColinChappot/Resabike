@@ -16,33 +16,32 @@ module.exports = {
         })
     },
 
-    deletePersonContact(body){
+    deletePersonContact(idzone){
         return new Promise(function (resolve, reject) {
             models.journey_reservation.destroy({
-                where:{id_personContact: body.id_personContact  }
+                where:{idZone: idzone  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
         })
     },
-    updatePersonContact(body, zone){
+    updatePersonContact(body, idzone){
         return new Promise(function (resolve, reject) {
             models.PersonContact.update(
                 {   lastname: body.lastname,
                     firstname: body.firstname,
                     mail: body.mail,
-                    telephone: body.telephone,
-                    idZone: zone.id_zone},
-                {   where:{id_personContact: body.id_personContact  }
+                    telephone: body.telephone},
+                {   where:{idZone: idzone  }
                 }).then(function (PersonContact) {
                 resolve(PersonContact)
             })
         })
     },
-    GetOnePersonContact(body) {
+    GetOnePersonContact(idzone) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.findOne({
-                where: {id_personContact: body.id_personContact}
+                where: {idZone: idzone}
             }).then(function (personcontact) {
                 resolve(personcontact)
             })

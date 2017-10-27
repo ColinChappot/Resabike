@@ -3,23 +3,33 @@ var models = require('../models');
 module.exports = {
     insertJourney_Reservation(journey, reservation){
         return new Promise(function (resolve, reject) {
-            models.journey_reservation.create({
-                id_journey: journey.id,
-                id_reservation: reservation.id
+            models.Journey_Reservation.create({
+                idJourney: journey.id_journey,
+                idReservation: reservation.id_reservation
             }).then(function (journey_reservation) {
                 resolve(journey_reservation)
             })
         })
     },
-    deleteJourney_Reservation(body){
+    deleteJourney_Reservation(idreservation){
         return new Promise(function (resolve, reject) {
-            models.journey_reservation.destroy({
-                where:{id_journey: body.id_journey, id_reservation: body.id_reservation}
+            models.Journey_Reservation.destroy({
+                where:{idReservation: idreservation}
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
         })
+    },
+    GetAllStation(body) {
+        return new Promise(function (resolve, reject) {
+            models.Journey_Reservation.findAll({
+                where: {idJourney: body.id_journey}
+            }).then(function (journey) {
+                resolve(journey)
+            })
+        })
     }
+
 }
 
 

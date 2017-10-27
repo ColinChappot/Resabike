@@ -15,10 +15,10 @@ module.exports = {
         })
     },
 
-    deleteLogin(body){
+    deleteLogin(idzone){
         return new Promise(function (resolve, reject) {
             models.Login.destroy({
-                where:{id: body.id  }
+                where:{idZone: idzone  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
@@ -32,22 +32,33 @@ module.exports = {
                     password: body.password,
                     idZone: zone.id,
                     idRole: role},
-                {   where: {id: body.id}
+                {   where: {idZone: zone, idRole: role}
                 }).then(function (zone) {
                 resolve(zone)
             })
         })
     },
-    GetAllLogin(body) {
+    GetOneLogin(idzone, idrole) {
         return new Promise(function (resolve, reject) {
-            models.Login.findAll({
-                where: {id_zone: body.id_zone,
-                        id_role: body.id_role}
+            models.Login.findOne({
+                where: {idZone: idzone,
+                        idRole: idrole}
+            }).then(function (login) {
+                resolve(login)
+            })
+        })
+    },
+    CheckLogin(idzone, idrole) {
+        return new Promise(function (resolve, reject) {
+            models.Login.findOne({
+                where: {username: body.username,
+                    password: body.password}
             }).then(function (login) {
                 resolve(login)
             })
         })
     }
+
 }
 
 

@@ -29,7 +29,7 @@ module.exports = {
             })
         })
     },
-    GetAllZone(body) {
+    GetAllZone() {
         return new Promise(function (resolve, reject) {
             models.Zone.findAll(
             ).then(function (zone) {
@@ -37,10 +37,10 @@ module.exports = {
             })
         })
     },
-    GetOneZone(body) {
+    GetOneZone(idzone) {
         return new Promise(function (resolve, reject) {
             models.Zone.findOne({
-                where: {id_zone: body.id_zone}
+                where: {id_zone: idzone}
             }).then(function (zone) {
                 resolve(zone)
             })

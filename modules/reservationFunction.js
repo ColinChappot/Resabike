@@ -22,10 +22,10 @@ module.exports = {
         })
     },
 
-    deleteReservation(body){
+    deleteReservation(id_reservation){
         return new Promise(function (resolve, reject) {
             models.Reservation.destroy({
-                where:{id_reservation: body.id_reservation  }
+                where:{id_reservation: id_reservation  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
@@ -55,12 +55,25 @@ module.exports = {
     GetAllReservation(body) {
         return new Promise(function (resolve, reject) {
             models.Reservation.findAll({
-                where: {id_date: body.id_date,
-                        id_login: body.id_login}
+                where: {idDate: body.id_date,
+                        idLogin: body.id_login}
             }).then(function (reservation) {
                 resolve(resrvation)
             })
         })
+    },
+    GetAllReservationByJourney(body) {
+        return new Promise(function (resolve, reject) {
+            models.Reservation.findAll({
+                where: {id_reservation: body.idReservation},
+                include: [{
+                    model: models.Date,
+                    as: 'Date',
+                    where: { id_date: body.idDate } //
+                }]
+            }).then(function (reservation) {
+                resolve(reservation)
+            })
+        })
     }
-
 }

@@ -34,10 +34,10 @@ module.exports = {
             })
         })
     },
-    GetAllJourney(body) {
+    GetAllJourney(id_line) {
         return new Promise(function (resolve, reject) {
             models.Journey.findAll({
-                where: {id_line: body.id_line}
+                where: {idLine: id_line}
             }).then(function (journey) {
                 resolve(journey)
             })

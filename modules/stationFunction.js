@@ -3,8 +3,9 @@ var models = require('../models');
 module.exports = {
     insertStation(body){
         return new Promise(function (resolve, reject) {
-            models.Station.create({
-                name: body.name
+            models.Station.findOrCreate({
+                where: {name: body.name},
+                defaults: {name: body.name,stopId: body.stopid}
             }).then(function (station) {
                 resolve(station)
             })
@@ -32,6 +33,15 @@ module.exports = {
     GetAllStation(body) {
         return new Promise(function (resolve, reject) {
             models.Station.findAll(
+            ).then(function (station) {
+                resolve(station)
+            })
+        })
+    },
+    GetAllStationFromLine(line, idStation) {
+        return new Promise(function (resolve, reject) {
+            models.Station.findAll(
+                {   where: {idLine: line.id_line, idStation: idStation.id_station}}
             ).then(function (station) {
                 resolve(station)
             })
