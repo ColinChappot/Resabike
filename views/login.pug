@@ -7,25 +7,26 @@ body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block(bgcolor='#ff0000') content
+    block(bgcolor='#ff0000')
         nav
             .nav-wrapper
-                a.brand-logo(href='#') Logo
+                a.brand-logo(href='#') RESABIKE
                 |
                 ul#nav-mobile.right.hide-on-med-and-down
                     li
-                        a(href='sass.html') Sass
+                        a(href='sass.html') CONTACTS
                     |
                     li
-                        a(href='badges.html') Components
+                        a(href='badges.html') LANGUES
                     |
                     li
-                        a(href='collapsible.html') JavaScript
+                        a(href='collapsible.html') LOGIN
 
         div
-            Label Log in on your account
             br
+            Label Welcome to Resabike
             br
+
             table
                 tr(width='33%')
                     label(for='idLogin',width='33%') login
@@ -35,5 +36,9 @@ body
                 tr(width='33%')
                     label(for='idpassword') Password
                     input(type='text', id='idpassword',name='input_password', placeholder='Type your password here')
+
+        div
+            Label You dont have an account?
+            a(href='collapsible.html') Register here
 
     block foot
