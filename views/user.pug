@@ -1,0 +1,59 @@
+head
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+body
+    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(type='text/javascript', src='/materialize/js/materialize.min.js')
+
+    block(bgcolor='#ff0000')
+        nav
+            .nav-wrapper
+                a.brand-logo(href='#') RESABIKE
+                |
+                ul#nav-mobile.right.hide-on-med-and-down
+                    li
+                        a(href='sass.html') CONTACTS
+                    |
+                    li
+                        a(href='badges.html') LANGUES
+                    |
+                    li
+                        a(href='collapsible.html') LOGIN
+
+        div
+            Label your search, your way
+            br
+            table
+                thead
+                    tr
+                        th Date
+                        th Departure
+                        th Destination
+                tbody
+                    tr
+                        td
+                            input(type='text', id='idDate', name='input_date', placeholder='Choose your date',size='35')
+                        td
+                            input(type='text', id='idDeparture', name='input_date', placeholder='choose your departure',size='35')
+                        td
+                           input(type='text', id='idDestination', name='input_date', placeholder='Choose your destination',size='35')
+
+
+        br
+        div
+            table
+                thead
+                    tr
+                        th Date
+                        th Departure
+                        th Destination
+                        th Reservation
+                tbody
+                    tr
+                        td datetest
+                        td departuretest
+                        td destinationtest
+                        td
+                            a.waves-effect.waves-light.btn-large Reservation
