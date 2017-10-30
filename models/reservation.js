@@ -36,10 +36,9 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     Reservation.associate=(models) =>{
-        Reservation.belongsToMany(models.Journey,{ through: 'journey_Reservation', foreignKey: {name:'idJourney', allowNull:false}});
-        Reservation.belongsTo(models.Date,{foreignKey: {name:'idDate', allowNull:false}});
+        Reservation.belongsTo(models.Date,{foreignKey: {name:'idDate', allowNull:false}, as:'date'});
         Reservation.belongsTo(models.Login,{foreignKey: {name:'idLogin', allowNull:false}});
-
+        Reservation.hasMany(models.Journey_Reservation,{foreignKey: {name:'idReservation', allowNull:false}, as:'reservation_tab'});
     }
 
     return Reservation;
