@@ -17,11 +17,14 @@ router.post('/', (req, res, next) => {
         if(check != null)
         {
             req.session.authenticated = true;
-            req.session.idzone = check.idzone;
+            if(check.idZone != null){
+                req.session.idzone = check.idzone;}
+
             req.session.idrole = check.idrole;
 
-            switch(check.idrole)
+            switch(idrole)
             {
+
                 case 1: res.redirect('/driver')
                     break;
                 case 2: res.redirect('/admin')
@@ -42,12 +45,12 @@ router.post('/', (req, res, next) => {
 });
 
 /* Logout handler */
-router.get('/registation', function(req, res, next) {
-    res.render('registation');
+router.get('/registration', function(req, res, next) {
+    res.render('registration');
 });
 
 //permet de modifier la personne de contact
-router.post('/registation', (req, res, next) => {
+router.post('/registration', (req, res, next) => {
    loginFunction.insertLogin(req.body.username,req.body.password,1).then(function () {
        res.render('login');
    })

@@ -62,8 +62,8 @@ module.exports = {
     CheckLogin(body) {
         return new Promise(function (resolve, reject) {
             models.Login.findOne({
-                where: {idZone: body.idZone,
-                    idRole: body.idRole}
+                where: {username: body.username,
+                    password: body.password}
             }).then(function (login) {
                 resolve(login)
             })

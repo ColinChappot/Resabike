@@ -7,7 +7,7 @@ body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block content
+    block
         nav
             .nav-wrapper
                 a.brand-logo(href='#') RESABIKE
@@ -21,25 +21,24 @@ body
                     |
                     li
                         a(href='collapsible.html') LOGIN
-
         div
-            br
-            Label Welcome to Resabike
-            br
-            form(action ='/login', method='POST')
-                table
-                    tr(width='33%')
-                        label(for='idLogin',width='33%') login
-                        input(type='text', id='idLogin', name='username', placeholder='Type your login here')
+            label Reservation
+            table
+
+                tr(width='33%')
+                    label(for='idGroupName',width='33%') GroupName
+                    input(type='text', id='idGroupName', name='input_GroupName', placeholder='Type your GroupName here')
 
 
-                    tr(width='33%')
-                        label(for='idpassword') Password
-                        input(type='password', id='idpassword',name='password', placeholder='Type your password here')
-                button(type='submit') log in
+                tr(width='33%')
+                    label(for='idBikeNumber') Bike Number
+                    input(type='text', id='idBikeNumber',name='input_BikeNumber', placeholder='Type your BikeNumber here')
 
-        div
-            Label You dont have an account?
-            a(href='http://localhost:3000/login/registration') Register here
+                tr(width='33%')
+                    label(for='idRemarqus',width='33%') Remarqus
+                    input(type='text', id='idRemarqus', name='input_Remarqus', placeholder='Type your remarqus if you have')
 
-    block foot
+
+        a.waves-effect.waves-light.btn-large Send Bike Reservation
+
+

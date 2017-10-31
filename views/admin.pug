@@ -7,7 +7,7 @@ body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block content
+    block
         nav
             .nav-wrapper
                 a.brand-logo(href='#') RESABIKE
@@ -21,25 +21,38 @@ body
                     |
                     li
                         a(href='collapsible.html') LOGIN
-
         div
+
+            label Zone
             br
-            Label Welcome to Resabike
-            br
-            form(action ='/login', method='POST')
-                table
-                    tr(width='33%')
-                        label(for='idLogin',width='33%') login
-                        input(type='text', id='idLogin', name='username', placeholder='Type your login here')
+            table
+                tbody
+                    td
+                        label zone a reprendre de la bd
+                        a.waves-effect.waves-light.btn-large Delete
 
 
-                    tr(width='33%')
-                        label(for='idpassword') Password
-                        input(type='password', id='idpassword',name='password', placeholder='Type your password here')
-                button(type='submit') log in
 
-        div
-            Label You dont have an account?
-            a(href='http://localhost:3000/login/registration') Register here
 
-    block foot
+        table
+            thead
+                th zone
+                th person of contact
+                th telephone
+                th mail
+
+            tbody
+                tr(width='20%')
+                    td
+                        label Zone à reprendre
+
+                tr(width='20%')
+                    td
+                        label person of Contact
+
+
+                tr(width='20%')
+                    td
+                        label Password
+
+
