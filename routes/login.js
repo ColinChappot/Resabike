@@ -37,4 +37,17 @@ router.post('/', (req, res, next) => {
 
 });
 
+/* Logout handler */
+router.get('/register', function(req, res, next) {
+    res.render('register');
+});
+
+//permet de modifier la personne de contact
+router.post('/register', (req, res, next) => {
+   loginFunction.insertLogin(body.username,body.password,1).then(function () {
+       res.render('login');
+   })
+});
+
+
 module.exports = router;

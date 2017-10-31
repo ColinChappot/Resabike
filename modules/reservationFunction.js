@@ -47,7 +47,7 @@ module.exports = {
                 where: {idDate: body.id_date,
                         idLogin: body.id_login}
             }).then(function (reservation) {
-                resolve(resevation)
+                resolve(reservation)
             })
         })
     },
@@ -58,7 +58,7 @@ module.exports = {
                 include: [{
                     model: models.Date,
                     as: 'date',
-                    where: { id_date: body.idDate } //
+                    where: { id_date: {$col: 'Reservation.idDate' } }
                 }]
             }).then(function (reservation) {
                 resolve(reservation)
@@ -72,7 +72,7 @@ module.exports = {
                 include: [{
                     model: models.Date,
                     as: 'date',
-                    where: { id_date: body.idDate }
+                    where: { id_date: {$col: 'Reservation.idDate' } }
                 }]
           //      order: [ [ { model: models.Data, as: 'date' }, 'day', 'DESC' ] ]
             }).then(function (reservation) {

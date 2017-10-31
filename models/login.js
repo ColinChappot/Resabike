@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     Login.associate=(models) =>{
-        Login.belongsTo(models.Zone,{foreignKey:{ name:'idZone', allowNull:false}});
+        Login.belongsTo(models.Zone,{foreignKey:{ name:'idZone'}});
         Login.belongsTo(models.Role,{foreignKey: {name:'idRole', allowNull:false}});
         Login.hasMany(models.Reservation,{foreignKey: {name:'idLogin', allowNull:false}});
     }

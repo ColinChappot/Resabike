@@ -8,6 +8,7 @@ var loginFunction = require('../modules/loginFunction');
 var journeyFunction = require('../modules/journeyFunction');
 var journey_reservationFunction = require('../modules/journey_reservationFunction');
 var reservationFunction = require('../modules/reservationFunction');
+var zoneFunction = require('../modules/zoneFunction');
 
 
 
@@ -116,11 +117,9 @@ router.post('/driver', (req, res, next) => {
         return;
     }
     var idzone = req.session.idzone;
-    loginFunction.GetOneLogin(idzone,1).then(function (login) {
             loginFunction.updateLogin(req.body, idzone, 1).then(function () {
                 res.render('driver', {zone: idzone});
             })
-    })
 });
 
 //permet de delete une ligne
@@ -143,7 +142,7 @@ router.post('/reservation', function(req, res, next) {
     {
         return;
     }
-    var data = {};
+  /*  var data = {};
     var dataline ;
     var dataJourney;
 
@@ -165,8 +164,8 @@ router.post('/reservation', function(req, res, next) {
                 dataline.line = line;
             })
             data.add(dataline)
-        })
-    }).then(function () {
+        })*/
+  zoneFunction.GetZoneWithAllChild(idzone).then(function (data) {
         res.render('reservation', {data: data});
     })
 });

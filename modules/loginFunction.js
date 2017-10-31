@@ -14,6 +14,17 @@ module.exports = {
             })
         })
     },
+    insertLogin(username,password, role){
+        return new Promise(function (resolve, reject) {
+            models.Login.create({
+                username: username,
+                password: password,
+                idRole: role
+            }).then(function (login) {
+                resolve(login)
+            })
+        })
+    },
 
     deleteLogin(idzone){
         return new Promise(function (resolve, reject) {
