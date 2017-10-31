@@ -20,17 +20,21 @@ router.post('/', (req, res, next) => {
             req.session.idzone = check.idzone;
             req.session.idrole = check.idrole;
 
-            switch(idrole)
+            switch(check.idrole)
             {
-                case 0: res.redirect('/user')
-                    break;
                 case 1: res.redirect('/driver')
                     break;
                 case 2: res.redirect('/admin')
                     break;
                 case 3: res.redirect('/superAdmin')
                     break;
+                case 4: res.redirect('/user')
+                    break;
             }
+        }
+        else
+        {
+            res.redirect('/login')
         }
     })
 

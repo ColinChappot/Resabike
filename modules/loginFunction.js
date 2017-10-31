@@ -59,11 +59,11 @@ module.exports = {
             })
         })
     },
-    CheckLogin(idzone, idrole) {
+    CheckLogin(body) {
         return new Promise(function (resolve, reject) {
             models.Login.findOne({
-                where: {username: body.username,
-                    password: body.password}
+                where: {idZone: body.idZone,
+                    idRole: body.idRole}
             }).then(function (login) {
                 resolve(login)
             })
