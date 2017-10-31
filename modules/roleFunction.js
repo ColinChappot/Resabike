@@ -1,10 +1,10 @@
 var models = require('../models');
 
 module.exports = {
-    insertRole(body){
+    insertRole(name){
         return new Promise(function (resolve, reject) {
             models.Role.create({
-                name: body.name
+                name: name
             }).then(function (role) {
                 resolve(role)
             })

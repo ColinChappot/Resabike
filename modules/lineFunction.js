@@ -19,7 +19,7 @@ module.exports = {
 
     deleteLine(idzone){
         return new Promise(function (resolve, reject) {
-            models.Date.destroy({
+            models.Line.destroy({
                 where:{idZone: idzone  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)

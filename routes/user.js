@@ -5,7 +5,7 @@ var router = express.Router();
 
 //Permet d'accèder à la page
 router.get('/', function(req, res, next) {
-    // if(req.session.idrole != 0)
+    // if(req.session.idrole != 4)
     // {
     //     return;
     // }
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 
 //Permet d'accèder aux réservation
 router.get('/reservation', function(req, res, next) {
-    // if(req.session.idrole != 0)
+    // if(req.session.idrole != 4)
     // {
     //     return;
     // }

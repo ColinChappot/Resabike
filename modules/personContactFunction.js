@@ -14,7 +14,7 @@ module.exports = {
 
     deletePersonContact(idzone){
         return new Promise(function (resolve, reject) {
-            models.journey_reservation.destroy({
+            models.PersonContact.destroy({
                 where:{idZone: idzone  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
