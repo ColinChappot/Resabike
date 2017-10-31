@@ -6,6 +6,11 @@ var journey_reservationFunction = require('../modules/journey_reservationFunctio
 var reservationFunction = require('../modules/reservationFunction');
 
 
+router.get('/', function(req, res, next) {
+    res.render('driver');
+});
+
+
 //permet d'accèder aux réservations
 router.post('/reservation', function(req, res, next) {
     if(req.session.idrole != 1)
@@ -40,3 +45,4 @@ router.post('/reservation', function(req, res, next) {
     })
 });
 
+module.exports = router;

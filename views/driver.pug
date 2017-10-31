@@ -21,24 +21,24 @@ body
                     |
                     li
                         a(href='collapsible.html') LOGIN
-
         div
-            br
-            Label Welcome to Resabike
-            br
 
+            label Reservation a rependre
+            br
             table
-                tr(width='33%')
-                    label(for='idLogin',width='33%') login
-                    input(type='text', id='idLogin', name='input_login', placeholder='Type your login here')
+                thead
+                    th departure
+                    th destination
+                    th groupname
+                    th bikeNumber
+                tbody
+                    td departure from db
+                    td destination from db
+                    td grouname from db
+                    td bikenumber from db
 
 
-                tr(width='33%')
-                    label(for='idpassword') Password
-                    input(type='text', id='idpassword',name='input_password', placeholder='Type your password here')
 
-        div
-            Label You dont have an account?
-            a(href='http://localhost:3000/login/registration') Register here
 
-    block foot
+
+

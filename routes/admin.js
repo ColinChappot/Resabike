@@ -14,14 +14,14 @@ var zoneFunction = require('../modules/zoneFunction');
 
 //permet d'accèder à une zone spécifique
 router.get('/', function(req, res, next) {
-    if(req.session.idrole != 2)
-    {
-        return;
-    }
+    // if(req.session.idrole != 2)
+    // {
+    //     return;
+    // }
     var idzone = req.session.idzone;
     zone.GetOneZone(idzone).then(function (zone) {
         lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
-            res.render('zone', {zone: zone, lines: lines});
+            res.render('admin', {zone: zone, lines: lines});
         })
     })
 });
@@ -200,3 +200,5 @@ router.post('/reservation/:idreservation', (req, res, next) => {
 
 
 });
+
+module.exports = router;

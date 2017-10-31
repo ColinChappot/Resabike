@@ -10,18 +10,18 @@ router.get('/', function(req, res, next) {
     //     return;
     // }
     res.render('user');
-    // res.render('user_Search', { zones: zones});
+    // res.render('user', { zones: zones});
 });
 
 
 
 //Permet d'accèder aux réservation
-// router.get('/reservation', function(req, res, next) {
-//     if(req.session.idrole != 0)
-//     {
-//         return;
-//     }
-//     res.render('reservation', { zones: zones});
-// });
+router.get('/reservation', function(req, res, next) {
+    // if(req.session.idrole != 0)
+    // {
+    //     return;
+    // }
+    res.render('reservation', { zones: zones});
+});
 
 module.exports = router;
