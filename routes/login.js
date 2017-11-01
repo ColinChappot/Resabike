@@ -18,11 +18,11 @@ router.post('/', (req, res, next) => {
         if(check != null)
         {
 
-            req.session.authenticated = true;
+ //           req.session.authenticated = true;
 
-            req.session.login = req.body;
+ //           req.session.login = req.body;
 
-            switch(check.dataValues.idRole)
+            switch(check.idRole)
             {
 
                 case 1: res.redirect('/driver')

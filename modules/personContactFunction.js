@@ -7,7 +7,7 @@ module.exports = {
             models.PersonContact.create({
                 idZone: id_zone
             }).then(function (personcontact) {
-                resolve(personcontact)
+                resolve(personcontact.dataValues)
             })
         })
     },
@@ -30,7 +30,7 @@ module.exports = {
                     telephone: body.telephone},
                 {   where:{idZone: idzone  }
                 }).then(function (PersonContact) {
-                resolve(PersonContact)
+                resolve(PersonContact.dataValues)
             })
         })
     },
@@ -39,7 +39,7 @@ module.exports = {
             models.PersonContact.findOne({
                 where: {idZone: idzone}
             }).then(function (personcontact) {
-                resolve(personcontact)
+                resolve(personcontact.dataValues)
             })
         })
     }

@@ -6,7 +6,7 @@ module.exports = {
             models.Role.create({
                 name: name
             }).then(function (role) {
-                resolve(role)
+                resolve(role.dataValues)
             })
         })
     },
@@ -25,7 +25,7 @@ module.exports = {
                 {   name: body.name},
                 {   where: {id_role: body.id_role}
                 }).then(function (role) {
-                resolve(role)
+                resolve(role.dataValues)
             })
         })
     }

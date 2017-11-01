@@ -6,7 +6,7 @@ module.exports = {
             models.Zone.create({
                 name: body.name
             }).then(function (zone) {
-                resolve(zone)
+                resolve(zone.dataValues)
             })
         })
     },
@@ -25,7 +25,7 @@ module.exports = {
                 {   name: body.name},
                 {   where: {id_zone: body.id_zone}
                 }).then(function (zone) {
-                resolve(zone)
+                resolve(zone.dataValues)
             })
         })
     },
@@ -42,7 +42,7 @@ module.exports = {
             models.Zone.findOne({
                 where: {id_zone: idzone}
             }).then(function (zone) {
-                resolve(zone)
+                resolve(zone.dataValues)
             })
         })
     },
@@ -80,7 +80,7 @@ module.exports = {
                     }]
                 }
             ).then(function (zones) {
-                resolve(zones)
+                resolve(zones.dataValues)
             })
         })
     }

@@ -13,7 +13,7 @@ module.exports = {
                         month: body.month,
                         day: body.day}
                 }).then(function (date) {
-                resolve(date)
+                resolve(date.dataValues)
             })
         })
     },
@@ -34,7 +34,7 @@ module.exports = {
                     day: body.day},
                 {   where: {id_date: body.id_date}
                 }).then(function (date) {
-                resolve(date)
+                resolve(date.dataValues)
             })
         })
     }

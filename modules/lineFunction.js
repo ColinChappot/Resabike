@@ -12,7 +12,7 @@ module.exports = {
                         toStation: data.to,
                         idZone: idzone}
             }).then(function (line) {
-                resolve(line)
+                resolve(line.dataValues)
             })
         })
     },
@@ -35,7 +35,7 @@ module.exports = {
                     idZone: body.id_zone},
                 {   where: {id_line: body.id_line}
                 }).then(function (line) {
-                resolve(line)
+                resolve(line.dataValues)
             })
         })
     },
@@ -53,7 +53,7 @@ module.exports = {
             models.Line.findOne({
                 where: {id_line: idline}
             }).then(function (line) {
-                resolve(line)
+                resolve(line.dataValues)
             })
         })
     },

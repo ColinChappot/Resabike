@@ -7,7 +7,7 @@ module.exports = {
                 idLine: line.id_line,
                 idStation: station.id_station
             }).then(function (line_station) {
-                resolve(line_station)
+                resolve(line_station.dataValues)
             })
         })
     },

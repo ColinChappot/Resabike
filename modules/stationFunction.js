@@ -7,7 +7,7 @@ module.exports = {
                 where: {name: body.name},
                 defaults: {name: body.name,stopId: body.stopid}
             }).then(function (station) {
-                resolve(station)
+                resolve(station.dataValues)
             })
         })
     },
@@ -26,11 +26,11 @@ module.exports = {
                 {   name: body.name},
                 {   where: {id_station: body.id_station}
                 }).then(function (station) {
-                resolve(station)
+                resolve(station.dataValues)
             })
         })
     },
-    GetAllStation(body) {
+    GetAllStation() {
         return new Promise(function (resolve, reject) {
             models.Station.findAll(
             ).then(function (station) {

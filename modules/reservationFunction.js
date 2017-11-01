@@ -17,7 +17,7 @@ module.exports = {
                 idDate: date.id_date,
                 idLogin: body.id_login
             }).then(function (reservation) {
-                resolve(reservation)
+                resolve(reservation.dataValues)
             })
         })
     },
@@ -37,7 +37,7 @@ module.exports = {
                 {   confirmation: true},
                 {   where: {id_reservation: body.id_reservation}
                 }).then(function (reservation) {
-                resolve(reservation)
+                resolve(reservation.dataValues)
             })
         })
     },
