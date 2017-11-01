@@ -22,14 +22,24 @@ body
                     li
                         a(href='collapsible.html') LOGIN
         div
-
-            - var listStation = stations;
-
-            label Station
+            form(action ='/sadmin/sa_line/' + zone.id_zone , method='GET')
+                button(type ='Submit') Back to line
             br
-            table7
-            each station in listStation
-                .line
-                tbody
-                    td #{station.name}
-                    td #{station.stopId}
+            Label line
+
+            each station in stations
+                table
+
+                    thead
+                        tr(width='20%')
+                            th id
+                            th name
+                            th departure
+                            th destination
+
+                    tbody
+                        tr(width='20%')
+                            td id #{station.id_station}
+                            td name #{station.name}
+                            td departure #{station.stopId}
+
