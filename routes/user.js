@@ -21,7 +21,16 @@ router.get('/reservation', function(req, res, next) {
     // {
     //     return;
     // }
+
+    //test si on est logé ou pas si oui on go reservation, sinon on go sur registration
+    // if(req.session.authenticated==true){
+    //     res.render('reservation', { zones: zones});
+    // }else{
+    //     res.render('registration');
+    // }
+
     res.render('reservation', { zones: zones});
+
 });
 
 //permet de poster les informations pour la reservation d une personne, madebyJeff

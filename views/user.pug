@@ -32,6 +32,7 @@ body
                         th Departure
                         th Destination
                 tbody
+                    form(action ='/sadmin/sa_zone', method='POST')
                     tr
                         td
                             input(type='text', id='idDate', name='input_date', placeholder='Choose your date',size='35')
@@ -39,7 +40,8 @@ body
                             input(type='text', id='idDeparture', name='input_date', placeholder='choose your departure',size='35')
                         td
                            input(type='text', id='idDestination', name='input_date', placeholder='Choose your destination',size='35')
-
+                        td
+                            button(type ='Submit') search
 
         br
         div
@@ -51,9 +53,10 @@ body
                         th Destination
                         th Reservation
                 tbody
+                    form(action ='/user/reservation', method='GET')
                     tr
                         td datetest
                         td departuretest
                         td destinationtest
                         td
-                            a.waves-effect.waves-light.btn-large Reservation
+                            button(type ='Submit') make records
