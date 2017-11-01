@@ -14,7 +14,6 @@ var registration = require('./routes/login');
 var user = require('./routes/user');
 var reservation = require('./routes/user');
 var sadmin = require('./routes/superAdmin');
-var sa_zone = require('./routes/superAdmin');
 var sa_line = require('./routes/superAdmin');
 var sa_station = require('./routes/superAdmin');
 var admin = require('./routes/admin');
@@ -41,9 +40,8 @@ app.use('/login/registration', registration)
 app.use('/user', user);
 app.use('/reservation', reservation)
 app.use('/sadmin', sadmin);
-app.use('/sadmin/sa_zone', sa_zone)
-app.use('/sadmin/sa_line', sa_line)
-app.use('/sadmin//sa_zone/sa_line', sa_station)
+app.use('/sadmin/sa_zone', sa_line)
+app.use('/sadmin/sa_zone/sa_line', sa_station)
 app.use('/admin', admin)
 app.use('/driver', driver)
 

@@ -24,25 +24,25 @@ body
         div
 
             - var listZone = zones;
-            - var count = 0;
 
-            form(action ='/superAdmin/zone', method='DELETE')
+
+            form(action ='/superAdmin/sa_zone/2', method='DELETE')
                 label Zone
 
                 each zone in listZone
-                    count = zone.id_zone        //c'est la que ca plante, il reprend comme un text, a coté du label zone
-                    br
-                    table
-                        tbody
-                            td
-                               #{zone.id_zone}
+                    .zone
 
-                            td
-                                //#{zone.name}
-                            td
-                                    form(action ='/superAdmin/sa_zone/'+count+"", method='GET')
+                        br
+                        table
+                            tbody
+                                td #{zone.id_zone}
+
+
+                                td #{zone.name}
+                                td
+                                    form(action ='/superAdmin/sa_zone/1' , method='GET')
                                         button(type ='Submit') show line
-                            td
+                                td
                                     button(type ='Submit') delete
 
         div

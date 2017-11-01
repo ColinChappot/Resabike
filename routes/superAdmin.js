@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
             loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
                 personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
                     loginFunction.insertLoginRole(zone.name,'password',zone,1).then(function () {
-                        res.render('sa_zone', {zone: zone, lines: lines});
+                        res.redirect('sadmin', {zone: zone, lines: lines});
                     })
                 })
             })
@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
 
 // //permet d'accèder à une zone spécifique
 // router.get('/zone/:idzone', function(req, res, next) {
-router.get('/sa_line', function(req, res, next) {
+router.get('/sa_zone/:idzone', function(req, res, next) {
     // if(req.session.idrole != 3)
     // {
     //     return;
@@ -53,12 +53,12 @@ router.get('/sa_line', function(req, res, next) {
 });
 
 //permet de delete une zone
-router.delete('/zone/:idzone', function(req, res, next) {
-    if(req.session.idrole != 3)
-    {
-        return;
-    }
-    let idzone = req.params.idzone;
+router.delete('/sa_zone/:idzone', function(req, res, next) {
+    // if(req.session.idrole != 3)
+    // {
+    //     return;
+    // }
+    // let idzone = req.params.idzone;
     lineFunction.GetAllLine(idzone).then(function (lines) {
         lines.idline.each(function (idline) {
             station_line.deleteLine_Station(idline).then(function () {
@@ -77,45 +77,44 @@ router.delete('/zone/:idzone', function(req, res, next) {
     })
 });
 
-// //permet de créer une ligne dans la zone
-// router.post('/zone/:idzone', (req, res, next) => {
-//     if(req.session.idrole != 3)
-//     {
-//         return;
-//     }
-//     let idzone = req.params.idzone;
-//     lineFunction.CreateLine(req.body).then(function (data) {
-//         if (data.connections[0].legs.size() <= 2)
-//         {
-//             lineFunction.insertLine(data.connections[0], idzone).then(function (line) {
-//                 stationFunction.insertStation(data.connections[0].legs[0]).then(function (station) {
-//                     station_line.insertLine_Station(line, station).then(function () {
-//                         data.connections[0].legs[1].stops.each(function (stops) {
-//                             stationFunction.insertStation(stops).then(function (station) {
-//                                 station_line.insertLine_Station(line, station).then(function () {
-//                                 })
-//                             })
-//                         })
-//                     })
-//                 })
-//             }).then(function () {
-//                 res.render('line', {line: line, idzone: idzone});
-//             })
-//         }
-//         else
-//         {
-//             res.redirect('/zone/'+idzone);
-//         }
-//     })
-// });
-//
-// //permet d'accèder à une ligne
-// router.get('/zone/line/:idline', function(req, res, next) {
-    router.get('/sa_zone/sa_line', function(req, res, next) {
-    if(req.session.idrole != 3)
-    {
-        return;
-    }
+//permet de créer une ligne dans la zone
+router.post('/sa_zone/:idzone', (req, res, next) => {
+    // if(req.session.idrole != 3)
+    // {
+    //     return;
+    // }
+    let idzone = req.params.idzone;
+    lineFunction.CreateLine(req.body).then(function (data) {
+        if (data.connections[0].legs.size() <= 2)
+        {
+            lineFunction.insertLine(data.connections[0], idzone).then(function (line) {
+                stationFunction.insertStation(data.connections[0].legs[0]).then(function (station) {
+                    station_line.insertLine_Station(line, station).then(function () {
+                        data.connections[0].legs[1].stops.each(function (stops) {
+                            stationFunction.insertStation(stops).then(function (station) {
+                                station_line.insertLine_Station(line, station).then(function () {
+                                })
+                            })
+                        })
+                    })
+                })
+            }).then(function () {
+                res.redirect('sa_line', {line: line, idzone: idzone});
+            })
+        }
+        else
+        {
+            res.redirect('/sa_line/'+idzone);
+        }
+    })
+});
+
+//permet d'accèder à une ligne
+ router.get('/sa_zone/sa_line/:idline', function(req, res, next) {
+    // if(req.session.idrole != 3)
+    //  {
+    //      return;
+    //  }
     let idline = req.params.idline;
     lineFunction.GetOneLine(idline).then(function (line) {
         station_line.GetAllStation(line).then(function (idStation) {
@@ -126,19 +125,19 @@ router.delete('/zone/:idzone', function(req, res, next) {
     })
 });
 
-// //permet de delete une ligne
-// router.delete('/zone/line/:idline', function(req, res, next) {
-//     if(req.session.idrole != 3)
-//     {
-//         return;
-//     }
-//     let idline = req.params.idline;
-//     station_line.deleteLine_Station(idline).then(function () {
-//         lineFunction.deleteLine(line).then(function () {
-//             res.redirect('/zone/' + line.idZone);
-//         })
-//     })
-// });
+//permet de delete une ligne
+router.delete('/sa_zone/sa_line/:idline', function(req, res, next) {
+    // if(req.session.idrole != 3)
+    // {
+    //     return;
+    // }
+    let idline = req.params.idline;
+    station_line.deleteLine_Station(idline).then(function () {
+        lineFunction.deleteLine(line).then(function () {
+            res.redirect('/sa_zone/' + line.idZone);
+        })
+    })
+});
 
 module.exports = router;
 

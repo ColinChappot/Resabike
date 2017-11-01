@@ -18,9 +18,9 @@ router.post('/', (req, res, next) => {
         if(check != null)
         {
 
- //           req.session.authenticated = true;
-
- //           req.session.login = req.body;
+           // req.session.authenticated = true;
+//
+           // req.session.login = req.body;
 
             switch(check.idRole)
             {
@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
                     break;
                 case 2: res.redirect('/admin')
                     break;
-                case 3: res.redirect('/superAdmin')
+                case 3: res.redirect('/sadmin')
                     break;
                 case 4: res.redirect('/user')
                     break;
@@ -45,12 +45,12 @@ router.post('/', (req, res, next) => {
 });
 
 /* Logout handler */
-router.get('/registation', function(req, res, next) {
-    res.render('registation');
+router.get('/registration', function(req, res, next) {
+    res.render('registration');
 });
 
 //permet de modifier la personne de contact
-router.post('/registation', (req, res, next) => {
+router.post('/registration', (req, res, next) => {
    loginFunction.insertLogin(req.body.username,req.body.password,1).then(function () {
        res.render('login');
    })

@@ -7,7 +7,7 @@ body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block(bgcolor='#ff0000')
+    block
         nav
             .nav-wrapper
                 a.brand-logo(href='#') RESABIKE
@@ -23,13 +23,28 @@ body
                         a(href='collapsible.html') LOGIN
         div
 
-            label line
-            br
-            table
-                tbody
-                    td
-                        label line a reprendre de la bd
-                        a.waves-effect.waves-light.btn-large Delete
+            - var listLines = Lines;
+
+
+            form(action ='/superAdmin/sa_zone/sa_line/2', method='DELETE')
+                label Line
+
+                each line in listLines
+                    .line
+
+                        br
+                        table
+                            tbody
+                                td #{zone.id_zone.id_line}
+
+
+                                td #{zone.id_zone.name}
+                                td
+                                    form(action ='/superAdmin/sa_zone/1' , method='GET')
+                                        button(type ='Submit') show line
+                                td
+                                    button(type ='Submit') delete
+
 
 
 
