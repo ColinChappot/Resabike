@@ -26,8 +26,7 @@ router.get('/reservation', function(req, res, next) {
 
 //permet de poster les informations pour la reservation d une personne, madebyJeff
 router.post('/reservation', (req, res, next) => {
-    reservationFunction.insertReservation(req.body.lastname,req.body.firstname, req.body.telephone, req.body.mail, req.body.bikeNumber, req.body.groupName,req.body.from,
-        req.body.to, req.body.remarks, req.body.confirmation, req.date.id_date, req.body.id_login,1).then(function () { res.render('/user');
+    reservationFunction.insertReservation(req.body).then(function () { res.render('/user');
     })
 });
 

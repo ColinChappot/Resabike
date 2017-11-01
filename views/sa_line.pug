@@ -1,7 +1,6 @@
 head
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
 body
@@ -10,7 +9,6 @@ body
     script(type='text/javascript', src='/javascripts/apiCompletion.js')
 
 
-    block
         nav
             .nav-wrapper
                 a.brand-logo(href='#') RESABIKE
@@ -29,7 +27,7 @@ body
             - var listLines = Lines;
 
 
-            form(action ='/superAdmin/sa_zone/sa_line/2', method='DELETE')
+            form(action ='/sadmin/sa_zone/sa_line/2', method='DELETE')
                 label Line
 
                 each line in listLines
@@ -47,7 +45,7 @@ body
 
                                 td #{line.toStation}
                                 td
-                                    form(action ='/superAdmin/sa_zone/1' , method='GET')
+                                    form(action ='/sadmin/sa_zone/1' , method='GET')
                                         button(type ='Submit') show line
                                 td
                                     button(type ='Submit') delete
@@ -55,17 +53,17 @@ body
 
 
 
-        form(action ='/sadmin/sa_zone', method='POST')
-            table
+            form(action ='/sadmin/sa_zone', method='POST')
+                table
 
-                tr(width='20%')
-                    td
-                        label(for='idFrom',width='20%') Line
-                    td
-                        input(type='text', id='idFrom', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
-                    td
-                        label(for='idTo',width='20%') Line
-                    td
-                        input(type='text', id='idTo', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+                    tr(width='20%')
+                        td
+                            label(for='idFrom',width='20%') Line
+                        td
+                            input(type='text', id='idFrom', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+                        td
+                            label(for='idTo',width='20%') Line
+                        td
+                            input(type='text', id='idTo', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
 
-            button(type ='Submit') add new line now
+                button(type ='Submit') add new line now

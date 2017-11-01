@@ -39,7 +39,7 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             models.Reseravation.update(
                 {   confirmation: true},
-                {   where: {id_reservation: body.id_reservation}
+                {   where: {id_reservation: id_reservation}
                 }).then(function (reservation) {
                 if(reservation == null)
                 {
@@ -65,8 +65,7 @@ module.exports = {
                 where: {id_reservation: body.idReservation},
                 include: [{
                     model: models.Date,
-                    as: 'date',
-                    where: { id_date: {$col: 'Reservation.idDate' } }
+                    as: 'date'
                 }]
             }).then(function (reservation) {
                 resolve(reservation)
@@ -79,8 +78,7 @@ module.exports = {
                 where: {id_reservation: body.idReservation, confirmation: true},
                 include: [{
                     model: models.Date,
-                    as: 'date',
-                    where: { id_date: {$col: 'Reservation.idDate' } }
+                    as: 'date'
                 }]
           //      order: [ [ { model: models.Data, as: 'date' }, 'day', 'DESC' ] ]
             }).then(function (reservation) {

@@ -51,7 +51,7 @@ router.get('/registration', function(req, res, next) {
 
 //permet de modifier la personne de contact
 router.post('/registration', (req, res, next) => {
-   loginFunction.insertLogin(req.body.username,req.body.password,1).then(function () {
+   loginFunction.insertLogin(req.body.username,req.body.password,4).then(function () {
        res.render('login');
    })
 });

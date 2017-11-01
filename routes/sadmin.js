@@ -42,6 +42,7 @@ router.get('/sa_line/:idzone', function(req, res, next) {
     // {
     //     return;
     // }
+
     let idzone = req.params.idzone;
     zoneFunction.GetOneZone(idzone).then(function (zone) {
         lineFunction.GetAllLine(zone.id_zone).then(function (lines) {

@@ -68,23 +68,19 @@ module.exports = {
                     include: [{
                         model: models.Ligne,
                         as: 'ligne',
-                        where: { id_zone: idzone },
                         include: [{
                             model: models.Journey,
                             as: 'journey',
-                            where: {idLine: {$col:'ligne.id_ligne'}},
                             include: [{
                                 model: models.Journey_Reservation,
                                 as: 'journey_tab',
-                                where: {idJourney: {$col:'journey.id_journey'}},
                                 include: [{
                                     model: models.Reservation,
                                     as: 'reservation_tab',
-                                    where: {id_reservation: {$col:'journey_tab.idReservation'}, confirmed: true},
+                                    where: {confirmed: true},
                                     include: [{
                                         model: models.Date,
                                         as: 'date',
-                                        where: {id_date: {$col:'Reservation.idDate'}}
                                     }]
                                 }]
 
