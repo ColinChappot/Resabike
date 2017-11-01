@@ -36,7 +36,6 @@ router.post('/', (req, res, next) => {
 });
 
 // //permet d'accèder à une zone spécifique
-// router.get('/zone/:idzone', function(req, res, next) {
 router.get('/sa_line/:idzone', function(req, res, next) {
     // if(req.session.idrole != 3)
     // {

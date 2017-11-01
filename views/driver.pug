@@ -22,20 +22,22 @@ body
                     li
                         a(href='collapsible.html') LOGIN
         div
-
+            - var listReservations = Reservations;
             label Reservations all today
             br
             table
+                each reservation in listReservations
+                    .reservation
                 thead
                     th departure
                     th destination
                     th groupname
                     th bikeNumber
                 tbody
-                    td departure from db
-                    td destination from db
-                    td grouname from db
-                    td bikenumber from db
+                    td #{reservation.fromStation}
+                    td #{reservation.toStation}
+                    td #{reservation.groupName}
+                    td #{reservation.bikeNumber}
 
 
 

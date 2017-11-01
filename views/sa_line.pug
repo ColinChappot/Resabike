@@ -3,12 +3,14 @@ head
     link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
+
+
 body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
     script(type='text/javascript', src='/javascripts/apiCompletion.js')
 
-
+    block content
         nav
             .nav-wrapper
                 a.brand-logo(href='#') RESABIKE
@@ -22,48 +24,42 @@ body
                     |
                     li
                         a(href='collapsible.html') LOGIN
+
         div
+            Label line
 
-            - var listLines = Lines;
-
-
-            form(action ='/sadmin/sa_zone/sa_line/2', method='DELETE')
-                label Line
-
-                each line in listLines
-                    .line
-
-                        br
-                        table
-                            tbody
-                                td #{line.id_line}
-
-
-                                td #{line.name}
-
-                                td #{line.fromStation}
-
-                                td #{line.toStation}
-                                td
-                                    form(action ='/sadmin/sa_zone/1' , method='GET')
-                                        button(type ='Submit') show line
-                                td
-                                    button(type ='Submit') delete
-
-
-
-
-            form(action ='/sadmin/sa_zone', method='POST')
+            each line in lines
                 table
 
+                    thead
+                        tr(width='20%')
+                            th id
+                            th name
+                            th departure
+                            th destination
+
+                    tbody
+                        tr(width='20%')
+                            td id #{line.id_line}
+                            td name #{line.name}
+                            td departure #{line.fromStation}
+                            td destination #{line.toStation}
+
+
+
+        div
+            form(action ='/sadmin/sa_zone', method='POST')
+                table
                     tr(width='20%')
                         td
-                            label(for='idFrom',width='20%') Line
+                            label(for='idFromStation',width='20%') fromSation
                         td
-                            input(type='text', id='idFrom', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+                            input(type='text', id='idFromStation', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+                    tr(width='20%')
                         td
-                            label(for='idTo',width='20%') Line
+                            label(for='idToStation',width='20%') tostation
                         td
-                            input(type='text', id='idTo', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+                            input(type='text', id='idToStation', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+
 
                 button(type ='Submit') add new line now

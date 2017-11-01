@@ -53,7 +53,7 @@ router.post('/', (req, res, next) => {
         }
         else
         {
-            res.redirect('/zone/'+idzone);
+            res.redirect('zone/'+idzone);
         }
     })
 });
