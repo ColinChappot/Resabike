@@ -23,36 +23,51 @@ body
                         a(href='collapsible.html') LOGIN
         div
 
+            - var listZone = zones;
+            - var count = 0;
+
+            form(action ='/superAdmin/zone', method='DELETE')
                 label Zone
-                br
+
+                each zone in listZone
+                    count = zone.id_zone        //c'est la que ca plante, il reprend comme un text, a coté du label zone
+                    br
+                    table
+                        tbody
+                            td
+                               #{zone.id_zone}
+
+                            td
+                                //#{zone.name}
+                            td
+                                    form(action ='/superAdmin/sa_zone/'+count+"", method='GET')
+                                        button(type ='Submit') show line
+                            td
+                                    button(type ='Submit') delete
+
+        div
+            br
+            Label Add new Zone
+            form(action ='/sadmin', method='POST')
                 table
-                    tbody
+
+                    tr(width='20%')
+                       td
+                           label(for='idNewZone',width='20%') Zone
+                       td
+                            input(type='text', id='idNewZone', name='name', placeholder='Type your New Zone here')
+
+
+                    tr(width='20%')
                         td
-                            label zone a reprendre de la bd
-                            a.waves-effect.waves-light.btn-large Delete
+                            label(for='idNewZoneUserName') UserName
+                        td
+                            input(type='text', id='idNewZoneUserName',name='username', placeholder='Type the new Username here')
 
+                    tr(width='20%')
+                        td
+                            label(for='idNewZonePassword',width='20%') Password
+                        td
+                            input(type='text', id='idNewZonePassword', name='password', placeholder='Type the new Passwprd')
 
-
-
-        table
-
-            tr(width='20%')
-               td
-                   label(for='idNewZone',width='20%') Zone
-               td
-                    input(type='text', id='idNewZone', name='input_NewZone', placeholder='Type your New Zone here')
-
-
-            tr(width='20%')
-                td
-                    label(for='idNewZoneUserName') UserName
-                td
-                    input(type='text', id='idNewZoneUserName',name='input_NewZonwUserName', placeholder='Type the new Username here')
-
-            tr(width='20%')
-                td
-                    label(for='idNewZonePassword',width='20%') Password
-                td
-                    input(type='text', id='idNewZonePassword', name='input_NewZonePassword', placeholder='Type the new Passwprd')
-
-        a.waves-effect.waves-light.btn-large() Add new Zone
+                button(type ='Submit') add now
