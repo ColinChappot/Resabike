@@ -13,6 +13,10 @@ module.exports = {
                         month: body.month,
                         day: body.day}
                 }).then(function (date) {
+                if(date == null)
+                {
+                    resolve(null)
+                }
                 resolve(date.dataValues)
             })
         })
@@ -34,6 +38,10 @@ module.exports = {
                     day: body.day},
                 {   where: {id_date: body.id_date}
                 }).then(function (date) {
+                if(date == null)
+                {
+                    resolve(null)
+                }
                 resolve(date.dataValues)
             })
         })

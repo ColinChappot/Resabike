@@ -10,6 +10,10 @@ module.exports = {
                     defaults: { journeyNumber: body.journeyNumber,
                                 idLine: body.id_line}
             }).then(function (journey) {
+                if(journey == null)
+                {
+                    resolve(null)
+                }
                 resolve(journey.dataValues)
             })
         })
@@ -30,6 +34,10 @@ module.exports = {
                     idLine: body.id_line},
                 {   where: {id_journey: body.id_journey}
                 }).then(function (journey) {
+                if(journey == null)
+                {
+                    resolve(null)
+                }
                 resolve(journey.dataValues)
             })
         })

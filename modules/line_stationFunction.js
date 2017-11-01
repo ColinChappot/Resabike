@@ -7,6 +7,10 @@ module.exports = {
                 idLine: line.id_line,
                 idStation: station.id_station
             }).then(function (line_station) {
+                if(line_station == null)
+                {
+                    resolve(null)
+                }
                 resolve(line_station.dataValues)
             })
         })

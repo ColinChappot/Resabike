@@ -6,6 +6,10 @@ module.exports = {
             models.Zone.create({
                 name: body.name
             }).then(function (zone) {
+                if(zone == null)
+                {
+                    resolve(null)
+                }
                 resolve(zone.dataValues)
             })
         })
@@ -25,6 +29,10 @@ module.exports = {
                 {   name: body.name},
                 {   where: {id_zone: body.id_zone}
                 }).then(function (zone) {
+                if(zone == null)
+                {
+                    resolve(null)
+                }
                 resolve(zone.dataValues)
             })
         })
@@ -42,6 +50,11 @@ module.exports = {
             models.Zone.findOne({
                 where: {id_zone: idzone}
             }).then(function (zone) {
+                if(zone == null)
+                {
+                    resolve(null);
+                    return;
+                }
                 resolve(zone.dataValues)
             })
         })
@@ -79,8 +92,12 @@ module.exports = {
                         }]
                     }]
                 }
-            ).then(function (zones) {
-                resolve(zones.dataValues)
+            ).then(function (zone) {
+                if(zone == null)
+                {
+                    resolve(null)
+                }
+                resolve(zone.dataValues)
             })
         })
     }

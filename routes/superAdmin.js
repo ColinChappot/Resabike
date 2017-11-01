@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
             loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
                 personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
                     loginFunction.insertLoginRole(zone.name,'password',zone,1).then(function () {
-                        res.redirect('sa_zone', {zone: zone, lines: lines});
+                        res.redirect('/sa_line');
                     })
                 })
             })
@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
 
 // //permet d'accèder à une zone spécifique
 // router.get('/zone/:idzone', function(req, res, next) {
-router.get('/sa_zone/:idzone', function(req, res, next) {
+router.get('/sa_line/:idzone', function(req, res, next) {
     // if(req.session.idrole != 3)
     // {
     //     return;
@@ -53,7 +53,7 @@ router.get('/sa_zone/:idzone', function(req, res, next) {
 });
 
 //permet de delete une zone
-router.delete('/sa_zone/:idzone', function(req, res, next) {
+router.delete('/sa_line/:idzone', function(req, res, next) {
     // if(req.session.idrole != 3)
     // {
     //     return;
@@ -78,7 +78,7 @@ router.delete('/sa_zone/:idzone', function(req, res, next) {
 });
 
 //permet de créer une ligne dans la zone
-router.post('/sa_zone/:idzone', (req, res, next) => {
+router.post('/sa_line/:idzone', (req, res, next) => {
     // if(req.session.idrole != 3)
     // {
     //     return;
@@ -110,7 +110,7 @@ router.post('/sa_zone/:idzone', (req, res, next) => {
 });
 
 //permet d'accèder à une ligne
- router.get('/sa_zone/sa_line/:idline', function(req, res, next) {
+ router.get('/sa_line/sa_station/:idline', function(req, res, next) {
     // if(req.session.idrole != 3)
     //  {
     //      return;
@@ -126,7 +126,7 @@ router.post('/sa_zone/:idzone', (req, res, next) => {
 });
 
 //permet de delete une ligne
-router.delete('/sa_zone/sa_line/:idline', function(req, res, next) {
+router.delete('/sa_line/sa_station/:idline', function(req, res, next) {
     // if(req.session.idrole != 3)
     // {
     //     return;
@@ -134,7 +134,7 @@ router.delete('/sa_zone/sa_line/:idline', function(req, res, next) {
     let idline = req.params.idline;
     station_line.deleteLine_Station(idline).then(function () {
         lineFunction.deleteLine(line).then(function () {
-            res.redirect('/sa_zone/' + line.idZone);
+            res.redirect('/sa_line/' + line.idZone);
         })
     })
 });

@@ -7,6 +7,10 @@ module.exports = {
                 idJourney: journey.id_journey,
                 idReservation: reservation.id_reservation
             }).then(function (journey_reservation) {
+                if(journey_reservation == null)
+                {
+                    resolve(null)
+                }
                 resolve(journey_reservation.dataValues)
             })
         })

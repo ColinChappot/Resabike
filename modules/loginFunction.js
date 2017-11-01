@@ -10,6 +10,10 @@ module.exports = {
                 idZone: zone.id_zone,
                 idRole: role
             }).then(function (login) {
+                if(login == null)
+                {
+                    resolve(null)
+                }
                 resolve(login.dataValues)
             })
         })
@@ -21,6 +25,10 @@ module.exports = {
                 password: password,
                 idRole: role
             }).then(function (login) {
+                if(login == null)
+                {
+                    resolve(null)
+                }
                 resolve(login.dataValues)
             })
         })
@@ -45,6 +53,10 @@ module.exports = {
                     idRole: role},
                 {   where: {idZone: zone, idRole: role}
                 }).then(function (login) {
+                if(login == null)
+                {
+                    resolve(null)
+                }
                 resolve(login.dataValues)
             })
         })
@@ -55,6 +67,10 @@ module.exports = {
                 where: {idZone: idzone,
                         idRole: idrole}
             }).then(function (login) {
+                if(login == null)
+                {
+                    resolve(null)
+                }
                 resolve(login.dataValues)
             })
         })
@@ -65,6 +81,10 @@ module.exports = {
                 where: {username: body.username,
                     password: body.password}
             }).then(function (login) {
+                if(login == null)
+                {
+                    resolve(null)
+                }
                 resolve(login.dataValues)
             })
         })

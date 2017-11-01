@@ -14,6 +14,7 @@ var registration = require('./routes/login');
 var user = require('./routes/user');
 var reservation = require('./routes/user');
 var sadmin = require('./routes/superAdmin');
+var sa_zone = require('./routes/superAdmin');
 var sa_line = require('./routes/superAdmin');
 var sa_station = require('./routes/superAdmin');
 var admin = require('./routes/admin');

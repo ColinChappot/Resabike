@@ -7,6 +7,10 @@ module.exports = {
                 where: {name: body.name},
                 defaults: {name: body.name,stopId: body.stopid}
             }).then(function (station) {
+                if(station == null)
+                {
+                    resolve(null)
+                }
                 resolve(station.dataValues)
             })
         })
@@ -26,6 +30,10 @@ module.exports = {
                 {   name: body.name},
                 {   where: {id_station: body.id_station}
                 }).then(function (station) {
+                if(station == null)
+                {
+                    resolve(null)
+                }
                 resolve(station.dataValues)
             })
         })
