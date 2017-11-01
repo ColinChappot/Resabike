@@ -25,12 +25,10 @@ router.post('/', (req, res, next) => {
     //     return;
     // }
     zoneFunction.insertZone(req.body).then(function (zone) {
-        lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
-            loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
-                personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
-                    loginFunction.insertLoginRole(zone.name,'password',zone,1).then(function () {
-                        res.redirect('/sa_line');
-                    })
+        loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
+            personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
+                loginFunction.insertLoginRole(zone.name,'password',zone,1).then(function () {
+                    res.redirect('/sadmin/sa_line/'+zone.id_zone);
                 })
             })
         })

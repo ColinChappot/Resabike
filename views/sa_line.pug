@@ -1,11 +1,14 @@
 head
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
+    link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
 body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
+    script(type='text/javascript', src='/javascripts/apiCompletion.js')
+
 
     block
         nav
@@ -57,8 +60,12 @@ body
 
                 tr(width='20%')
                     td
-                        label(for='idNewLine',width='20%') Line
+                        label(for='idFrom',width='20%') Line
                     td
-                        input(type='text', id='idNewLine', name='input_NewLine', placeholder='Type your New line here')
+                        input(type='text', id='idFrom', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
+                    td
+                        label(for='idTo',width='20%') Line
+                    td
+                        input(type='text', id='idTo', name='input_NewLine', placeholder='Type your New line here', onkeydown='autocomp(this)')
 
             button(type ='Submit') add new line now

@@ -26,7 +26,7 @@ body
             - var listZone = zones;
 
 
-            form(action ='/superAdmin/sa_zone/2', method='DELETE')
+
                 label Zone
 
                 each zone in listZone
@@ -40,10 +40,9 @@ body
 
                                 td #{zone.name}
                                 td
-                                    form(action ='/superAdmin/sa_zone/1' , method='GET')
+                                    form(action ='/sadmin/sa_line/'+zone.id_zone , method='GET')
                                         button(type ='Submit') show line
-                                td
-                                    button(type ='Submit') delete
+
 
         div
             br
