@@ -35,10 +35,14 @@ body
                         br
                         table
                             tbody
-                                td #{zone.id_zone.id_line}
+                                td #{line.id_line}
 
 
-                                td #{zone.id_zone.name}
+                                td #{line.name}
+
+                                td #{line.fromStation}
+
+                                td #{line.toStation}
                                 td
                                     form(action ='/superAdmin/sa_zone/1' , method='GET')
                                         button(type ='Submit') show line
@@ -48,13 +52,13 @@ body
 
 
 
+        form(action ='/sadmin/sa_zone', method='POST')
+            table
 
-        table
+                tr(width='20%')
+                    td
+                        label(for='idNewLine',width='20%') Line
+                    td
+                        input(type='text', id='idNewLine', name='input_NewLine', placeholder='Type your New line here')
 
-            tr(width='20%')
-                td
-                    label(for='idNewLine',width='20%') Line
-                td
-                    input(type='text', id='idNewLine', name='input_NewLine', placeholder='Type your New line here')
-
-        a.waves-effect.waves-light.btn-large Add new Zone
+            button(type ='Submit') add new line now

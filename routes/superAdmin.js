@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
             loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
                 personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
                     loginFunction.insertLoginRole(zone.name,'password',zone,1).then(function () {
-                        res.redirect('sadmin', {zone: zone, lines: lines});
+                        res.redirect('sa_zone', {zone: zone, lines: lines});
                     })
                 })
             })

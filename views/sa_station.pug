@@ -23,10 +23,13 @@ body
                         a(href='collapsible.html') LOGIN
         div
 
-            label Zone
+            - var listStation = stations;
+
+            label Station
             br
-            table
+            table7
+            each station in listStation
+                .line
                 tbody
-                    td
-                        label Station reprendre de la bd
-                        a.waves-effect.waves-light.btn-large Delete
+                    td #{station.name}
+                    td #{station.stopId}
