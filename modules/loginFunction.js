@@ -8,7 +8,7 @@ module.exports = {
                 username: username,
                 password: password,
                 idZone: zone.id_zone,
-                id_role: role
+                idRole: role
             }).then(function (login) {
                 resolve(login.dataValues)
             })
