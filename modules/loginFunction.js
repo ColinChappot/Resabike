@@ -2,13 +2,13 @@
 var models = require('../models');
 
 module.exports = {
-    insertLogin(username,password, zone, role){
+    insertLoginRole(username,password, zone, role){
         return new Promise(function (resolve, reject) {
             models.Login.create({
                 username: username,
                 password: password,
                 idZone: zone.id_zone,
-                idRole: role
+                id_role: role
             }).then(function (login) {
                 resolve(login.dataValues)
             })

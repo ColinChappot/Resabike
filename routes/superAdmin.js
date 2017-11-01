@@ -26,9 +26,9 @@ router.post('/', (req, res, next) => {
     // }
     zoneFunction.insertZone(req.body).then(function (zone) {
         lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
-            loginFunction.insertLogin(req.body.username, req.body.password,zone,2).then(function () {
+            loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
                 personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
-                    loginFunction.insertLogin(zone.name,'password',zone,1).then(function () {
+                    loginFunction.insertLoginRole(zone.name,'password',zone,1).then(function () {
                         res.render('sa_zone', {zone: zone, lines: lines});
                     })
                 })
