@@ -119,7 +119,7 @@ router.delete('/zone/:idzone', function(req, res, next) {
     let idline = req.params.idline;
     lineFunction.GetOneLine(idline).then(function (line) {
         station_line.GetAllStation(line).then(function (idStation) {
-            stationFunction.GetAllStationFromLine(line, idStation).then(function (stations) {
+            stationFunction.GetAllStationFromLine(idStation).then(function (stations) {
                 res.render('sa_station', {stations: stations, idline: idline, idzone: line.idZone});
             })
         })

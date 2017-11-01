@@ -42,7 +42,7 @@ module.exports = {
     GetAllLine(id_zone) {
         return new Promise(function (resolve, reject) {
             models.Line.findAll({
-                where: {id_zone: id_zone}
+                where: {idZone: id_zone}
             }).then(function (line) {
                 resolve(line)
             })

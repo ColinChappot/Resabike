@@ -38,10 +38,10 @@ module.exports = {
             })
         })
     },
-    GetAllStationFromLine(line, idStation) {
+    GetAllStationFromLine(idStation) {
         return new Promise(function (resolve, reject) {
             models.Station.findAll(
-                {   where: {idLine: line.id_line, idStation: idStation.id_station}}
+                {   where: {id_station: idStation.id_station}}
             ).then(function (station) {
                 resolve(station)
             })

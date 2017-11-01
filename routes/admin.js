@@ -142,11 +142,11 @@ router.post('/reservation', function(req, res, next) {
     {
         return;
     }
+    var idzone = req.session.idzone;
   /*  var data = {};
     var dataline ;
     var dataJourney;
 
-    var idzone = req.session.idzone;
     lineFunction.GetAllLine(idzone).then(function (lines) {
         lines.each(function (line) {
             journeyFunction.GetAllJourney(lines.id_line).then(function (journeys) {

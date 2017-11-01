@@ -5,6 +5,7 @@ var router = express.Router();
 
 
 
+
 /* Logout handler */
 router.get('/', function(req, res, next) {
     res.render('login');
@@ -16,13 +17,12 @@ router.post('/', (req, res, next) => {
     loginFunction.CheckLogin(req.body).then(function (check) {
         if(check != null)
         {
+
             req.session.authenticated = true;
-            if(check.idZone != null){
-                req.session.idzone = check.idzone;}
 
-            req.session.idrole = check.idrole;
+            req.session.login = req.body;
 
-            switch(idrole)
+            switch(check.dataValues.idRole)
             {
 
                 case 1: res.redirect('/driver')
@@ -45,12 +45,12 @@ router.post('/', (req, res, next) => {
 });
 
 /* Logout handler */
-router.get('/registration', function(req, res, next) {
-    res.render('registration');
+router.get('/registation', function(req, res, next) {
+    res.render('registation');
 });
 
 //permet de modifier la personne de contact
-router.post('/registration', (req, res, next) => {
+router.post('/registation', (req, res, next) => {
    loginFunction.insertLogin(req.body.username,req.body.password,1).then(function () {
        res.render('login');
    })
