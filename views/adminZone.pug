@@ -1,0 +1,63 @@
+head
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+body
+    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(type='text/javascript', src='/materialize/js/materialize.min.js')
+
+    block content
+        nav
+            .nav-wrapper
+                a.brand-logo(href='#') RESABIKE
+                |
+                ul#nav-mobile.right.hide-on-med-and-down
+                    li
+                        a(href='sass.html') CONTACTS
+                    |
+                    li
+                        a(href='badges.html') LANGUES
+                    |
+                    li
+                        a(href='collapsible.html') LOGIN
+        div
+            a.waves-effect.waves-light.btn-large(href='http://localhost:3000/admin/AdminLine') AdminLine
+            p logitics
+            br
+            p Person of Contact
+            table
+                thead
+                    tr
+                        th Name
+                        th telphon
+                        th mail
+                tbody
+                    tr
+                        td NameCOntent
+                        td TelephonCOntent
+                        td MailContent
+                        td
+                            form(action ='/admin/contactFiche', method='GET')
+                                button(type='submit') show contact
+
+            p Dirver
+            table
+                thead
+                    tr
+                        th LineName
+                        th driver
+                        th telephon
+                tbody
+                    tr
+                        td LineNameContent
+                        td driverContent
+                        td telehonContent
+                        td
+                            form(action ='/admin/contactDriver', method='Get')
+                                button(type='submit') show driver
+
+
+
+
+
