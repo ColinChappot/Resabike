@@ -35,7 +35,7 @@ router.post('/sa_line/:idzone', (req, res, next) => {
     }
     let idzone = req.params.idzone;
 
-    lineFunction.CreateLine(req.body).then(function (data) {
+    lineFunction.APILine(req.body).then(function (data) {
         if (data.connections[0].legs.length <= 2)
         {
             lineFunction.insertLine(data.connections[0], idzone).then(function (line) {

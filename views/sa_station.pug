@@ -22,9 +22,11 @@ body
                     li
                         a(href='collapsible.html') LOGIN
         div
-            form(action ='/sadmin/sa_line/' + zone.id_zone , method='GET')
+            form(action ='/sadmin/sa_line/' + zone , method='GET')
                 button(type ='Submit') Back to line
             br
+            form(action ='/sadmin/sa_line/sa_station/delete/' + line.id_line, method='Post')
+                button(type ='Submit') delete
             Label line
 
             each station in stations
@@ -32,14 +34,11 @@ body
 
                     thead
                         tr(width='20%')
-                            th id
                             th name
-                            th departure
-                            th destination
+                            th stopId
 
                     tbody
                         tr(width='20%')
-                            td id #{station.id_station}
                             td name #{station.name}
-                            td departure #{station.stopId}
+                            td departure #{station.stopid}
 

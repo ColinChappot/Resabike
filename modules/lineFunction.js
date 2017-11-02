@@ -77,7 +77,7 @@ module.exports = {
             })
         })
     },
-    CreateLine(line) {
+    APILine(line) {
         return new Promise(function (resolve, reject) {
             axios.get('https://timetable.search.ch/api/route.en.json?from='+line.fromStation+'&to='+line.toStation+'&num=1').then(function (response) {
                 console.log(response.data);
