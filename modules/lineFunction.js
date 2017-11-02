@@ -5,9 +5,9 @@ module.exports = {
     insertLine(data, idzone){
         return new Promise(function (resolve, reject) {
             models.Line.findOrCreate({
-                where: {name: data.legs[1].line},
+                where: {name: data.legs[0].line},
                 defaults:
-                        {name: data.legs[1].line,
+                        {name: data.legs[0].line,
                         fromStation: data.from,
                         toStation: data.to,
                         idZone: idzone}
@@ -16,7 +16,7 @@ module.exports = {
                 {
                     resolve(null)
                 }
-                resolve(line.dataValues)
+                resolve(line[0].dataValues)
             })
         })
     },
@@ -59,7 +59,15 @@ module.exports = {
     GetOneLine(idline) {
         return new Promise(function (resolve, reject) {
             models.Line.findOne({
-                where: {id_line: idline}
+                where: {id_line: idline},
+                include: [{
+                    model: models.Line_Station,
+                    as: 'line_tab',
+                    include:[{
+                        model: models.Station,
+                        as: 'station_tab'
+                    }]
+                }]
             }).then(function (line) {
                 if(line == null)
                 {
@@ -71,8 +79,7 @@ module.exports = {
     },
     CreateLine(line) {
         return new Promise(function (resolve, reject) {
-            axios.get('https://timetable.search.ch/api/route.en.json', {from: line.fromStation, to: line.toStation, num:1
-            }).then(function (response) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+line.fromStation+'&to='+line.toStation+'&num=1').then(function (response) {
                 console.log(response.data);
                 resolve(response.data)
                 })

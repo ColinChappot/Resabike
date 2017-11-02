@@ -1,6 +1,7 @@
 var express = require('express');
 var models = require('../models');
 var loginFunction = require('../modules/loginFunction');
+var session = require('express-session');
 var router = express.Router();
 
 
@@ -17,23 +18,10 @@ router.post('/', (req, res, next) => {
     loginFunction.CheckLogin(req.body).then(function (check) {
         if(check != null)
         {
+            session.authenticated = true;
 
-           // req.session.authenticated = true;
-//
-           // req.session.login = req.body;
-
-            switch(check.idRole)
-            {
-
-                case 1: res.redirect('/driver')
-                    break;
-                case 2: res.redirect('/admin')
-                    break;
-                case 3: res.redirect('/sadmin')
-                    break;
-                case 4: res.redirect('/user')
-                    break;
-            }
+            session.login = check;
+            res.redirect('/login/redirect')
         }
         else
         {
@@ -55,6 +43,27 @@ router.post('/registration', (req, res, next) => {
        res.render('login');
    })
 });
+
+/* Logout handler */
+router.get('/redirect', function(req, res, next) {
+
+
+    var ok = session.login
+
+    switch(session.login.idRole)
+    {
+        case 1: res.redirect('/driver')
+            break;
+        case 2: res.redirect('/admin')
+            break;
+        case 3: res.redirect('/sadmin')
+            break;
+        case 4: res.redirect('/user')
+            break;
+    }
+});
+
+
 
 
 module.exports = router;

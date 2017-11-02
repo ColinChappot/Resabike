@@ -16,26 +16,21 @@ router.get('/', function(req, res, next) {
 
 
 //Permet d'accèder aux réservation
-router.get('/reservation', function(req, res, next) {
+router.get('/reservation/:idJourney', function(req, res, next) {
     // if(req.session.idrole != 4)
     // {
     //     return;
     // }
-
-    //test si on est logé ou pas si oui on go reservation, sinon on go sur registration
-    // if(req.session.authenticated==true){
-    //     res.render('reservation', { zones: zones});
-    // }else{
-    //     res.render('registration');
-    // }
-
-    res.render('reservation', { zones: zones});
-
+    let idJourney = req.params.idJourney;
+    journeyFunction.insertJourney(idJourney).then(function (journey) {
+        res.render('reservation', {journey: journey});
+    })
 });
 
 //permet de poster les informations pour la reservation d une personne, madebyJeff
 router.post('/reservation', (req, res, next) => {
-    reservationFunction.insertReservation(req.body).then(function () { res.render('/user');
+    reservationFunction.insertReservation(req.body).then(function () {
+        res.render('historique', {})
     })
 });
 

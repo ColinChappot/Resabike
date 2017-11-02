@@ -137,7 +137,7 @@ router.delete('/zone/line/:idline', function(req, res, next) {
 });
 
 //permet d'accèder aux réservations
-router.post('/reservation', function(req, res, next) {
+router.get('/reservation', function(req, res, next) {
     if(req.session.idrole != 2)
     {
         return;

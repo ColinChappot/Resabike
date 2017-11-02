@@ -3,7 +3,7 @@ var models = require('../models');
 module.exports = {
     insertLine_Station(line, station){
         return new Promise(function (resolve, reject) {
-            models.line_station.create({
+            models.Line_Station.create({
                 idLine: line.id_line,
                 idStation: station.id_station
             }).then(function (line_station) {
@@ -17,14 +17,14 @@ module.exports = {
     },
     deleteLine_Station(idline){
         return new Promise(function (resolve, reject) {
-            models.line_station.destroy({
+            models.Line_Station.destroy({
                 where:{idLine: idline}
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
         })
     },
-    GetAllStation(body) {
+    GetAllLineStation(body) {
         return new Promise(function (resolve, reject) {
             models.Line_Station.findAll({
                 where: {idLine: body.id_line}

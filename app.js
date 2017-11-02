@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 app.use(session({
     secret:'badger badger badger mushroom',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { secure: false }
 }));
 

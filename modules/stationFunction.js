@@ -11,7 +11,7 @@ module.exports = {
                 {
                     resolve(null)
                 }
-                resolve(station.dataValues)
+                resolve(station[0].dataValues)
             })
         })
     },
@@ -49,7 +49,7 @@ module.exports = {
     GetAllStationFromLine(idStation) {
         return new Promise(function (resolve, reject) {
             models.Station.findAll(
-                {   where: {id_station: idStation.id_station}}
+                {   where: {id_station: idStation}}
             ).then(function (station) {
                 resolve(station)
             })
