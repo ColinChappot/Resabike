@@ -10,11 +10,11 @@ var session = require('express-session');
 
 //Permet d'accèder à la page
 router.get('/', function(req, res, next) {
-   //  if(session.login.idRole == 3)
- //    {
+    if(session.login.idRole != 3)
+    {
+        res.redirect('/login/redirect')
+    }
 
- //    }
-  //  res.redirect('/login/redirect')
     zoneFunction.GetAllZone().then(function (zones) {
         res.render('sa_zone', { zones: zones});
     })
@@ -22,10 +22,10 @@ router.get('/', function(req, res, next) {
 
 //permet de créer une nouvelle zone
 router.post('/', (req, res, next) => {
-//    if(req.session.idrole != 3)
-  //  {
- //       return;
-  //  }
+    if(session.login.idRole != 3)
+    {
+        res.redirect('/login/redirect')
+    }
     zoneFunction.insertZone(req.body).then(function (zone) {
         loginFunction.insertLoginRole(req.body.username, req.body.password,zone,2).then(function () {
             personcontactFunction.insertPersonContact(zone.id_zone).then(function () {
@@ -39,10 +39,10 @@ router.post('/', (req, res, next) => {
 
 // //permet d'accèder à une zone spécifique
 router.get('/sa_line/:idzone', function(req, res, next) {
-    // if(req.session.idrole != 3)
-    // {
-    //     return;
-    // }
+    if(session.login.idRole != 3)
+    {
+        res.redirect('/login/redirect')
+    }
 
     let idzone = req.params.idzone;
     zoneFunction.GetOneZone(idzone).then(function (zone) {
@@ -53,23 +53,23 @@ router.get('/sa_line/:idzone', function(req, res, next) {
 });
 
 //permet de delete une zone
-router.delete('/sa_line/:idzone', function(req, res, next) {
-    // if(req.session.idrole != 3)
-    // {
-    //     return;
-    // }
-    // let idzone = req.params.idzone;
+router.post('/sa_line/delete/:idzone', function(req, res, next) {
+    if(session.login.idRole != 3)
+    {
+        res.redirect('/login/redirect')
+    }
+    let idzone = req.params.idzone;
     lineFunction.GetAllLine(idzone).then(function (lines) {
-        lines.idline.each(function (idline) {
-            station_line.deleteLine_Station(idline).then(function () {
+        lines.forEach(function (lines) {
+            station_line.deleteLine_Station(lines.idline).then(function () {
             })
         })
     }).then(function () {
         lineFunction.deleteLine(idzone).then(function () {
-            zoneFunction.deleteZone(idzone).then(function () {
-                loginFunction.deleteLogin(idzone).then(function () {
-                    personcontactFunction.deletePersonContact(idzone).then(function () {
-                        res.redirect('/');
+            personcontactFunction.deletePersonContact(idzone).then(function () {
+                zoneFunction.deleteZone(idzone).then(function () {
+                    loginFunction.deleteLogin(idzone).then(function () {
+                        res.redirect('/sadmin');
                     })
                 })
             })
@@ -79,17 +79,16 @@ router.delete('/sa_line/:idzone', function(req, res, next) {
 
 //permet de créer une ligne dans la zone
 router.post('/sa_line/:idzone', (req, res, next) => {
-    // if(req.session.idrole != 3)
-    // {
-    //     return;
-    // }
+    if(session.login.idRole != 3)
+    {
+        res.redirect('/login/redirect')
+    }
     let idzone = req.params.idzone;
 
-    tab={}
     lineFunction.CreateLine(req.body).then(function (data) {
         if (data.connections[0].legs.length <= 2)
         {
-           tab = [ lineFunction.insertLine(data.connections[0], idzone).then(function (line) {
+         lineFunction.insertLine(data.connections[0], idzone).then(function (line) {
                stationFunction.insertStation(data.connections[0].legs[0]).then(function (station) {
                    station_line.insertLine_Station(line, station).then(function () {
                        data.connections[0].legs[0].stops.forEach(function (stops) {
@@ -97,14 +96,15 @@ router.post('/sa_line/:idzone', (req, res, next) => {
                                station_line.insertLine_Station(line, station)
                            })
                        })
+                   }).then(function () {
+                       stationFunction.insertStation(data.connections[0].legs[1]).then(function (station) {
+                           station_line.insertLine_Station(line, station).then(function () {
+                               res.redirect('/sadmin/sa_line/sa_station/'+line.id_line);
+                           })
+                       })
                    })
                })
-            })]
-
-            Promise.all(tab).then(function (ok) {
-                console.log('ok');
             })
-
         }
         else
         {
@@ -115,27 +115,33 @@ router.post('/sa_line/:idzone', (req, res, next) => {
 
 //permet d'accèder à une ligne
  router.get('/sa_line/sa_station/:idline', function(req, res, next) {
-    // if(req.session.idrole != 3)
-    //  {
-    //      return;
-    //  }
+     if(session.login.idRole != 3)
+     {
+         res.redirect('/login/redirect')
+     }
     let idline = req.params.idline;
-    lineFunction.GetOneLine(idline).then(function (line) {
-        res.render('sa_station', {line: line});
-
-    })
+    let stations = new Array();
+    let line;
+     station_line.GetOneLineStation(idline).then(function (lines) {
+         lines.forEach(function (lines) {
+             stations.push(lines.station_tab.dataValues)
+         })
+         line = lines[0].line_tab.dataValues;
+    }).then(function () {
+         res.render('sa_station', {line: line, stations: stations, zone: line.idZone})
+     })
 });
 
 //permet de delete une ligne
-router.delete('/sa_line/sa_station/:idline', function(req, res, next) {
-    // if(req.session.idrole != 3)
-    // {
-    //     return;
-    // }
+router.post('/sa_line/sa_station/delete/:idline', function(req, res, next) {
+    if(session.login.idRole != 3)
+    {
+        res.redirect('/login/redirect')
+    }
     let idline = req.params.idline;
     station_line.deleteLine_Station(idline).then(function () {
         lineFunction.deleteLine(line).then(function () {
-            res.redirect('/sa_line/' + line.idZone);
+            res.redirect('/sadmin/sa_line/' + line.idZone);
         })
     })
 });

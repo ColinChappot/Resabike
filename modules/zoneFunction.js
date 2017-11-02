@@ -14,10 +14,10 @@ module.exports = {
             })
         })
     },
-    deleteZone(body){
+    deleteZone(idzone){
         return new Promise(function (resolve, reject) {
             models.Zone.destroy({
-                where:{id_zone: body.id_zone  }
+                where:{id_zone: idzone  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })

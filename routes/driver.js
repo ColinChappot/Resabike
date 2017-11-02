@@ -4,18 +4,24 @@ var lineFunction = require('../modules/lineFunction');
 var journeyFunction = require('../modules/journeyFunction');
 var journey_reservationFunction = require('../modules/journey_reservationFunction');
 var reservationFunction = require('../modules/reservationFunction');
+var session = require('express-session');
 
 
 router.get('/', function(req, res, next) {
+    if(session.login.idRole != 1)
+    {
+        res.redirect('/login/redirect')
+    }
+
     res.render('driver');
 });
 
 
 //permet d'accèder aux réservations
 router.post('/reservation', function(req, res, next) {
-    if(req.session.idrole != 1)
+    if(session.login.idRole!= 1)
     {
-        return;
+        res.redirect('/login/redirect')
     }
     var data = {};
     var dataline ;

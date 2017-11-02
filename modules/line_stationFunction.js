@@ -32,6 +32,22 @@ module.exports = {
                 resolve(line)
             })
         })
+    },
+    GetOneLineStation(idline) {
+        return new Promise(function (resolve, reject) {
+            models.Line_Station.findAll({
+                where: {idLine: idline},
+                include: [{
+                    model: models.Line,
+                    as: 'line_tab',
+                },{
+                    model: models.Station,
+                    as: 'station_tab'
+                }]
+            }).then(function (line) {
+                resolve(line)
+            })
+        })
     }
 
 }

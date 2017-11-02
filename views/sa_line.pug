@@ -34,6 +34,8 @@ body
         div
             form(action ='/sadmin', method='GET')
                 button(type ='Submit') back to Zones
+            form(action ='/sadmin/sa_line/delete/'+zone.id_zone, method='Post')
+                button(type ='Submit') delete
             Label line
 
             each line in lines
