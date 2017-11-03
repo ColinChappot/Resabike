@@ -7,7 +7,7 @@ body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block(bgcolor='#ff0000')
+    block content
         nav
             .nav-wrapper
                 a.brand-logo(href='http://localhost:3000/user') RESABIKE
@@ -32,7 +32,7 @@ body
                         th Departure
                         th Destination
                 tbody
-                    form(action ='/sadmin/sa_zone', method='POST')
+                    form(action ='', method='POST')
                     tr
                         td
                             input(type='text', id='idDate', name='input_date', placeholder='Choose your date',size='35')
@@ -53,10 +53,11 @@ body
                         th Destination
                         th Reservation
                 tbody
-                    form(action ='/user/reservation', method='GET')
+
                     tr
                         td datetest
                         td departuretest
                         td destinationtest
                         td
-                            button(type ='Submit') make records
+                            form(action ='/user/reservation', method='GET')
+                                button(type ='Submit') make records

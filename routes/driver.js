@@ -19,10 +19,10 @@ router.get('/', function(req, res, next) {
 
 //permet d'accèder aux réservations
 router.post('/reservation', function(req, res, next) {
-    if(session.login.idRole!= 1)
-    {
-        res.redirect('/login/redirect')
-    }
+    // if(session.login.idRole!= 1)
+    // {
+    //     res.redirect('/login/redirect')
+    // }
     var data = {};
     var dataline ;
     var dataJourney;

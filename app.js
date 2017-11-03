@@ -10,9 +10,9 @@ var index = require('./routes/index');
 
 //PUG added
 var login = require('./routes/login');
-var registration = require('./routes/login');
+
 var user = require('./routes/user');
-var reservation = require('./routes/user');
+
 var sadmin = require('./routes/sadmin');
 var admin = require('./routes/admin');
 var driver = require('./routes/driver');
@@ -34,9 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 //PUG added
 app.use('/login', login);
-app.use('/login/registration', registration)
 app.use('/user', user);
-app.use('/reservation', reservation)
+
 app.use('/sadmin', sadmin);
 app.use('/admin', admin)
 app.use('/driver', driver)

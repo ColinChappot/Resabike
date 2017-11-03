@@ -6,10 +6,10 @@ var session = require('express-session');
 
 //Permet d'accèder à la page
 router.get('/', function(req, res, next) {
-    if(session.login.idRole != 4)
-    {
-          res.redirect('/login/redirect')
-    }
+    // if(session.login.idRole != 4)
+    // {
+    //       res.redirect('/login/redirect')
+    // }
     res.render('user');
     // res.render('user', { zones: zones});
 });
@@ -18,10 +18,11 @@ router.get('/', function(req, res, next) {
 
 //Permet d'accèder aux réservation
 router.get('/reservation/:idJourney', function(req, res, next) {
-    if(session.login.idRole != 4)
-    {
-        res.redirect('/login/redirect')
-    }
+//router.get('/reservation', function(req, res, next) {
+    // if(session.login.idRole != 4)
+    // {
+    //     res.redirect('/login/redirect')
+    // }
     let idJourney = req.params.idJourney;
     journeyFunction.insertJourney(idJourney).then(function (journey) {
         res.render('reservation', {journey: journey});
@@ -30,13 +31,20 @@ router.get('/reservation/:idJourney', function(req, res, next) {
 
 //permet de poster les informations pour la reservation d une personne, madebyJeff
 router.post('/reservation', (req, res, next) => {
-    if(session.login.idRole != 4)
-    {
-        res.redirect('/login/redirect')
-    }
+    // if(session.login.idRole != 4)
+    // {
+    //     res.redirect('/login/redirect')
+    // }
     reservationFunction.insertReservation(req.body).then(function () {
-        res.render('historique', {})
+        res.render('historic', {})
     })
+});
+
+
+
+//test JZ AfminZone a supprimer
+router.get('/reservation', function(req, res, next) {
+    res.render('reservation');
 });
 
 module.exports = router;

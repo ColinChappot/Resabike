@@ -7,7 +7,7 @@ body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block
+    block content
         nav
             .nav-wrapper
                 a.brand-logo(href='#') RESABIKE
@@ -22,23 +22,30 @@ body
                     li
                         a(href='collapsible.html') LOGIN
         div
-            form(action ='/user/registration', method='POST')
             label Reservation
+            form(action ='/user', method='GET')
+                button(type ='Submit') Cancel Reservation
             table
+                tbody
+                    tr(width='33%')
+                        td
+                            label(for='idGroupName',width='33%') GroupName
+                        td
+                            input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
 
-                tr(width='33%')
-                    label(for='idGroupName',width='33%') GroupName
-                    input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
+                    tr(width='33%')
+                        td
+                            label(for='idBikeNumber') Bike Number
+                        td
+                            input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
+
+                    tr(width='33%')
+                        td
+                            label(for='idRemarqus',width='33%') Remarqus
+                        td
+                            input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
 
 
-                tr(width='33%')
-                    label(for='idBikeNumber') Bike Number
-                    input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
-
-                tr(width='33%')
-                    label(for='idRemarqus',width='33%') Remarqus
-                    input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
-
-            button(type='submit') termin your reservation
-
+            form(action ='/user/reservation/' , method='POST')
+                button(type ='Submit') send reservation
 
