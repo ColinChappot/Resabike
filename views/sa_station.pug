@@ -25,7 +25,8 @@ body
             form(action ='/sadmin/sa_line/' + zone , method='GET')
                 button(type ='Submit') Back to line
             br
-            form(action ='/sadmin/sa_line/sa_station/delete/' + line.id_line, method='Post')
+            form(action ='/sadmin/sa_line/sa_station/delete', method='Post')
+                input(type='text',name='id_line', hidden=true, value=''+line.id_line)
                 button(type ='Submit') delete
             Label line
 

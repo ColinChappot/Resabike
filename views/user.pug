@@ -1,12 +1,22 @@
 head
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
+    link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     script(src='/javascripts/Onclick.js')
+
+
 
 body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
+    script(src='/javascripts/dbCompletion.js')
+    script(src='/javascripts/apiTrajet.js')
+
+
 
 
     block content
@@ -36,24 +46,20 @@ body
                         th Departure
                         th Destination
                 tbody
-                    form(action ='', method='POST')
                     tr
                         td
-                            input.form-control(type='date', name='datetime')
+                            input.form-control(type='date', name='date', id='date')
                         td
-                            input(type='text', id='idDateYear', name='input_dateDay', placeholder='Year',size='35')
+                            input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)')
                         td
-                            input(type='text', id='idDeparture', name='input_date', placeholder='choose your departure',size='35')
+                           input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)')
                         td
-                           input(type='text', id='idDestination', name='input_date', placeholder='Choose your destination',size='35')
-                        td
-                            button(type ='Submit', onclick='myFunction()') search
+                            button(onclick='search()' type='none') search
 
         br
         div(name='mydivs' )
-            table
+            table(id='auto')
                 thead
-
                     tr
                         th Date
                         th Departure
@@ -61,10 +67,3 @@ body
                         th Reservation
                 tbody
 
-                    tr
-                        td datetest
-                        td departuretest
-                        td destinationtest
-                        td
-                            form(action ='/user/reservation', method='GET')
-                                button(type ='Submit') make records
