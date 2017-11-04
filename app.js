@@ -10,9 +10,8 @@ var index = require('./routes/index');
 
 //PUG added
 var login = require('./routes/login');
-
 var user = require('./routes/user');
-
+var test = require('./routes/test');
 var sadmin = require('./routes/sadmin');
 var admin = require('./routes/admin');
 var driver = require('./routes/driver');
@@ -22,6 +21,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -35,7 +35,7 @@ app.use('/', index);
 //PUG added
 app.use('/login', login);
 app.use('/user', user);
-
+app.use('/test', test);
 app.use('/sadmin', sadmin);
 app.use('/admin', admin)
 app.use('/driver', driver)

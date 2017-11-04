@@ -1,11 +1,11 @@
-head
+extends layout
+
+block script
     link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
     link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     script(src='/javascripts/Onclick.js')
-
-body
     script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
     script(type='text/javascript', src='/materialize/js/materialize.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
@@ -14,54 +14,38 @@ body
     script(src='/javascripts/dbCompletion.js')
     script(src='/javascripts/apiTrajet.js')
 
+block content
 
-
-
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='http://localhost:3000/user') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='http://localhost:3000/login') LOGIN
-
-        div
-            Label your search, your way
-            br
-            table
-                thead
-                    tr
-                        th Date
-                        th a
-                        th
-                        th Departure
-                        th Destination
-                tbody
-                    tr
-                        td
-                            input.form-control(type='date', name='date', id='date')
-                        td
-                            input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)')
-                        td
-                           input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)')
-                        td
-                            button(onclick='search()' type='none') search
-
+    div
+        Label your search, your way
         br
-        div(name='mydivs' )
-            table(id='auto')
-                thead
-                    tr
-                        th Date
-                        th Departure
-                        th Destination
-                        th Reservation
-                tbody
+        table
+            thead
+                tr
+                    th Date
+                    th a
+                    th
+                    th Departure
+                    th Destination
+            tbody
+                tr
+                    td
+                        input.form-control(type='date', name='date', id='date')
+                    td
+                        input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)')
+                    td
+                       input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)')
+                    td
+                        button(onclick='search()' type='none') search
+
+    br
+    div(name='mydivs' )
+        table(id='auto')
+            thead
+                tr
+                    th Date
+                    th Departure
+                    th Destination
+                    th Reservation
+            tbody
 

@@ -1,34 +1,13 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends layout
 
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
-
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') LOGIN
-        div
-            form(action ='/sadmin/sa_line/' + zone , method='GET')
-                button(type ='Submit') Back to line
-            br
-            form(action ='/sadmin/sa_line/sa_station/delete', method='Post')
-                input(type='text',name='id_line', hidden=true, value=''+line.id_line)
-                button(type ='Submit') delete
-            Label line
+block content
+    div
+        form(action ='/sadmin/sa_line/' + zone , method='GET')
+            button(type ='Submit') Back to line
+        br
+        form(action ='/sadmin/sa_line/sa_station/delete/' + line.id_line, method='Post')
+            button(type ='Submit') delete
+        Label line
 
             each station in stations
                 table

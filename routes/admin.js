@@ -20,14 +20,14 @@ router.get('/', function(req, res, next) {
     //     return;
     // }
 
+    res.render('adminLine');
 
-
-    var idzone = req.session.idzone;
-    zone.GetOneZone(idzone).then(function (zone) {
-        lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
-            res.render('adminLine', {zone: zone, lines: lines});
-        })
-    })
+    // var idzone = req.session.idzone;
+    // zone.GetOneZone(idzone).then(function (zone) {
+    //     lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
+    //         res.render('adminLine', {zone: zone, lines: lines});
+    //     })
+    // })
 });
 
 //permet de créer une ligne dans la zone

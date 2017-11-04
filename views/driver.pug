@@ -1,43 +1,21 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends Layout
 
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
-
-    block(bgcolor='#ff0000')
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') LOGIN
-        div
-            - var listReservations = Reservations;
-            label Reservations all today
-            br
-            table
-                each reservation in listReservations
-                    .reservation
-                thead
-                    th departure
-                    th destination
-                    th groupname
-                    th bikeNumber
-                tbody
-                    td #{reservation.fromStation}
-                    td #{reservation.toStation}
-                    td #{reservation.groupName}
-                    td #{reservation.bikeNumber}
+block content
+    div
+        label Reservations all today
+        br
+        table
+            //each reservation in reservations
+            thead
+                th departure
+                th destination
+                th groupname
+                th bikeNumber
+            tbody
+                td #{reservation.fromStation}
+                td #{reservation.toStation}
+                td #{reservation.groupName}
+                td #{reservation.bikeNumber}
 
 
 

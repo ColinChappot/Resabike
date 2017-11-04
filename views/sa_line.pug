@@ -1,53 +1,34 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends layout
 
+block script
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
+        link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+        script(type='text/javascript', src='/materialize/js/materialize.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+        script(src='/javascripts/apiCompletion.js')
 
-
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
-    script(src='/javascripts/apiCompletion.js')
-
-
-
-
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') LOGIN
+block content
 
         div
             form(action ='/sadmin', method='GET')
                 button(type ='Submit') back to Zones
-            form(action ='/sadmin/sa_line/delete', method='Post')
-                input(type='text',name='id_zone', hidden=true, value='' + zone.id_zone)
+            form(action ='/sadmin/sa_line/delete/'+zone.id_zone, method='Post')
                 button(type ='Submit') delete
             Label line
 
-            each line in lines
-                table
+        each line in lines
+            table
 
-                    thead
-                        tr(width='20%')
-                            th id
-                            th name
-                            th departure
-                            th destination
+                thead
+                    tr(width='20%')
+                        th id
+                        th name
+                        th departure
+                        th destination
 
                     tbody
                         tr(width='20%')

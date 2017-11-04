@@ -1,45 +1,23 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends layout
 
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
-
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') Logout
-
-        div
-            br
-            Label Welcome to Resabike
-            br
-            form(action ='/login', method='POST')
-                table
-                    tr(width='33%')
-                        label(for='idLogin',width='33%') login
-                        input(type='text', id='idLogin', name='username', placeholder='Type your login here')
+block content
+    div
+        br
+        Label Welcome to Resabike
+        br
+        form(action ='/login', method='POST')
+            table
+                tr(width='33%')
+                    label(for='idLogin',width='33%') login
+                    input(type='text', id='idLogin', name='username', placeholder='Type your login here')
 
 
-                    tr(width='33%')
-                        label(for='idpassword') Password
-                        input(type='password', id='idpassword',name='password', placeholder='Type your password here')
-                button(type='submit') log in
+                tr(width='33%')
+                    label(for='idpassword') Password
+                    input(type='password', id='idpassword',name='password', placeholder='Type your password here')
+            button(type='submit') log in
 
-        div
-            Label You dont have an account?
-            a(href='http://localhost:3000/login/registration') Register here
+    div
+        Label You dont have an account?
+        a(href='http://localhost:3000/login/registration') Register here
 
-    block foot

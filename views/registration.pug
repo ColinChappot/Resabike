@@ -1,39 +1,27 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends layout
 
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
+block content
+    div
+        label Reservation
+        form(action ='/login/registration', method='POST')
+            table
+                tr(width='33%')
+                    label(for='idFirstName',width='33%') firstName
+                    input(type='text', id='idFirstName', name='username', placeholder='Type your firstName here')
 
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') LOGIN
-        div
-            label Reservation
-            form(action ='/login/registration', method='POST')
-                table
+
+                tr(width='33%')
+                    label(for='idLastName') LastName
+                    input(type='password', id='idLastName',name='password', placeholder='Type your Lastname here')
+
                     tr(width='33%')
-                        label(for='idFirstName',width='33%') firstName
-                        input(type='text', id='idFirstName', name='username', placeholder='Type your firstName here')
+                        label(for='idTelephon',width='33%') Telephon
+                        input(type='text', id='idTelephon', name='input_Telephon', placeholder='Type your telephone number here')
 
 
                     tr(width='33%')
-                        label(for='idLastName') LastName
-                        input(type='password', id='idLastName',name='password', placeholder='Type your Lastname here')
-
+                        label(for='idMail') Mail
+                        input(type='text', id='idMail',name='input_Mail', placeholder='Type your Mail here')
                 button(type='submit') termin your account and return to login
 
 

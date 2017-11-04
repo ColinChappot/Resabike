@@ -1,105 +1,86 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends layout
 
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
 
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') LOGIN
-        div
-            label Reservation
+block content
+    div
+        label Reservation
+
+        table
+            tbody
+                form(action ='/user/reservation/' , method='POST')
+                    tr(width='33%')
+                        td
+                            label(for='idGroupName',width='33%') GroupName
+                        td
+                            input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
+
+                    tr(width='33%')
+                        td
+                            label(for='idBikeNumber') Bike Number
+                        td
+                            input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
+                    tr(width='33%')
+                        td
+                            label(for='idTelephon',width='33%') Telephon
+                        td
+                            input(type='text', id='idTelephon', name='input_Telephon', placeholder='Type your telephone number here')
+
+
+                    tr(width='33%')
+                        td
+                            label(for='idMail') Mail
+                        td
+                            input(type='text', id='idMail',name='input_Mail', placeholder='Type your Mail here')
+
+                    tr(width='33%')
+                        td
+                            label(for='idRemarqus',width='33%') Remarqus
+                        td
+                            input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
+                    tr(width='33%')
+                        td
+                            input(hidden=true,type='text', name='from' value='#{journeys.from}')
+                            input(hidden=true,type='text', name='date' value='#{journeys.departure.substring(0, 10)}')
+                            input(hidden=true,type='text', name='time' value='#{journeys.departure.substring(0, 10)}')
+                            input(hidden=true,type='text', name='to' value='#{journeys.to}')
+                            button(type ='Submit') send reservation
+
+
+
+
+
+    div
+        label Résumer de réservation
 
             table
                 tbody
-                    form(action ='/user/reservation/' , method='POST')
-                        tr(width='33%')
-                            td
-                                label(for='idGroupName',width='33%') GroupName
-                            td
-                                input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
+                    tr
+                        td
+                            p #{journeys.departure.substring(0, 10)}
+                        td
+                            p  #{journeys.from}
+                        td
+                            p #{journeys.departure.substring(10)}
+                        td
+                            p   #{journeys.duration/60} m
+                        td
+                            p #{journeys.to}
+                        td
+                            p #{journeys.arrival.substring(10)}
 
-                        tr(width='33%')
-                            td
-                                label(for='idBikeNumber') Bike Number
-                            td
-                                input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
-                        tr(width='33%')
-                            td
-                                label(for='idTelephon',width='33%') Telephon
-                            td
-                                input(type='text', id='idTelephon', name='input_Telephon', placeholder='Type your telephone number here')
-
-
-                        tr(width='33%')
-                            td
-                                label(for='idMail') Mail
-                            td
-                                input(type='text', id='idMail',name='input_Mail', placeholder='Type your Mail here')
-
-                        tr(width='33%')
-                            td
-                                label(for='idRemarqus',width='33%') Remarqus
-                            td
-                                input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
-                        tr(width='33%')
-                            td
-                                input(hidden=true,type='text', name='from' value='#{journeys.from}')
-                                input(hidden=true,type='text', name='date' value='#{journeys.departure.substring(0, 10)}')
-                                input(hidden=true,type='text', name='time' value='#{journeys.departure.substring(0, 10)}')
-                                input(hidden=true,type='text', name='to' value='#{journeys.to}')
-                                button(type ='Submit') send reservation
-
-
-
-
-
-        div
-            label Résumer de réservation
-
-                table
-                    tbody
-                        tr
-                            td
-                                p #{journeys.departure.substring(0, 10)}
-                            td
-                                p  #{journeys.from}
-                            td
-                                p #{journeys.departure.substring(10)}
-                            td
-                                p   #{journeys.duration/60} m
-                            td
-                                p #{journeys.to}
-                            td
-                                p #{journeys.arrival.substring(10)}
-
-                        each legs in journeys.legs
-                            if(legs.stops != null)
-                                tr
+                    each legs in journeys.legs
+                        if(legs.stops != null)
+                            tr
+                                td
+                                    p #{legs.line}
+                                td
+                                    p #{legs.departure.substring(10)}
+                                td
+                                    p #{legs.name}
+                                each stop in legs.stops
                                     td
-                                        p #{legs.line}
-                                    td
-                                        p #{legs.departure.substring(10)}
-                                    td
-                                        p #{legs.name}
-                                    each stop in legs.stops
-                                        td
-                                            p  #{stop.name}
-                                    td
-                                        p #{legs.exit.name}
-                                    td
-                                        p #{legs.exit.arrival.substring(10)}
+                                        p  #{stop.name}
+                                td
+                                    p #{legs.exit.name}
+                                td
+                                    p #{legs.exit.arrival.substring(10)}

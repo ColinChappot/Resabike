@@ -1,61 +1,40 @@
-head
-    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+extends layout
+block content
+    div
+        form(action ='/admin/adminZone', method='GET')
+            button(type ='Submit') back to AdminZones
+        p Contact Fiche for Zone
+        table
+            tbody
+                tr
+                    td firstname
+                    td firsnames
+                tr
+                    td lastname
+                    td lastName
+                tr
+                    td telephone
+                    td telephoneContent
+                tr
+                    td mail
+                    td mailContent
 
-body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
-    script(type='text/javascript', src='/materialize/js/materialize.min.js')
+        form(action ='/admin/contactFiche', method='POST')
+            button(type='submit') modify contact
 
-    block content
-        nav
-            .nav-wrapper
-                a.brand-logo(href='#') RESABIKE
-                |
-                ul#nav-mobile.right.hide-on-med-and-down
-                    li
-                        a(href='sass.html') CONTACTS
-                    |
-                    li
-                        a(href='badges.html') LANGUES
-                    |
-                    li
-                        a(href='collapsible.html') LOGIN
-        div
-            form(action ='/admin/adminZone', method='GET')
-                button(type ='Submit') back to AdminZones
-            p Contact Fiche for Zone
-            table
-                tbody
-                    tr
-                        td firstname
-                        td firsnames
-                    tr
-                        td lastname
-                        td lastName
-                    tr
-                        td telephone
-                        td telephoneContent
-                    tr
-                        td mail
-                        td mailContent
-
-            form(action ='/admin/contactFiche', method='POST')
-                button(type='submit') modify contact
-
-            table
-                tbody
-                    tr
-                        label(for='idFirstname',width='33%') Firstname
-                        input(type='text', id='idFirstname', name='firstname', placeholder='Type the new firstname')
-                    tr
-                        label(for='idLastname',width='33%') Lastname
-                        input(type='text', id='idLastname', name='lastN^name', placeholder='Type the new Lastname')
-                    tr
-                        label(for='idMail',width='33%') Mail
-                        input(type='text', id='idMail', name='mail', placeholder='Type the new Lastname')
-                    tr
-                        label(for='idTelephon',width='33%') telephon
-                        input(type='text', id='idTelephon', name='telephone', placeholder='Type the new Lastname')
-            form(action ='/admin/contactFiche', method='POST')
-                button(type='submit') register Contact
+        table
+            tbody
+                tr
+                    label(for='idFirstname',width='33%') Firstname
+                    input(type='text', id='idFirstname', name='firstname', placeholder='Type the new firstname')
+                tr
+                    label(for='idLastname',width='33%') Lastname
+                    input(type='text', id='idLastname', name='lastN^name', placeholder='Type the new Lastname')
+                tr
+                    label(for='idMail',width='33%') Mail
+                    input(type='text', id='idMail', name='mail', placeholder='Type the new Lastname')
+                tr
+                    label(for='idTelephon',width='33%') telephon
+                    input(type='text', id='idTelephon', name='telephone', placeholder='Type the new Lastname')
+        form(action ='/admin/contactFiche', method='POST')
+            button(type='submit') register Contact

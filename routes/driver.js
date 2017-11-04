@@ -8,10 +8,10 @@ var session = require('express-session');
 
 
 router.get('/', function(req, res, next) {
-    if(session.login.idRole != 1)
-    {
-        res.redirect('/login/redirect')
-    }
+    // if(session.login.idRole != 1)
+    // {
+    //     res.redirect('/login/redirect')
+    // }
 
     res.render('driver');
 });
