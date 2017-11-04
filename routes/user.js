@@ -47,21 +47,17 @@ router.post('/reservation', (req, res, next) => {
         lineFunction.GetAllLine(journeys).then(function (lines) {
             lines.forEach(function (line) {
                 journeyFunction.insertJourney(line).then(function (journey) {
+                    dateFunction.insertDate(req.body).then(function (date) {
+                        timeFunction.insertTime(timeTravel).then(function (time) {
 
+                            reservationFunction.insertReservation(req.body,date,time)})
+                        })
+                    })
                 })
             }).then(function () {
-                res.redirect('/user/historic/')
-            })
-        })
-    })
-
-    dateFunction.insertDate(dateTravel).then(function (date) {
-        timeFunction.insertTime(timeTravel).then(function (time) {
-            reservationFunction.insertReservation(req.body,date,time).then(function () {
                 res.redirect('/user/historic')
             })
         })
-    })
 });
 
 

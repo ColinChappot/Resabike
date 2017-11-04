@@ -16,36 +16,36 @@ block script
 
 block content
 
-    div
-        Label your search, your way
-        br
-        table
-            thead
-                tr
-                    th Date
-                    th a
-                    th
-                    th Departure
-                    th Destination
-            tbody
-                tr
-                    td
-                        input.form-control(type='date', name='date', id='date')
-                    td
-                        input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)')
-                    td
-                       input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)')
-                    td
-                        button(onclick='search()' type='none') search
+        div
+            Label your search, your way
+            br
+            table
+                thead
+                    tr
+                        th Date
+                        th
+                        th
+                        th Departure
+                        th Destination
+                tbody
+                    tr
+                        td
+                            input.form-control(type='date', name='date', id='date')
+                        td
+                            input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)')
+                        td
+                           input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)')
+                        td
+                            button(onclick='search()' type='none') search
 
-    br
-    div(name='mydivs' )
-        table(id='auto')
-            thead
-                tr
-                    th Date
-                    th Departure
-                    th Destination
-                    th Reservation
-            tbody
+        br
+        div(name='mydivs' )
+            table(id='auto')
+                thead
+                    tr
+                        th Date
+                        th Departure
+                        th Destination
+                        th Reservation
+                tbody
 

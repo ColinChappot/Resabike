@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) =>{
         remarks: {
             type: DataTypes.STRING
         },
-        confirmation: {
+        state: {
             type: DataTypes.INTEGER
         }
     });
