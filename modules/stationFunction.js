@@ -7,10 +7,6 @@ module.exports = {
                 where: {name: body.name},
                 defaults: {name: body.name,stopId: body.stopid}
             }).then(function (station) {
-                if(station == null)
-                {
-                    resolve(null)
-                }
                 resolve(station[0].dataValues)
             })
         })
@@ -30,10 +26,6 @@ module.exports = {
                 {   name: body.name},
                 {   where: {id_station: body.id_station}
                 }).then(function (station) {
-                if(station == null)
-                {
-                    resolve(null)
-                }
                 resolve(station.dataValues)
             })
         })
@@ -50,6 +42,16 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             models.Station.findAll(
                 {   where: {id_station: idStation}}
+            ).then(function (station) {
+                resolve(station)
+            })
+        })
+    },
+    GetOneStationLike(text)
+    {
+        return new Promise(function (resolve, reject) {
+            models.Station.findAll(
+                {   where:{name:{$like: text+'%'}}}
             ).then(function (station) {
                 resolve(station)
             })

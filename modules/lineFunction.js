@@ -12,10 +12,6 @@ module.exports = {
                         toStation: data.to,
                         idZone: idzone}
             }).then(function (line) {
-                if(line == null)
-                {
-                    resolve(null)
-                }
                 resolve(line[0].dataValues)
             })
         })
@@ -39,10 +35,6 @@ module.exports = {
                     idZone: body.id_zone},
                 {   where: {id_line: body.id_line}
                 }).then(function (line) {
-                if(line == null)
-                {
-                    resolve(null)
-                }
                 resolve(line.dataValues)
             })
         })
@@ -69,20 +61,44 @@ module.exports = {
                     }]
                 }]
             }).then(function (line) {
-                if(line == null)
-                {
-                    resolve(null)
-                }
                 resolve(line.dataValues)
             })
         })
-    },
-    APILine(line) {
+    },    GetAllLineByName(name) {
         return new Promise(function (resolve, reject) {
-            axios.get('https://timetable.search.ch/api/route.en.json?from='+line.fromStation+'&to='+line.toStation+'&num=1').then(function (response) {
+            models.Line.findAll({
+                where: {name: name}
+            }).then(function (line) {
+                resolve(line)
+            })
+        })
+    },
+    APILine(body) {
+        return new Promise(function (resolve, reject) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.fromStation+'&to='+body.toStation+'&num=1').then(function (response) {
                 console.log(response.data);
                 resolve(response.data)
                 })
+        }).catch(function (error) {
+            console.log(error)
+        })
+    },
+    APISearch(body) {
+        return new Promise(function (resolve, reject) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.from+'&to='+body.to+'&num=25&pre=-1&time=06:00&date='+body.date).then(function (response) {
+                console.log(response.data);
+                resolve(response.data)
+            })
+        }).catch(function (error) {
+            console.log(error)
+        })
+    },
+    APIJourney(body){
+        return new Promise(function (resolve, reject) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.from+'&to='+body.to+'&num=1&pre=-1&date='+body.date+'&time='+body.time).then(function (response) {
+                console.log(response.data);
+                resolve(response.data.connections[0])
+            })
         }).catch(function (error) {
             console.log(error)
         })

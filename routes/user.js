@@ -2,6 +2,12 @@ var express = require('express');
 var models = require('../models');
 var router = express.Router();
 var session = require('express-session');
+var stationFunction = require('../modules/stationFunction');
+var reservationFunction = require('../modules/reservationFunction');
+var journeyFunction = require('../modules/journeyFunction');
+var lineFunction = require('../modules/lineFunction');
+var dateFunction = require('../modules/dateFunction');
+var timeFunction = require('../modules/timeFunction');
 
 
 //Permet d'accèder à la page
@@ -17,15 +23,15 @@ router.get('/', function(req, res, next) {
 
 
 //Permet d'accèder aux réservation
-router.get('/reservation/:idJourney', function(req, res, next) {
+router.post('/', function(req, res, next) {
 //router.get('/reservation', function(req, res, next) {
     // if(session.login.idRole != 4)
     // {
     //     res.redirect('/login/redirect')
     // }
-    let idJourney = req.params.idJourney;
-    journeyFunction.insertJourney(idJourney).then(function (journey) {
-        res.render('reservation', {journey: journey});
+
+    lineFunction.APIJourney(req.body).then(function (journeys) {
+                res.render('reservation', {journeys: journeys})
     })
 });
 
@@ -35,9 +41,41 @@ router.post('/reservation', (req, res, next) => {
     // {
     //     res.redirect('/login/redirect')
     // }
-    reservationFunction.insertReservation(req.body).then(function () {
-        res.render('historic', {})
+
+
+    lineFunction.APIJourney(req.body).then(function (journeys) {
+        lineFunction.GetAllLine(journeys).then(function (lines) {
+            lines.forEach(function (line) {
+                journeyFunction.insertJourney(line).then(function (journey) {
+
+                })
+            }).then(function () {
+                res.render('reservation', {lines: lines, journeys: listjourney})
+            })
+        })
     })
+
+
+
+
+
+    dateFunction.insertDate(dateTravel).then(function (date) {
+        timeFunction.insertTime(timeTravel).then(function (time) {
+            reservationFunction.insertReservation(req.body,date,time).then(function () {
+                res.redirect('/user/historic')
+            })
+        })
+    })
+});
+
+
+
+//permet de voir les ancienne réservation
+router.get('/historic', function(req, res, next) {
+    reservationFunction.GetAllReservationUser(id_login).then(function (reservations) {
+        res.render('historic', {reservations: reservations});
+    })
+
 });
 
 
@@ -45,6 +83,22 @@ router.post('/reservation', (req, res, next) => {
 //test JZ AfminZone a supprimer
 router.get('/reservation', function(req, res, next) {
     res.render('reservation');
+});
+
+//Permet d'accèder à la page
+router.post('/data', function(req, res, next) {
+    // if(session.login.idRole != 4)
+    // {
+    //     res.redirect('/login/redirect')
+    // }
+
+
+   stationFunction.GetOneStationLike(req.body.term).then(function (stations) {
+       res.send(stations)
+   })
+
+
+    // res.render('user', { zones: zones});
 });
 
 module.exports = router;

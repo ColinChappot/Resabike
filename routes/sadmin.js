@@ -53,12 +53,12 @@ router.get('/sa_line/:idzone', function(req, res, next) {
 });
 
 //permet de delete une zone
-router.post('/sa_line/delete/:idzone', function(req, res, next) {
+router.post('/sa_line/delete', function(req, res, next) {
     if(session.login.idRole != 3)
     {
         res.redirect('/login/redirect')
     }
-    let idzone = req.params.idzone;
+    let idzone = req.body.id_zone
     lineFunction.GetAllLine(idzone).then(function (lines) {
         lines.forEach(function (lines) {
             station_line.deleteLine_Station(lines.idline).then(function () {
@@ -138,12 +138,12 @@ router.post('/sa_line/:idzone', (req, res, next) => {
 });
 
 //permet de delete une ligne
-router.post('/sa_line/sa_station/delete/:idline', function(req, res, next) {
+router.post('/sa_line/sa_station/delete', function(req, res, next) {
     if(session.login.idRole != 3)
     {
         res.redirect('/login/redirect')
     }
-    let idline = req.params.idline;
+    let idline = req.body.id_line;
     lineFunction.GetOneLine(idline).then(function (line) {
         station_line.deleteLine_Station(idline).then(function () {
             lineFunction.deleteLine(idline).then(function () {

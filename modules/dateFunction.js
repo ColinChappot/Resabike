@@ -13,35 +13,6 @@ module.exports = {
                         month: body.month,
                         day: body.day}
                 }).then(function (date) {
-                if(date == null)
-                {
-                    resolve(null)
-                }
-                resolve(date.dataValues)
-            })
-        })
-    },
-    deleteDate(body){
-        return new Promise(function (resolve, reject) {
-            models.Date.destroy({
-                where:{id_date: body.id_date  }
-            }).then(function (nbrRow) {
-                resolve(nbrRow)
-            })
-        })
-    },
-    updateDate(body){
-        return new Promise(function (resolve, reject) {
-            models.Date.update(
-                {   year: body.year,
-                    month: body.month,
-                    day: body.day},
-                {   where: {id_date: body.id_date}
-                }).then(function (date) {
-                if(date == null)
-                {
-                    resolve(null)
-                }
                 resolve(date.dataValues)
             })
         })

@@ -1,7 +1,7 @@
 var models = require('../models');
 
 module.exports = {
-    insertReservation(body, date){
+    insertReservation(body, date,time){
         return new Promise(function (resolve, reject) {
             models.Reseravation.create({
                 lastname: body.lastname,
@@ -15,12 +15,9 @@ module.exports = {
                 remarks: body.remarks,
                 confirmation: body.confirmation,
                 idDate: date.id_date,
+                idTime: time.id_time,
                 idLogin: body.id_login
             }).then(function (reservation) {
-                if(reservation == null)
-                {
-                    resolve(null)
-                }
                 resolve(reservation.dataValues)
             })
         })
@@ -41,19 +38,14 @@ module.exports = {
                 {   confirmation: true},
                 {   where: {id_reservation: id_reservation}
                 }).then(function (reservation) {
-                if(reservation == null)
-                {
-                    resolve(null)
-                }
                 resolve(reservation.dataValues)
             })
         })
     },
-    GetAllReservation(body) {
+    GetAllReservationUser(id_login) {
         return new Promise(function (resolve, reject) {
             models.Reservation.findAll({
-                where: {idDate: body.id_date,
-                        idLogin: body.id_login}
+                where: {idLogin: id_login}
             }).then(function (reservation) {
                 resolve(reservation)
             })

@@ -23,29 +23,79 @@ body
                         a(href='collapsible.html') LOGIN
         div
             label Reservation
-            form(action ='/user', method='GET')
-                button(type ='Submit') Cancel Reservation
+
             table
                 tbody
-                    tr(width='33%')
-                        td
-                            label(for='idGroupName',width='33%') GroupName
-                        td
-                            input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
+                    form(action ='/user/reservation/' , method='POST')
+                        tr(width='33%')
+                            td
+                                label(for='idGroupName',width='33%') GroupName
+                            td
+                                input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
 
-                    tr(width='33%')
-                        td
-                            label(for='idBikeNumber') Bike Number
-                        td
-                            input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
+                        tr(width='33%')
+                            td
+                                label(for='idBikeNumber') Bike Number
+                            td
+                                input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
+                        tr(width='33%')
+                            td
+                                label(for='idTelephon',width='33%') Telephon
+                            td
+                                input(type='text', id='idTelephon', name='input_Telephon', placeholder='Type your telephone number here')
 
-                    tr(width='33%')
-                        td
-                            label(for='idRemarqus',width='33%') Remarqus
-                        td
-                            input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
+
+                        tr(width='33%')
+                            td
+                                label(for='idMail') Mail
+                            td
+                                input(type='text', id='idMail',name='input_Mail', placeholder='Type your Mail here')
+
+                        tr(width='33%')
+                            td
+                                label(for='idRemarqus',width='33%') Remarqus
+                            td
+                                input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
+                        tr(width='33%')
+                            td
+                                button(type ='Submit') send reservation
 
 
-            form(action ='/user/reservation/' , method='POST')
-                button(type ='Submit') send reservation
 
+
+
+        div
+            label Résumer de réservation
+
+                table
+                    tbody
+                        tr
+                            td
+                                p #{journeys.departure.substring(0, 10)}
+                            td
+                                p  #{journeys.from}
+                            td
+                                p #{journeys.departure.substring(10)}
+                            td
+                                p   #{journeys.duration/60} m
+                            td
+                                p #{journeys.to}
+                            td
+                                p #{journeys.arrival.substring(10)}
+
+                        each legs in journeys.legs
+                            if(legs.stops != null)
+                                tr
+                                    td
+                                        p #{legs.line}
+                                    td
+                                        p #{legs.departure.substring(10)}
+                                    td
+                                        p #{legs.name}
+                                    each stop in legs.stops
+                                        td
+                                            p  #{stop.name}
+                                    td
+                                        p #{legs.exit.name}
+                                    td
+                                        p #{legs.exit.arrival.substring(10)}

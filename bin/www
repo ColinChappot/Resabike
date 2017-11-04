@@ -25,15 +25,15 @@ app.set('port', port);
 var server = http.createServer(app);
 
 
-models.sequelize.sync({force:true}).then(function() {
+models.sequelize.sync({}).then(function() {
 
 
-    role.insertRole('driver');
-    role.insertRole('zoneAdmin');
-    role.insertRole('superAdmin');
-    role.insertRole('user');
+    role.findOrCreateRole('driver');
+    role.findOrCreateRole('zoneAdmin');
+    role.findOrCreateRole('superAdmin');
+    role.findOrCreateRole('user');
 
-    login.insertLogin('root','root',3);
+    login.FindOrCreate('root','root',3);
 
     server.listen(port);
     server.on('error', onError);

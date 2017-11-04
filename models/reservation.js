@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING
         },
         confirmation: {
-            type: DataTypes.BOOLEAN
+            type: DataTypes.INTEGER
         }
     });
     Reservation.associate=(models) =>{
