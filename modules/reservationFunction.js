@@ -1,7 +1,7 @@
 var models = require('../models');
 
 module.exports = {
-    insertReservation(body, date,time){
+    insertReservation(body,state, date,time){
         return new Promise(function (resolve, reject) {
             models.Reseravation.create({
                 lastname: body.lastname,
@@ -13,7 +13,7 @@ module.exports = {
                 from: body.from,
                 to: body.to,
                 remarks: body.remarks,
-                confirmation: body.confirmation,
+                state: state,
                 idDate: date.id_date,
                 idTime: time.id_time,
                 idLogin: body.id_login
