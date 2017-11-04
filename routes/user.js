@@ -9,6 +9,7 @@ var lineFunction = require('../modules/lineFunction');
 var dateFunction = require('../modules/dateFunction');
 var timeFunction = require('../modules/timeFunction');
 
+//modif to acces push
 
 //Permet d'accèder à la page
 router.get('/', function(req, res, next) {
