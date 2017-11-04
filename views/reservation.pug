@@ -58,6 +58,10 @@ body
                                 input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
                         tr(width='33%')
                             td
+                                input(hidden=true,type='text', name='from' value='#{journeys.from}')
+                                input(hidden=true,type='text', name='date' value='#{journeys.departure.substring(0, 10)}')
+                                input(hidden=true,type='text', name='time' value='#{journeys.departure.substring(0, 10)}')
+                                input(hidden=true,type='text', name='to' value='#{journeys.to}')
                                 button(type ='Submit') send reservation
 
 

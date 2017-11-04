@@ -50,14 +50,10 @@ router.post('/reservation', (req, res, next) => {
 
                 })
             }).then(function () {
-                res.render('reservation', {lines: lines, journeys: listjourney})
+                res.redirect('/user/historic/')
             })
         })
     })
-
-
-
-
 
     dateFunction.insertDate(dateTravel).then(function (date) {
         timeFunction.insertTime(timeTravel).then(function (time) {
