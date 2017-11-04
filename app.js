@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var i18n = require('i18n');
+var app = express();
+
 
 var index = require('./routes/index');
-
 //PUG added
 var login = require('./routes/login');
 var user = require('./routes/user');
@@ -16,7 +18,7 @@ var sadmin = require('./routes/sadmin');
 var admin = require('./routes/admin');
 var driver = require('./routes/driver');
 
-var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,6 +49,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+app.use(cookieParser());
 // use session
 app.use(session({
     secret:'badger badger badger mushroom',
@@ -54,6 +57,25 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false }
 }));
+
+//i118n multi-langs
+i18n.configure({
+    // setup some locales - other locales default to en silently
+    locales:['fr', 'en', 'de'],
+
+    // where to store json files - defaults to './langs' relative to modules directory
+    directory: __dirname + '/public/locale',
+
+    defaultLocale: 'en',
+    // sets a custom cookie name to parse locale settings from  - defaults to NULL
+    cookie: 'lang',
+    extension: '.json'
+});
+
+
+app.use(cookieParser());
+
+app.use(i18n.init);
 
 // error handler
 app.use(function(err, req, res, next) {

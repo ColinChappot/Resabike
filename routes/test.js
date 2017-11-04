@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
 //Permet d'accèder à la page
 router.get('/changeLang/:lang', function(req, res, next) {
     res.cookie('i18n', req.params.lang);
-    res.setLocale(i18n, req.params.lang);
-    res.render('test', {i18n: i18n});
+    i18n.setLocale(i18n, req.params.lang);
+    res.redirect('/test');
 });
 
 module.exports = router;
