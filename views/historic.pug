@@ -1,0 +1,30 @@
+extends Layout
+
+block content
+    div
+        label My reservations
+        br
+        table
+            each reservation in reservations
+                thead
+                    th date
+                    th departure
+                    th time
+                    th destination
+                    th groupname
+                    th bikeNumber
+                    th remarks
+                    th statut
+                tbody
+                    td #{reservation.dataValues.date.dataValues.day}.#{reservation.date.dataValues.month}.#{reservation.date.dataValues.year}
+                    td #{reservation.dataValues.from}
+                    td #{reservation.dataValues.time.dataValues.hour}:#{reservation.time.dataValues.minute}
+                    td #{reservation.dataValues.to}
+                    td #{reservation.dataValues.groupName}
+                    td #{reservation.dataValues.bikeNumber}
+                    td #{reservation.dataValues.remarks}
+                    td #{reservation.dataValues.state.dataValues.name}
+                    td
+                        form(action ='/user/historic/delete', method='Post')
+                            input(hidden=true, type='text', value=reservation.dataValues.id_reservation, name='idreservation')
+                            button(type ='Submit') delete

@@ -6,8 +6,8 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             models.Journey.findOrCreate(
                 {
-                    where: {    journeyNumber: body.journeyNumber},
-                    defaults: { journeyNumber: body.journeyNumber,
+                    where: {    journeyNumber: body.number},
+                    defaults: { journeyNumber: body.number,
                                 idLine: line.id_line}
             }).then(function (journey) {
                 resolve(journey[0].dataValues)

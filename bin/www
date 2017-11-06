@@ -10,6 +10,7 @@ var http = require('http');
 var models = require('../models')
 var role = require('../modules/roleFunction')
 var login = require('../modules/loginFunction')
+var state = require('../modules/stateFunction')
 
 /**
  * Get port from environment and store in Express.
@@ -32,6 +33,10 @@ models.sequelize.sync({}).then(function() {
     role.findOrCreateRole('zoneAdmin');
     role.findOrCreateRole('superAdmin');
     role.findOrCreateRole('user');
+
+    state.insertState('confirm');
+    state.insertState('waiting');
+    state.insertState('refuse');
 
     login.FindOrCreate('root','root',3);
 

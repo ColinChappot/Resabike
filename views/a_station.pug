@@ -2,10 +2,10 @@ extends layout
 
 block content
     div
-        form(action ='/sadmin/sa_line/' + zone , method='GET')
+        form(action ='/admin/a_line/' , method='GET')
             button(type ='Submit') Back to line
         br
-        form(action ='/sadmin/sa_line/sa_station/delete/', method='Post')
+        form(action ='/admin/a_line/a_station/delete', method='Post')
             input(hidden=true, type='text', value=line.id_line, name='id_line')
             button(type ='Submit') delete
         Label line

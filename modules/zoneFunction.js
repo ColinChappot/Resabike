@@ -53,8 +53,8 @@ module.exports = {
                 {
                     where: {id_zone: idzone},
                     include: [{
-                        model: models.Ligne,
-                        as: 'ligne',
+                        model: models.Line,
+                        as: 'line',
                         include: [{
                             model: models.Journey,
                             as: 'journey',
@@ -64,18 +64,20 @@ module.exports = {
                                 include: [{
                                     model: models.Reservation,
                                     as: 'reservation_tab',
-                                    where: {confirmed: true},
-                                    include: [{
+                                    include:[{
                                         model: models.Date,
-                                        as: 'date',
-                                    }]
+                                        as: 'date'
+                                    },
+                                        {model: models.Time,
+                                         as: 'time'},
+                                        {model: models.State,
+                                         as: 'state'}
+                                    ]
                                 }]
-
                             }]
                         }]
                     }]
-                }
-            ).then(function (zone) {
+        }).then(function (zone) {
                 resolve(zone.dataValues)
             })
         })

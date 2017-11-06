@@ -49,10 +49,8 @@ module.exports = {
     updateLogin(body, zone, role){
         return new Promise(function (resolve, reject) {
             models.Login.update(
-                {   username: body.userName,
-                    password: body.password,
-                    idZone: zone.id,
-                    idRole: role},
+                {   username: body.username,
+                    password: body.password},
                 {   where: {idZone: zone, idRole: role}
                 }).then(function (login) {
                 resolve(login.dataValues)
@@ -75,7 +73,7 @@ module.exports = {
                 where: {username: body.username,
                     password: body.password}
             }).then(function (login) {
-                resolve(login.dataValues)
+                resolve(login)
             })
         })
     }

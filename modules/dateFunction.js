@@ -2,18 +2,18 @@ var models = require('../models');
 
 module.exports = {
 
-    insertDate(body){
+    insertDate(date){
         return new Promise(function (resolve, reject) {
             models.Date.findOrCreate(
                 {
-            where: {    year: body.year,
-                        month: body.month,
-                        day: body.day},
-            defaults:{  year: body.year,
-                        month: body.month,
-                        day: body.day}
+            where: {    year: date.substring(0,4),
+                        month: date.substring(5,7),
+                        day: date.substring(8,10)},
+            defaults:{  year: date.substring(0,4),
+                        month: date.substring(5,7),
+                        day: date.substring(8,10)}
                 }).then(function (date) {
-                resolve(date.dataValues)
+                resolve(date[0].dataValues)
             })
         })
     }

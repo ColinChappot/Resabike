@@ -1,9 +1,9 @@
 var models = require('../models');
 
 module.exports = {
-    insertReservation(body,state, date,time){
+    insertReservation(body,state, date,time,id_login){
         return new Promise(function (resolve, reject) {
-            models.Reseravation.create({
+            models.Reservation.create({
                 lastname: body.lastname,
                 firstname: body.firstname,
                 telephone: body.telephone,
@@ -16,7 +16,8 @@ module.exports = {
                 state: state,
                 idDate: date.id_date,
                 idTime: time.id_time,
-                idLogin: body.id_login
+                idLogin: id_login,
+                idState: state
             }).then(function (reservation) {
                 resolve(reservation.dataValues)
             })
@@ -32,10 +33,10 @@ module.exports = {
             })
         })
     },
-    updateReservation(id_reservation){
+    updateReservation(id_reservation, state){
         return new Promise(function (resolve, reject) {
-            models.Reseravation.update(
-                {   confirmation: true},
+            models.Reservation.update(
+                {   state: state},
                 {   where: {id_reservation: id_reservation}
                 }).then(function (reservation) {
                 resolve(reservation.dataValues)
@@ -45,20 +46,34 @@ module.exports = {
     GetAllReservationUser(id_login) {
         return new Promise(function (resolve, reject) {
             models.Reservation.findAll({
-                where: {idLogin: id_login}
+                where: {idLogin: id_login},
+                include: [{
+                    model: models.Date,
+                    as: 'date'
+                },
+                    {model: models.Time,
+                        as: 'time'},
+                    {model: models.State,
+                        as:'state'
+                    }]
             }).then(function (reservation) {
                 resolve(reservation)
             })
         })
     },
-    GetAllReservationByJourney(body) {
+    GetAllReservationByJourney(idReservation) {
         return new Promise(function (resolve, reject) {
             models.Reservation.findAll({
-                where: {id_reservation: body.idReservation},
+                where: {id_reservation: idReservation},
                 include: [{
                     model: models.Date,
                     as: 'date'
-                }]
+                },
+                    {model: models.Time,
+                     as: 'time'},
+                    {model: models.State,
+                        as:'state'
+                    }]
             }).then(function (reservation) {
                 resolve(reservation)
             })
@@ -71,7 +86,12 @@ module.exports = {
                 include: [{
                     model: models.Date,
                     as: 'date'
-                }]
+                },
+                    {model: models.Time,
+                        as: 'time'},
+                    {model: models.State,
+                        as:'state'
+                    }]
           //      order: [ [ { model: models.Data, as: 'date' }, 'day', 'DESC' ] ]
             }).then(function (reservation) {
                 resolve(reservation)

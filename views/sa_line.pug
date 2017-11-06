@@ -16,7 +16,8 @@ block content
         div
             form(action ='/sadmin', method='GET')
                 button(type ='Submit') back to Zones
-            form(action ='/sadmin/sa_line/delete/'+zone.id_zone, method='Post')
+            form(action ='/sadmin/sa_line/delete/', method='Post')
+                input(hidden=true, type='text', value=zone.id_zone, name='id_zone')
                 button(type ='Submit') delete
             Label line
 

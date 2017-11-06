@@ -17,10 +17,10 @@ module.exports = {
         })
     },
 
-    deleteLine(idzone){
+    deleteLine(idline){
         return new Promise(function (resolve, reject) {
             models.Line.destroy({
-                where:{idZone: idzone  }
+                where:{id_line: idline  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
@@ -64,12 +64,12 @@ module.exports = {
                 resolve(line.dataValues)
             })
         })
-    },    GetAllLineByName(name) {
+    },    GetOneLineByName(name) {
         return new Promise(function (resolve, reject) {
-            models.Line.findAll({
+            models.Line.findOne({
                 where: {name: name}
             }).then(function (line) {
-                resolve(line)
+                resolve(line.dataValues)
             })
         })
     },
@@ -97,7 +97,7 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             axios.get('https://timetable.search.ch/api/route.en.json?from='+body.from+'&to='+body.to+'&num=1&pre=-1&date='+body.date+'&time='+body.time).then(function (response) {
                 console.log(response.data);
-                resolve(response.data.connections[0])
+                resolve(response.data.connections)
             })
         }).catch(function (error) {
             console.log(error)

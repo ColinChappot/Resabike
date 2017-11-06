@@ -30,13 +30,12 @@ module.exports = (sequelize, DataTypes) =>{
         },
         remarks: {
             type: DataTypes.STRING
-        },
-        state: {
-            type: DataTypes.INTEGER
         }
     });
     Reservation.associate=(models) =>{
         Reservation.belongsTo(models.Date,{foreignKey: {name:'idDate', allowNull:false}, as:'date'});
+        Reservation.belongsTo(models.Time,{foreignKey: {name:'idTime', allowNull:false}, as:'time'});
+        Reservation.belongsTo(models.State,{foreignKey: {name:'idState', allowNull:false}, as:'state'});
         Reservation.belongsTo(models.Login,{foreignKey: {name:'idLogin', allowNull:false}});
         Reservation.hasMany(models.Journey_Reservation,{foreignKey: {name:'idReservation', allowNull:false}, as:'reservation_tab'});
     }

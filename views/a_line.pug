@@ -1,0 +1,56 @@
+extends layout
+
+block script
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(type='text/css', rel='stylesheet', href='/materialize/css/materialize.min.css', media='screen,projection')
+    link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(type='text/javascript', src='/materialize/js/materialize.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+    script(src='/javascripts/apiCompletion.js')
+
+block content
+
+    div
+        Label line
+
+    each line in lines
+        table
+
+            thead
+                tr(width='20%')
+                    th id
+                    th name
+                    th departure
+                    th destination
+
+                tbody
+                    tr(width='20%')
+                        td id #{line.id_line}
+                        td numéro #{line.name}
+                        td departure #{line.fromStation}
+                        td destination #{line.toStation}
+                        td
+                            form(action ='/admin/a_line/a_station/'+line.id_line , method='GET')
+                                button(type ='Submit') show line
+
+
+
+    div
+        form(action ='/admin/a_line', method='POST')
+            table
+                tr(width='20%')
+                    td
+                        label(for='idFromStation',width='20%') fromSation
+                    td
+                        input(type='text', id='idFromStation', name='fromStation', placeholder='Type your New line here', onkeydown='autocomp(this.id)')
+                tr(width='20%')
+                    td
+                        label(for='idToStation',width='20%') tostation
+                    td
+                        input(type='text', id='idToStation', name='toStation', placeholder='Type your New line here', onkeydown='autocomp(this.id)')
+
+
+            button(type ='Submit') add new line now

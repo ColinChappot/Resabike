@@ -6,22 +6,13 @@ block content
         form(action ='/login/registration', method='POST')
             table
                 tr(width='33%')
-                    label(for='idFirstName',width='33%') firstName
+                    label(for='idFirstName',width='33%') Username
                     input(type='text', id='idFirstName', name='username', placeholder='Type your firstName here')
 
 
                 tr(width='33%')
-                    label(for='idLastName') LastName
+                    label(for='idLastName') Password
                     input(type='password', id='idLastName',name='password', placeholder='Type your Lastname here')
-
-                    tr(width='33%')
-                        label(for='idTelephon',width='33%') Telephon
-                        input(type='text', id='idTelephon', name='input_Telephon', placeholder='Type your telephone number here')
-
-
-                    tr(width='33%')
-                        label(for='idMail') Mail
-                        input(type='text', id='idMail',name='input_Mail', placeholder='Type your Mail here')
                 button(type='submit') termin your account and return to login
 
 

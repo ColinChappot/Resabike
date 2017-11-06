@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
         {
             session.authenticated = true;
 
-            session.login = check;
+            session.login = check.dataValues;
             res.redirect('/login/redirect')
         }
         else
@@ -61,6 +61,13 @@ router.get('/redirect', function(req, res, next) {
         case 4: res.redirect('/user')
             break;
     }
+});
+
+//logout
+router.get('/logout', function(req, res, next) {
+    session.authenticated = false
+    session.login = null
+    res.redirect('/login')
 });
 
 

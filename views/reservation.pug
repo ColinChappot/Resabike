@@ -9,7 +9,17 @@ block content
             tbody
                 form(action ='/user/reservation/' , method='POST')
                     tr(width='33%')
-                        td  ddfg
+                        td
+                            label(for='idlastname',width='33%') lastname
+                        td
+                            input(type='text', id='idlastname', name='lastname', placeholder='Type your Lastname here')
+
+                        td
+                            label(for='idfirstname',width='33%') firstname
+                        td
+                            input(type='text', id='idfirstname', name='firstname', placeholder='Type your Firstname here')
+
+                        td
                             label(for='idGroupName',width='33%') GroupName
                         td
                             input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
@@ -23,14 +33,12 @@ block content
                         td
                             label(for='idTelephon',width='33%') Telephon
                         td
-                            input(type='text', id='idTelephon', name='input_Telephon', placeholder='Type your telephone number here')
-
-
+                            input(type='text', id='idTelephon', name='telephone', placeholder='Type your telephone number here')
                     tr(width='33%')
                         td
                             label(for='idMail') Mail
                         td
-                            input(type='text', id='idMail',name='input_Mail', placeholder='Type your Mail here')
+                            input(type='text', id='idMail',name='mail', placeholder='Type your Mail here')
 
                     tr(width='33%')
                         td
@@ -39,15 +47,11 @@ block content
                             input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
                     tr(width='33%')
                         td
-                            input(hidden=true,type='text', name='from' value='#{journeys.from}')
-                            input(hidden=true,type='text', name='date' value='#{journeys.departure.substring(0, 10)}')
-                            input(hidden=true,type='text', name='time' value='#{journeys.departure.substring(0, 10)}')
-                            input(hidden=true,type='text', name='to' value='#{journeys.to}')
+                            input(hidden=true,type='text', name='from' value=journeys.from)
+                            input(hidden=true,type='text', name='date' value=journeys.departure.substring(0, 10))
+                            input(hidden=true,type='text', name='time' value=journeys.departure.substring(10,16))
+                            input(hidden=true,type='text', name='to' value=journeys.to)
                             button(type ='Submit') send reservation
-
-
-
-
 
     div
         label Résumer de réservation
@@ -60,13 +64,13 @@ block content
                         td
                             p  #{journeys.from}
                         td
-                            p #{journeys.departure.substring(10)}
+                            p #{journeys.departure.substring(10,16)}
                         td
-                            p   #{journeys.duration/60} m
+                            p   #{journeys.duration/60} min
                         td
                             p #{journeys.to}
                         td
-                            p #{journeys.arrival.substring(10)}
+                            p #{journeys.arrival.substring(10,16)}
 
                     each legs in journeys.legs
                         if(legs.stops != null)
@@ -74,7 +78,7 @@ block content
                                 td
                                     p #{legs.line}
                                 td
-                                    p #{legs.departure.substring(10)}
+                                    p #{legs.departure.substring(10,16)}
                                 td
                                     p #{legs.name}
                                 each stop in legs.stops
@@ -83,4 +87,4 @@ block content
                                 td
                                     p #{legs.exit.name}
                                 td
-                                    p #{legs.exit.arrival.substring(10)}
+                                    p #{legs.exit.arrival.substring(10,16)}

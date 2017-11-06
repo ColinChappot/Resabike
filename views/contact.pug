@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    div
+        form(action ='/admin/a_line', method='GET')
+            button(type ='Submit') back to AdminZones
+        p Driver Fiche for Zone
+
+        table
+            form(action ='/admin/contact/driver/update', method='POST')
+                tbody
+                    tr
+                        label(for='idUsername',width='33%') Username
+                        input(type='text', id='idUsername', name='username', placeholder='Type the new firstname Driver', value=driver.username)
+                    tr
+                        label(for='idPassword',width='33%') Password
+                        input(type='text', id='idPassword', name='password', placeholder='Type the new Driver', value=driver.password)
+                    tr
+                        button(type='submit') register Driver
+
+    div
+        p Contact Fiche for Zone
+
+        table
+            form(action ='/admin/contact/update', method='POST')
+                tbody
+                    tr
+                        label(for='idFirstname',width='33%') Firstname
+                        input(type='text', id='idFirstname', name='firstname', placeholder='Type the new firstname', value=contact.firstname)
+                    tr
+                        label(for='idLastname',width='33%') Lastname
+                        input(type='text', id='idLastname', name='lastname', placeholder='Type the new Lastname', value=contact.lastname)
+                    tr
+                        label(for='idMail',width='33%') Mail
+                        input(type='text', id='idMail', name='mail', placeholder='Type the new Lastname', value=contact.mail)
+                    tr
+                        label(for='idTelephon',width='33%') telephon
+                        input(type='text', id='idTelephon', name='telephone', placeholder='Type the new Lastname',, value=contact.telephone)
+                    tr
+                        button(type='submit') register Contact
+
+

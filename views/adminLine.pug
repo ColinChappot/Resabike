@@ -3,7 +3,7 @@ extends layout
 block content
 
     div
-        a.waves-effect.waves-light.btn-large(href='http://localhost:3000/admin/adminZone') AdminZone
+        p Zone :  #{data.name}
         table
             thead
                 tr
@@ -11,34 +11,51 @@ block content
                     th Departure
                     th Destination
             tbody
-                tr
-                    td nameContent
-                    td DepartureCOntent
-                    td DestinatinationContent
-                tr
-                    th
-                    th HeureDeparture
-                    th HoursDestination
-                    th StigmaSomme
-                tr
-                    td
-                    td HeureDepartureContent
-                    td HoursDestinationContent
-                    td StigmaSommeContent
-                tr
-                    th
-                    th
-                    th GroupName
-                    th Bikers
-                tr
-                    td
-                    td
-                    td GroupNameBikersContent
-                    td BikersContent
-                    td
-                        //form(action ='/admin/adminZone', method='GET')
-                        //    button(type ='Submit') accept
-                    td
-                        //form(action ='/admin/adminZone', method='GET')
-                        //    button(type ='Submit') refuse
+                each line in data.line
+                    tr
+                        td #{line.dataValues.name}
+                        td #{line.dataValues.fromStation}
+                        td #{line.dataValues.toStation}
 
+                        tr
+                            th
+                            th id voyage
+                            th HeureDeparture
+                            th Number of bike confirmed
+                            each journey in line.dataValues.journey
+                                if(journey.dataValues.journey_tab.length != 0)
+                                    tr
+                                        td
+                                        td #{journey.dataValues.journeyNumber}
+                                        td #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.hour} : #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.minute}
+                                        - var nbBikeConfirmed = 0
+                                        each journey_tab in journey.dataValues.journey_tab
+                                           - if(journey_tab.dataValues.reservation_tab.state.dataValues.id_state == 2 )
+                                                - nbBikeConfirmed += journey_tab.dataValues.reservation_tab.bikeNumber;
+                                        td #{nbBikeConfirmed}
+                                        - nbBikeConfirmed = 0
+                                        tr
+                                            th
+                                            th
+                                            th firstname
+                                            th lastname
+                                            th groupe name
+                                            th number of bike
+                                            th remarks
+                                        each journey_tab in journey.dataValues.journey_tab
+                                            tr
+                                                td
+                                                td
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.firstname}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.lastname}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.groupName}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.bikeNumber}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.remarks}
+                                                td
+                                                    form(action ='/admin/reservation/confirm', method='Post')
+                                                        input(hidden=true, type='text', value=journey_tab.dataValues.reservation_tab.dataValues.id_reservation, name='idreservation')
+                                                        button(type ='Submit') confirm
+                                                td
+                                                    form(action ='/admin/reservation/refuse', method='Post')
+                                                        input(hidden=true, type='text', value=journey_tab.dataValues.reservation_tab.dataValues.id_reservation, name='idreservation')
+                                                        button(type ='Submit') refuse

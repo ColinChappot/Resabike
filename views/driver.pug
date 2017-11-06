@@ -1,24 +1,54 @@
-extends Layout
+extends layout
 
 block content
+
     div
-        label Reservations all today
-        br
+        p Zone : #{data.name}
         table
-            //each reservation in reservations
             thead
-                th departure
-                th destination
-                th groupname
-                th bikeNumber
+                tr
+                    th Name
+                    th Departure
+                    th Destination
             tbody
-                td #{reservation.fromStation}
-                td #{reservation.toStation}
-                td #{reservation.groupName}
-                td #{reservation.bikeNumber}
+                each line in data.line
+                    tr
+                        td #{line.dataValues.name}
+                        td #{line.dataValues.fromStation}
+                        td #{line.dataValues.toStation}
 
-
-
-
-
+                        tr
+                            th
+                            th id voyage
+                            th HeureDeparture
+                            th Number of bike confirmed
+                            each journey in line.dataValues.journey
+                                if(journey.dataValues.journey_tab.length != 0)
+                                    tr
+                                        td
+                                        td #{journey.dataValues.journeyNumber}
+                                        td #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.hour} : #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.minute}
+                                        - var nbBikeConfirmed = 0
+                                        each journey_tab in journey.dataValues.journey_tab
+                                            - if(journey_tab.dataValues.reservation_tab.state.dataValues.id_state == 1 )
+                                            - nbBikeConfirmed += journey_tab.dataValues.reservation_tab.bikeNumber;
+                                        td #{nbBikeConfirmed}
+                                        - nbBikeConfirmed = 0
+                                        tr
+                                            th
+                                            th
+                                            th firstname
+                                            th lastname
+                                            th groupe name
+                                            th number of bike
+                                            th remarks
+                                        each journey_tab in journey.dataValues.journey_tab
+                                            tr
+                                                td
+                                                td
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.firstname}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.lastname}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.groupName}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.bikeNumber}
+                                                td #{journey_tab.dataValues.reservation_tab.dataValues.remarks}
 
