@@ -22,7 +22,7 @@ router.get('/changeLang/:lang', function(req, res, next) {
 
 router.post('/email', function(req, res, next) {
 
- email.sendMail(req.body.to, req.body.subject, req.body.text);
+ email.CreateMailReservation(body);
  res.redirect('/test');
 
 });

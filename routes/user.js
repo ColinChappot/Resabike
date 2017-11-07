@@ -9,6 +9,8 @@ var lineFunction = require('../modules/lineFunction');
 var dateFunction = require('../modules/dateFunction');
 var timeFunction = require('../modules/timeFunction');
 var journey_reservationFunction = require('../modules/journey_reservationFunction');
+var personConctactFunction = require('../modules/personContactFunction');
+var emailFunction = require('../modules/email')
 
 //modif to acces push
 
@@ -44,26 +46,43 @@ router.post('/reservation', (req, res, next) => {
         res.redirect('/login/redirect')
     }
 
+    let idzone ;
+    let confirmation;
 
     lineFunction.APIJourney(req.body).then(function (journeys) {
         journeys[0].legs.forEach(function (trajet) {
-            if(trajet.stops != null)
-            {
+            if (trajet.stops != null) {
                 lineFunction.GetOneLineByName(trajet.line).then(function (line) {
-                    journeyFunction.insertJourney(trajet,line).then(function (journey) {
+                    idzone = line.idZone;
+                    journeyFunction.insertJourney(trajet, line).then(function (journey) {
                         dateFunction.insertDate(req.body.date).then(function (date) {
                             timeFunction.insertTime(req.body.time).then(function (time) {
                                 journey_reservationFunction.CheckNbBike(journey).then(function (nbBike) {
                                     nbBike = nbBike + req.body.bikeNumber;
                                     if (nbBike > 6) {
-                                        reservationFunction.insertReservation(req.body, 2, date, time,session.login.id_login).then(function (resrvation) {
-                                            journey_reservationFunction.insertJourney_Reservation(journey,resrvation);
+                                        reservationFunction.insertReservation(req.body, 2, date, time, session.login.id_login).then(function (reservation) {
+                                            journey_reservationFunction.insertJourney_Reservation(journey, reservation).then(function () {
+                                                personConctactFunction.GetOnePersonContact(idzone).then(function (person) {
+                                                    emailFunction.Waiting(person).then(function (text) {
+                                                        emailFunction.sendMail(req.body.mail,'waiting',text).then(function () {
+                                                            res.redirect('/user/historic')
+                                                        })
+                                                    })
+                                                })
+                                            })
                                         })
                                     }
-                                    else
-                                    {
-                                        reservationFunction.insertReservation(req.body, 1, date, time,session.login.id_login).then(function (resrvation) {
-                                            journey_reservationFunction.insertJourney_Reservation(journey,resrvation);
+                                    else {
+                                        reservationFunction.insertReservation(req.body, 1, date, time, session.login.id_login).then(function (reservation) {
+                                            journey_reservationFunction.insertJourney_Reservation(journey, reservation).then(function () {
+                                                personConctactFunction.GetOnePersonContact(idzone).then(function (person) {
+                                                    emailFunction.confirm(person).then(function (text) {
+                                                        emailFunction.sendMail(req.body.mail,'confirmation',text).then(function () {
+                                                            res.redirect('/user/historic')
+                                                        })
+                                                    })
+                                                })
+                                            })
                                         })
                                     }
                                 })
@@ -73,9 +92,7 @@ router.post('/reservation', (req, res, next) => {
                     })
                 })
             }
-        }).then(function () {
-                res.redirect('/user/historic')
-            })
+        })
     })
 });
 
@@ -89,7 +106,7 @@ router.get('/historic', function(req, res, next) {
         res.redirect('/login/redirect')
     }
 
-    id_login = session.login.id_login
+    var id_login = session.login.id_login
     reservationFunction.GetAllReservationUser(id_login).then(function (reservations) {
         res.render('historic', {reservations: reservations});
     })
@@ -106,8 +123,6 @@ router.post('/data', function(req, res, next) {
     {
         res.redirect('/login/redirect')
     }
-
-
    stationFunction.GetOneStationLike(req.body.term).then(function (stations) {
        res.send(stations)
    })

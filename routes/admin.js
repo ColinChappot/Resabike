@@ -10,6 +10,7 @@ var reservationFunction = require('../modules/reservationFunction');
 var zoneFunction = require('../modules/zoneFunction');
 var station_line = require('../modules/line_stationFunction');
 var session = require('express-session');
+var emailFunction = require('../modules/email')
 
 
 
@@ -165,11 +166,12 @@ router.post('/reservation/refuse', function(req, res, next) {
         res.redirect('/login/redirect');
     }
     let idreservation = req.body.idreservation;
-    reservationFunction.updateReservation(idreservation, 3).then(function () {
-
-        //envoi du mail de confirmation
-
-        res.redirect('/admin');
+    reservationFunction.updateReservation(idreservation, 3).then(function (reservation) {
+        reservationFunction.GetOneReservation(reservation.id_reservation).then(function () {
+            emailFunction.cancel(reservation).then(function () {
+                res.redirect('/admin');
+            })
+        })
     })
 });
 

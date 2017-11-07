@@ -43,6 +43,21 @@ module.exports = {
             })
         })
     },
+    GetOneReservation(id_reservation, state){
+        return new Promise(function (resolve, reject) {
+            models.Reservation.findOne(
+                {   where: {id_reservation: id_reservation},
+                    include: [{
+                        model: models.Date,
+                        as: 'date'
+                    },
+                        {model: models.Time,
+                            as: 'time'}]
+                }).then(function (reservation) {
+                resolve(reservation.dataValues)
+            })
+        })
+    },
     GetAllReservationUser(id_login) {
         return new Promise(function (resolve, reject) {
             models.Reservation.findAll({
