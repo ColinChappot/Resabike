@@ -11,12 +11,11 @@ html(lang='en')
         block nav
             nav #{title}
                 .nav-wrapper
-                    form(action='/login/redirect', method='GET')
+                    form(action='/', method='GET')
                         button.brand-logo(type='Submit', style='border:none;color:white;background-color:transparent') RESABIKE
                         ul#nav-mobile.right.hide-on-med-and-down
                             li
-                                form(action='/contact', method='GET')
-                                    button(type='Submit', style='border:none;color:white;background-color:transparent') conzact
+                                a(href="/login") login
                             li
                                 a(href="/login/changeLang/fr") FR
                             li
@@ -28,6 +27,9 @@ html(lang='en')
                                      button(type='Submit', style='border:none;color:white;background-color:transparent') logout
 
         block content
+
+
+
 
 
 

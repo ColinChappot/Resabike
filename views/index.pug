@@ -1,31 +1,36 @@
 extends layout
-
-
-
 block content
+  h1(align='center') #{i18n.__('welcomeTitle')}
+  div
+    h4 #{i18n.__('resabikeP')}
+    img.responsive-img(src='image/Panorama_7.jpg', align='center')
+    h4 #{i18n.__('supportP')}
+    h4 resabikeccjzsupport@gmail.com
+    h4 #{i18n.__('feedbackP')}
 
 
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
-  link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
-  script(src='/javascripts/apiCompletion.js')
-  script(src='/javascripts/apiTrajet.js')
-
-
-  form(method='post' action='/')
-    input(type='text', name='firstname')
-    br
-    input(type='text', name='lastname')
-    br
-    input(type='text', name='telephone')
-    br
-    input(type='text', name='mail')
-    br
-    input(type='text', name='name')
-    br
-    input(type='text', name='username')
-    br
-    input(type='text', name='password')
-    br
-    button(type=submit) recherche
+  div
+    divMain.form-group
+        |
+        br
+        |
+        form.form-vertical(role='form', method='post', action='/email')
+          .form-group
+            .col-sm-10
+              input#sender.form-control(type='email', name='sender', placeholder='Votre adresse mail')
+          |
+          .form-group
+            .col-sm-10
+              input#destination.form-control(type='email', name='destination', placeholder='Adresse mail du destinataire')
+          |
+          .form-group
+            .col-sm-10
+              input#subject.form-control(type='text', name='subject', placeholder="L'objet du mail")
+          |
+          .form-group
+            .col-sm-10
+              textarea#message.form-control(rows='11', name='message', placeholder='Le contenu de votre mail')
+          |
+          .form-group
+            .col-sm-10
+              button.btn.btn-primary(type='submit') Envoyer

@@ -4,47 +4,46 @@ extends layout
 block content
     div
         p #{i18n.__('reservationTitle')}
-
         table
             tbody
                 form(action ='/user/reservation/' , method='POST')
                     tr(width='33%')
                         td
-                            label(for='idlastname',width='33%') lastname
+                            label(for='idlastname',width='33%') #{i18n.__('lastname')}
                         td
-                            input(type='text', id='idlastname', name='lastname', placeholder='Type your Lastname here')
+                            input(type='text', id='idlastname', name='lastname', placeholder= i18n.__('lastnameInput'))
 
                         td
-                            label(for='idfirstname',width='33%') firstname
+                            label(for='idfirstname',width='33%') #{i18n.__('firstname')}
                         td
-                            input(type='text', id='idfirstname', name='firstname', placeholder='Type your Firstname here')
+                            input(type='text', id='idfirstname', name='firstname', placeholder= i18n.__('firsnameInput'))
 
                         td
-                            label(for='idGroupName',width='33%') GroupName
+                            label(for='idGroupName',width='33%') #{i18n.__('groupName')}
                         td
-                            input(type='text', id='idGroupName', name='groupName', placeholder='Type your GroupName here')
-
-                    tr(width='33%')
-                        td
-                            label(for='idBikeNumber') Bike Number
-                        td
-                            input(type='text', id='idBikeNumber',name='bikeNumber', placeholder='Type your BikeNumber here')
-                    tr(width='33%')
-                        td
-                            label(for='idTelephon',width='33%') Telephon
-                        td
-                            input(type='text', id='idTelephon', name='telephone', placeholder='Type your telephone number here')
-                    tr(width='33%')
-                        td
-                            label(for='idMail') Mail
-                        td
-                            input(type='text', id='idMail',name='mail', placeholder='Type your Mail here')
+                            input(type='text', id='idGroupName', name='groupName', placeholder= i18n.__('goupNameInput'))
 
                     tr(width='33%')
                         td
-                            label(for='idRemarqus',width='33%') Remarqus
+                            label(for='idBikeNumber') #{i18n.__('bikeNumber')}
                         td
-                            input(type='text', id='idRemarqus', name='remarks', placeholder='Type your remarqus if you have')
+                            input(type='text', id='idBikeNumber',name='bikeNumber', placeholder= i18n.__('bikeNumberInput'))
+                    tr(width='33%')
+                        td
+                            label(for='idTelephon',width='33%') #{i18n.__('telephon')}
+                        td
+                            input(type='text', id='idTelephon', name='telephone', placeholder= i18n.__('telephonInput'))
+                    tr(width='33%')
+                        td
+                            label(for='idMail') #{i18n.__('mail')}
+                        td
+                            input(type='text', id='idMail',name='mail', placeholder= i18n.__('mailInput'))
+
+                    tr(width='33%')
+                        td
+                            label(for='idRemarqus',width='33%') #{i18n.__('remarks')}
+                        td
+                            input(type='text', id='idRemarqus', name='remarks', placeholder= i18n.__('remarksInput'))
                     tr(width='33%')
                         td
                             input(hidden=true,type='text', name='from' value=journeys.from)
@@ -52,40 +51,40 @@ block content
                             input(hidden=true,type='text', name='time' value=journeys.departure.substring(10,16))
                             input(hidden=true,type='text', name='to' value=journeys.to)
                             input(hidden=true,type='text', name='journeys' value=journeys)
-                            button(type ='Submit') send reservation
+                            button(type ='Submit') #{i18n.__('b_sendReservation')}
 
     div
-        label Résumer de réservation
+        p #{i18n.__('ReviewReservationTitle')}
 
-            table
-                tbody
-                    tr
-                        td
-                            p #{journeys.departure.substring(0, 10)}
-                        td
-                            p  #{journeys.from}
-                        td
-                            p #{journeys.departure.substring(10,16)}
-                        td
-                            p   #{journeys.duration/60} min
-                        td
-                            p #{journeys.to}
-                        td
-                            p #{journeys.arrival.substring(10,16)}
+        table
+            tbody
+                tr
+                    td
+                        p #{journeys.departure.substring(0, 10)}
+                    td
+                        p  #{journeys.from}
+                    td
+                        p #{journeys.departure.substring(10,16)}
+                    td
+                        p   #{journeys.duration/60} min
+                    td
+                        p #{journeys.to}
+                    td
+                        p #{journeys.arrival.substring(10,16)}
 
-                    each legs in journeys.legs
-                        if(legs.stops != null)
-                            tr
+                each legs in journeys.legs
+                    if(legs.stops != null)
+                        tr
+                            td
+                                p #{legs.line}
+                            td
+                                p #{legs.departure.substring(10,16)}
+                            td
+                                p #{legs.name}
+                            each stop in legs.stops
                                 td
-                                    p #{legs.line}
-                                td
-                                    p #{legs.departure.substring(10,16)}
-                                td
-                                    p #{legs.name}
-                                each stop in legs.stops
-                                    td
-                                        p  #{stop.name}
-                                td
-                                    p #{legs.exit.name}
-                                td
-                                    p #{legs.exit.arrival.substring(10,16)}
+                                    p  #{stop.name}
+                            td
+                                p #{legs.exit.name}
+                            td
+                                p #{legs.exit.arrival.substring(10,16)}

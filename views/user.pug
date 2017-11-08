@@ -19,6 +19,8 @@ block content
 
         div
             p #{i18n.__('userTilte')}
+            form(action ='/user/historic' , method='GET', align='right')
+                button(type ='Submit') #{i18n.__('b_historic')}
             br
             table
                 thead
@@ -33,7 +35,7 @@ block content
                         td
                             input.form-control(type='date', name='date', id='date')
                         td
-                            input(type='text', id='from', name='from' ,size='35',onkeydown='autocomp(this.id)')
+                            input(type='text', id='from', name='from', placeholder=i18n.__('departureInput'),size='35',onkeydown='autocomp(this.id)')
                         td
                            input(type='text', id='to', name='to', placeholder=i18n.__('destinationInput'),size='35',onkeydown='autocomp(this.id)')
                         td
