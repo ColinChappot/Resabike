@@ -166,10 +166,14 @@ router.post('/reservation/refuse', function(req, res, next) {
         res.redirect('/login/redirect');
     }
     let idreservation = req.body.idreservation;
-    reservationFunction.updateReservation(idreservation, 3).then(function (reservation) {
-        reservationFunction.GetOneReservation(reservation.id_reservation).then(function () {
-            emailFunction.cancel(reservation).then(function () {
-                res.redirect('/admin');
+    reservationFunction.updateReservation(idreservation, 3).then(function () {
+        reservationFunction.GetOneReservation(idreservation).then(function (reservation) {
+            personContactFunction.GetOnePersonContact(session.login.idZone).then(function (person) {
+                emailFunction.cancel(reservation).then(function (text) {
+                    emailFunction.sendMail(reservation.mail,'Reservation cancel',text ).then(function () {
+                        res.redirect('/admin');
+                    })
+                })
             })
         })
     })

@@ -62,7 +62,7 @@ module.exports = {
             resolve(text)
         })
     },
-    cancel(reservation){
+    cancel(reservation,person){
         return new Promise(function (resolve, reject) {
 
             var text = "Votre réservation à été refusée pour le voyage :" +
