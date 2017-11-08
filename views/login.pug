@@ -3,21 +3,22 @@ extends layout
 block content
     div
         br
-        Label Welcome to Resabike
+        p #{i18n.__('loginTitle')}
         br
         form(action ='/login', method='POST')
             table
                 tr(width='33%')
-                    label(for='idLogin',width='33%') login
-                    input(type='text', id='idLogin', name='username', placeholder='Type your login here')
+                    label(for='idLogin',width='33%') #{i18n.__('username')}
+
+                    input(type='text', id='idLogin', name='username', placeholder= i18n.__('usernameInput') )
 
 
                 tr(width='33%')
-                    label(for='idpassword') Password
-                    input(type='password', id='idpassword',name='password', placeholder='Type your password here')
-            button(type='submit') log in
+                    label(for='idpassword') #{i18n.__('password')}
+                    input(type='password', id='idpassword',name='password', placeholder=i18n.__('passwordInput'))
+            button(type='submit') #{i18n.__('loginButton')}
 
     div
-        Label You dont have an account?
-        a(href='http://localhost:3000/login/registration') Register here
-
+        br
+        form(action ='/login/registration', method='get')
+           button(type='submit') #{i18n.__('b_go_register')}

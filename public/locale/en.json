@@ -1,5 +1,27 @@
-
 {
-  "nomBalise": "Values showed",
-  "test" : "testEn"
+	"nomBalise": "Values showed",
+	"test": "testEn",
+	"loginTitle": "Welcome to login page",
+	"username": "User Name",
+	"usernameInput": "Write your username ex: jean.deleze or killer209",
+	"password": "Password",
+	"passwordInput": "Write your passsword here",
+	"redidrectionRegister": "You don't have account ?",
+	"loginButton": "Login",
+	"id": "id",
+	"name": "Name",
+	"departure": "Departure",
+	"destination": "Destination",
+	"resgistrationTitle": "Welcom to register you",
+	"buttonRegister": "termin your account and return to login",
+	"b_go_register": "go register",
+	"userTilte": "Your way, your search",
+	"date": "Date",
+	"b_search": "Search",
+	"reservation": "Welcom to register you",
+	"destiantion": "destiantion",
+	"departureInput": "Choose your departure",
+	"destinationInput": "Choose your destination",
+	"reserver" : " Records",
+	"reservationTitle" : "make your resevation"
 }

@@ -1,5 +1,26 @@
-
 {
-  "nomBalise": "Values de",
-  "test" : "testde"
+	"nomBalise": "Values de",
+	"test": "testde",
+	"loginTitle": "Hallo",
+	"username": "UsenName",
+	"usernameInput": "Deutsch ton nom d'utilisateur ici !  ex: jean.deleze or killer209",
+	"passwordInput": "Deutsch ton mot de passe ici",
+	"password": "Password de",
+	"redidrectionRegister": "deutsch",
+	"loginButton": "DeutschButton",
+	"id": "idDe",
+	"name": "LoginDE",
+	"departure": "LoginDE",
+	"destination": "LoginDE",
+	"resgistrationTitle": "Welcom to register DEutsch",
+	"buttonRegister": "Finis de créer ton compte et revient au login DEutsch",
+	"b_go_register": "go registrDeutsch",
+	"userTilte": "deutchs",
+	"date": "Date",
+	"b_search": "Suchen",
+	"reservation": "Reservations",
+	"departureInput": "Choose your departure DE",
+	"destinationInput": "Choose your destination DE",
+	"reserver": "reser Deutr",
+	"reservationTitle" : "make your resevation DEUR"
 }

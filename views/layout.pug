@@ -18,9 +18,13 @@ html(lang='en')
                                 form(action='/contact', method='GET')
                                     button(type='Submit', style='border:none;color:white;background-color:transparent') conzact
                             li
-                                a(href='http://localhost:3000/') LANGUES
+                                a(href="/login/changeLang/fr") FR
                             li
-                                form(action='/login', method='GET')
+                                a(href="/login/changeLang/en") EN
+                            li
+                                a(href="/login/changeLang/de") DE
+                            li
+                                form(action='/logout', method='GET')
                                      button(type='Submit', style='border:none;color:white;background-color:transparent') logout
 
         block content

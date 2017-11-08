@@ -10,7 +10,8 @@ var dateFunction = require('../modules/dateFunction');
 var timeFunction = require('../modules/timeFunction');
 var journey_reservationFunction = require('../modules/journey_reservationFunction');
 var personConctactFunction = require('../modules/personContactFunction');
-var emailFunction = require('../modules/email')
+var emailFunction = require('../modules/email');
+var i18n = require('i18n');
 
 //modif to acces push
 
@@ -20,7 +21,7 @@ router.get('/', function(req, res, next) {
     // {
     //       res.redirect('/login/redirect')
     // }
-    res.render('user');
+    res.render('user', {i18n: i18n});
     // res.render('user', { zones: zones});
 });
 
@@ -35,7 +36,7 @@ router.post('/', function(req, res, next) {
     }
 
     lineFunction.APIJourney(req.body).then(function (journeys) {
-                res.render('reservation', {journeys: journeys[0]})
+                res.render('reservation', {journeys: journeys[0], i18n:i18n})
     })
 });
 
@@ -108,7 +109,7 @@ router.get('/historic', function(req, res, next) {
 
     var id_login = session.login.id_login
     reservationFunction.GetAllReservationUser(id_login).then(function (reservations) {
-        res.render('historic', {reservations: reservations});
+        res.render('historic', {reservations: reservations,  i18n: i18n});
     })
 
 });

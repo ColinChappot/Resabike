@@ -3,13 +3,19 @@ var models = require('../models');
 var loginFunction = require('../modules/loginFunction');
 var session = require('express-session');
 var router = express.Router();
+var i18n = require('i18n');
 
-
+//Permet de changer le language
+router.get('/changeLang/:lang', function(req, res, next) {
+    res.cookie('i18n', req.params.lang);
+    i18n.setLocale(i18n, req.params.lang);
+    res.redirect('/login');
+});
 
 
 /* Logout handler */
 router.get('/', function(req, res, next) {
-    res.render('login');
+    res.render('login', {i18n: i18n});
 });
 
 //permet de modifier la personne de contact
@@ -34,13 +40,13 @@ router.post('/', (req, res, next) => {
 
 /* Logout handler */
 router.get('/registration', function(req, res, next) {
-    res.render('registration');
+    res.render('registration',  {i18n: i18n});
 });
 
 //permet de modifier la personne de contact
 router.post('/registration', (req, res, next) => {
    loginFunction.insertLogin(req.body.username,req.body.password,4).then(function () {
-       res.render('login');
+       res.render('login', {i18n: i18n});
    })
 });
 
@@ -67,7 +73,7 @@ router.get('/redirect', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
     session.authenticated = false
     session.login = null
-    res.redirect('/login')
+    res.redirect('/login', {i18n: i18n})
 });
 
 
