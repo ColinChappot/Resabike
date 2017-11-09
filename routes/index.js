@@ -4,10 +4,11 @@ var zone = require('../modules/zoneFunction');
 var person = require('../modules/personContactFunction');
 var login = require('../modules/loginFunction');
 var models = require('../models');
+var i18n = require('i18n');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-        res.render('login');
+        res.render('index', {i18n:i18n});
 });
 
 

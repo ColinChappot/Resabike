@@ -1,6 +1,6 @@
 extends layout
-block script
-    script(src='/javascripts/mailSend.js')
+
+
 block content
     p #{i18n.__('nomBalise')}
     p #{i18n.__('test')}
@@ -17,18 +17,17 @@ block content
     a(href="/test/changeLang/de") de
 
 
-    br
-    br
-    br
-    br
+    //br
+    //br
+    //br
+    //br
 
-
-    form(action='/test/email', method='POST')
-        input(type='text', name='to', placeholder='jeffjonhatanzufferey@gmail')
-        input(type='text', name='subject', placeholder='subject')
-        input(type='text', name='text', placeholder='textl')
-
-        button( type='Submit') show line
+    //form(action='/test/email', method='POST')
+    //    input(type='text', name='to', placeholder='jeffjonhatanzufferey@gmail')
+    //    input(type='text', name='subject', placeholder='subject')
+    //    input(type='text', name='text', placeholder='textl')
+    //
+    //    button( type='Submit') show line
 
 
 

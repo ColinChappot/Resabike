@@ -1,4 +1,4 @@
-function search() {
+function search(i18n) {
     var from  = document.getElementById('from').value;
     var to = document.getElementById('to').value;
     var date = document.getElementById('date').value;
@@ -9,7 +9,6 @@ function search() {
     var month = new Date().getMonth()+1
     var year = new Date().getFullYear()
     var hour = new Date().getHours()
-
 
 
 
@@ -41,7 +40,7 @@ function search() {
                     line += departure.format('DD.MM.YYYY') +'</td><td>'+departure.format('HH:mm')+ '</td><td>' + this.from +  '</td><td>' +(this.duration/60)+ ' min'+'</td><td>' +  this.to +  '</td><td>' + arrival.format('HH:mm') + '</td>'
                     if(year < departure.format('YYYY'))
                     {
-                        line = display(line,this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'))
+                        line = display(line,this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'),i18n)
                     }
                     else
                     {
@@ -51,7 +50,7 @@ function search() {
                         }
                         if(month < departure.format('MM'))
                         {
-                            line = display(line,this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'))
+                            line = display(line,this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'),i18n)
                         }
                         else
                         {
@@ -65,7 +64,7 @@ function search() {
                             }
                             if(day < departure.format('DD'))
                             {
-                                line = display(line, this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'))
+                                line = display(line, this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'),i18n)
                             }
                         }
                     }
@@ -78,14 +77,14 @@ function search() {
     }
 };
 
-function display(line,from,to,departureD, departureH) {
+function display(line,from,to,departureD, departureH,i18n) {
 
     line+= '<td>'+'<form action="/user" method="POST">' +
     '<input type="text" name="from" hidden="true" value="'+from+'"/>' +
     '<input type="text" name="to" hidden="true" value="'+to+'"/>' +
     '<input type="text" name="date" hidden="true" value="'+departureD+'"/>'+
     '<input type="text" name="time" hidden="true" value="'+departureH+'"/>'+
-    '<button type="submit">réserver</button>'+
+    '<input type="submit", value="'+i18n+'"/>'+
     '</form>' + '</td>'
 
     return line;

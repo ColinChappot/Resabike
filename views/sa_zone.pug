@@ -6,7 +6,7 @@ block content
 
             - var listZone = zones;
 
-                label Zone
+                h1 Zone
 
                 each zone in listZone
                     .zone
@@ -14,10 +14,8 @@ block content
                         br
                         table
                             tbody
-                                td #{zone.id_zone}
-
-
-                                td #{zone.name}
+                                td id Zone
+                                td Name
                                 td
                                     form(action ='/sadmin/sa_line/'+zone.id_zone , method='GET')
                                         button(type ='Submit') show line
@@ -25,7 +23,7 @@ block content
 
         div
             br
-            Label Add new Zone
+            h2 Add new Zone
             form(action ='/sadmin', method='POST')
                 table
 

@@ -15,38 +15,41 @@ block script
 
 block content
 
+
         div
-            Label your search, your way
+            br
+            br
+            h1 #{i18n.__('userTilte')}
+            form(action ='/user/historic' , method='GET', align='right')
+                button(type ='Submit') #{i18n.__('b_historic')}
             br
             table
                 thead
                     tr
-                        th Date
+                        th #{i18n.__('date')}
+                        th #{i18n.__('departure')}
+                        th #{i18n.__('destiantion')}
                         th
                         th
-                        th Departure
-                        th Destination
                 tbody
                     tr
                         td
                             input.form-control(type='date', name='date', id='date')
                         td
-                            input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)', required=true)
+                            input(type='text', id='from', name='from', placeholder=i18n.__('departureInput'),size='35',onkeydown='autocomp(this.id)')
                         td
-                           input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)', required=true)
+                           input(type='text', id='to', name='to', placeholder=i18n.__('destinationInput'),size='35',onkeydown='autocomp(this.id)')
                         td
-                            button(onclick='search()' type='none') search
+                            button(onclick='search(this.id)', id=i18n.__('reserver'), type='none') #{i18n.__('b_search')}
 
-        center
-            font(color="red") #{erreur}
         br
         div(name='mydivs' )
             table(id='auto')
                 thead
                     tr
-                        th Date
-                        th Departure
-                        th Destination
-                        th Reservation
+                        th #{i18n.__('date')}
+                        th #{i18n.__('departure')}
+                        th #{i18n.__('destiantion')}
+                        th #{i18n.__('reservation')}
                 tbody
 
