@@ -11,7 +11,7 @@ var journeyFunction = require('../modules/journeyFunction')
 var journey_reservationFunction = require('../modules/journey_reservationFunction')
 var session = require('express-session');
 
-//Permet d'accèder à la page
+//Access to the page with all the zones
 router.get('/', function(req, res, next) {
     if(session.login.idRole != 3)
     {
@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
     })
 });
 
-//permet de créer une nouvelle zone
+//Creation of a new zone
 router.post('/', (req, res, next) => {
     if(session.login.idRole != 3)
     {
@@ -40,7 +40,7 @@ router.post('/', (req, res, next) => {
     })
 });
 
-// //permet d'accèder à une zone spécifique
+//Access to a specific zone
 router.get('/sa_line/:idzone', function(req, res, next) {
     if(session.login.idRole != 3)
     {
@@ -50,12 +50,12 @@ router.get('/sa_line/:idzone', function(req, res, next) {
     let idzone = req.params.idzone;
     zoneFunction.GetOneZone(idzone).then(function (zone) {
         lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
-            res.render('sa_line', {zone: zone, lines: lines});
+            res.render('sa_line', {zone: zone, lines: lines, error:""});
         })
     })
 });
 
-//permet de delete une zone
+//Delete a specific zone
 router.post('/sa_line/delete', function(req, res, next) {
     if(session.login.idRole != 3)
     {
@@ -73,10 +73,18 @@ router.post('/sa_line/delete', function(req, res, next) {
                     })
                 })
             }
+            else
+            {
+                zoneFunction.GetOneZone(idzone).then(function (zone) {
+                    lineFunction.GetAllLine(zone.id_zone).then(function (lines) {
+                        res.render('sa_line', {zone: zone, lines: lines, error:"If you want to delete the zone you need to delete the lines first"});
+                    })
+                })
+            }
         })
 });
 
-//permet de créer une ligne dans la zone
+//Creation of a new line in the zone
 router.post('/sa_line/:idzone', (req, res, next) => {
     if(session.login.idRole != 3)
     {
@@ -112,7 +120,7 @@ router.post('/sa_line/:idzone', (req, res, next) => {
     })
 });
 
-//permet d'accèder à une ligne
+//Access to the line of the zone
  router.get('/sa_line/sa_station/:idline', function(req, res, next) {
      if(session.login.idRole != 3)
      {
@@ -136,7 +144,7 @@ router.post('/sa_line/:idzone', (req, res, next) => {
 
 });
 
-//permet de delete une ligne
+//Delete a line of the Zone
 router.post('/sa_line/sa_station/delete', function(req, res, next) {
     if(session.login.idRole != 3)
     {

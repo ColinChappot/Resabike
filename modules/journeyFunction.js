@@ -1,7 +1,9 @@
 var models = require('../models');
 
+//Request to table Journey
 module.exports = {
 
+    // insert in the table Journey
     insertJourney(body, line) {
         return new Promise(function (resolve, reject) {
             models.Journey.findOrCreate(
@@ -14,6 +16,7 @@ module.exports = {
             })
         })
     },
+    // delete in the table Journey
     deleteJourney(idLine){
         return new Promise(function (resolve, reject) {
             models.Journey.destroy({
@@ -23,17 +26,7 @@ module.exports = {
             })
         })
     },
-    updateJourney(body, line){
-        return new Promise(function (resolve, reject) {
-            models.Journey.update(
-                {   journeyNumber: body.journeyNumber,
-                    idLine: body.id_line},
-                {   where: {id_journey: body.id_journey}
-                }).then(function (journey) {
-                resolve(journey.dataValues)
-            })
-        })
-    },
+    // Get all journey by an id_line in the table Journey
     GetAllJourney(id_line) {
         return new Promise(function (resolve, reject) {
             models.Journey.findAll({

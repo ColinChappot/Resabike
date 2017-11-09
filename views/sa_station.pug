@@ -5,21 +5,22 @@ block content
         form(action ='/sadmin/sa_line/' + zone , method='GET')
             button(type ='Submit') Back to line
         br
-        form(action ='/sadmin/sa_line/sa_station/delete/', method='Post', align='right')
-            input(hidden=true, type='text', value=line.id_line, name='id_line')
-            button(type ='Submit') delete
-        Label line
 
+        h3 line
+            table
 
-                table
-
-                    thead
+                thead
+                    tr(width='20%')
+                        th name
+                        th stopId
+                each station in stations
+                    tbody
                         tr(width='20%')
-                            th name
-                            th stopId
-                    each station in stations
-                        tbody
-                            tr(width='20%')
-                                td  #{station.name}
-                                td  #{station.stopid}
+                            td  #{station.name}
+                            td  #{station.stopid}
 
+        br
+        center
+            form(action ='/sadmin/sa_line/sa_station/delete/', method='Post')
+                input(hidden=true, type='text', value=line.id_line, name='id_line')
+                button(type ='Submit') delete

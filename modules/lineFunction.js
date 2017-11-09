@@ -1,7 +1,9 @@
 var models = require('../models');
 var axios = require('axios')
 
+//Request to table Line
 module.exports = {
+    // insert in the table Line
     insertLine(data, idzone){
         return new Promise(function (resolve, reject) {
             models.Line.findOrCreate({
@@ -16,7 +18,7 @@ module.exports = {
             })
         })
     },
-
+    // delete in the table Line
     deleteLine(idline){
         return new Promise(function (resolve, reject) {
             models.Line.destroy({
@@ -26,19 +28,7 @@ module.exports = {
             })
         })
     },
-    updateLine(body){
-        return new Promise(function (resolve, reject) {
-            models.Line.update(
-                {   name: body.name,
-                    fromStation: body.fromStation,
-                    toStation: body.toStation,
-                    idZone: body.id_zone},
-                {   where: {id_line: body.id_line}
-                }).then(function (line) {
-                resolve(line.dataValues)
-            })
-        })
-    },
+    // Get all Line by an id_zone in the table Line
     GetAllLine(id_zone) {
         return new Promise(function (resolve, reject) {
             models.Line.findAll({
@@ -48,6 +38,7 @@ module.exports = {
             })
         })
     },
+    // Get all Line by an idline in the table Line
     GetOneLine(idline) {
         return new Promise(function (resolve, reject) {
             models.Line.findOne({
@@ -64,7 +55,9 @@ module.exports = {
                 resolve(line.dataValues)
             })
         })
-    },    GetOneLineByName(name) {
+    },
+    // Get one Line by a name in the table Line
+    GetOneLineByName(name) {
         return new Promise(function (resolve, reject) {
             models.Line.findOne({
                 where: {name: name}
@@ -73,9 +66,11 @@ module.exports = {
             })
         })
     },
+
+    //Request the API to return the lines we need
     APILine(body) {
         return new Promise(function (resolve, reject) {
-            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.fromStation+'&to='+body.toStation+'&num=2').then(function (response) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.fromStation+'&to='+body.toStation+'&num=3').then(function (response) {
                 console.log(response.data);
                 resolve(response.data)
                 })
@@ -83,19 +78,10 @@ module.exports = {
             console.log(error)
         })
     },
-    APISearch(body) {
-        return new Promise(function (resolve, reject) {
-            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.from+'&to='+body.to+'&num=25&pre=-1&time=06:00&date='+body.date).then(function (response) {
-                console.log(response.data);
-                resolve(response.data)
-            })
-        }).catch(function (error) {
-            console.log(error)
-        })
-    },
+    //Request the API to return the lines the user want to display
     APIJourney(body){
         return new Promise(function (resolve, reject) {
-            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.from+'&to='+body.to+'&num=1&pre=-1&date='+body.date+'&time='+body.time).then(function (response) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.from+'&to='+body.to+'&num=3&date='+body.date+'&time='+body.time).then(function (response) {
                 console.log(response.data);
                 resolve(response.data.connections)
             })

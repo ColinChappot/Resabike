@@ -4,7 +4,7 @@ var zoneFunction = require('../modules/zoneFunction')
 var session = require('express-session');
 
 
-//permet d'accèder aux réservations
+//Access to all the reservation for the zone
 router.get('/', function(req, res, next) {
     if(session.login.idRole != 1)
     {
@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     }
 
     var idzone = session.login.idZone;
-    zoneFunction.GetZoneWithAllChild(idzone).then(function (data) {
+    zoneFunction.GetZoneWithAllChildConfirm(idzone).then(function (data) {
         res.render('driver',{data: data});
     })
 });

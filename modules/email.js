@@ -1,7 +1,9 @@
 var nodemailer = require('nodemailer');
-
+//Creation of the email
 module.exports = {
 
+
+    //Send the email
     sendMail(to,subject,text){
         return new Promise(function (resolve, reject) {
 
@@ -34,6 +36,7 @@ module.exports = {
 
         })
     },
+    //Create the text for the confirmation mail
     confirm(person,trajet){
         return new Promise(function (resolve, reject) {
 
@@ -112,6 +115,8 @@ module.exports = {
             resolve(text)
         })
     },
+
+    //Create the text for the waiting mail
     Waiting(person, trajet){
         return new Promise(function (resolve, reject) {
 
@@ -188,6 +193,8 @@ module.exports = {
             resolve(text)
         })
     },
+
+    //Create the text for the cancel mail
     cancel(reservation,person){
         return new Promise(function (resolve, reject) {
 

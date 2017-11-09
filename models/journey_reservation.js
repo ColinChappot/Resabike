@@ -1,3 +1,4 @@
+//Creation of the table journey_reservation
 module.exports = (sequelize, DataTypes) =>{
     var Journey_Reservation = sequelize.define('Journey_Reservation', {
 

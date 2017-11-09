@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Line
 module.exports = (sequelize, DataTypes) =>{
 
     var Line = sequelize.define('Line', {

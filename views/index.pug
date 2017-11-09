@@ -27,12 +27,14 @@ block footer
           |
           br
           |
-          form.form-vertical(role='form', method='post', action='/email')
+          label #{i18n.__('feedback')}
+          form.form-vertical(role='form', method='post', action='/feedback')
 
             .form-group
               .col-sm-10
-                textarea#message.form-control(rows='11', name='message', placeholder='Le contenu de votre mail',style='border:none;color:#FFFFFF;background-color:#FFFFFF')
+                textarea#message.form-control(rows='11', name='message', placeholder='...',style='border:none;color:black;background-color:#FFFFFF')
             |
+
             .form-group
               .col-sm-10
                 center

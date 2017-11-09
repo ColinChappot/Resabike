@@ -1,7 +1,9 @@
 var models = require('../models');
 
+//Request to table Time
 module.exports = {
 
+    //Find the value in the table Time or create it
     insertTime(time){
         return new Promise(function (resolve, reject) {
             models.Time.findOrCreate(

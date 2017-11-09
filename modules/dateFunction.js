@@ -1,7 +1,7 @@
 var models = require('../models');
-
+//Request to table date
 module.exports = {
-
+// insert in the table Date
     insertDate(date){
         return new Promise(function (resolve, reject) {
             models.Date.findOrCreate(

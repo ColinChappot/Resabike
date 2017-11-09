@@ -14,13 +14,12 @@ block script
 block content
 
         div
+
             form(action ='/sadmin', method='GET')
                 button(type ='Submit') back to Zones
-            form(action ='/sadmin/sa_line/delete/', method='Post', align='right')
-                input(hidden=true, type='text', value=zone.id_zone, name='id_zone')
-                button(type ='Submit') delete
 
-            h1 line
+
+            h3 lines
 
 
             table
@@ -57,3 +56,11 @@ block content
 
 
                 button(type ='Submit') add new line now
+            br
+            br
+            center
+                font(color="red") #{error}
+            br
+            form(action ='/sadmin/sa_line/delete/', method='Post', align='left')
+                input(hidden=true, type='text', value=zone.id_zone, name='id_zone')
+                button(type ='Submit') delete zone

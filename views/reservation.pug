@@ -6,6 +6,9 @@ block content
         form(action ='/user' , method='GET')
             button(type ='Submit') #{i18n.__('back')}
         h1 #{i18n.__('reservationTitle')}
+        center
+            label #{i18n.__('SMS')}
+
         table
             tbody
                 form(action ='/user/reservation/' , method='POST')
@@ -13,32 +16,30 @@ block content
                         td
                             label(for='idlastname',width='33%') #{i18n.__('lastname')}
                         td
-                            input(type='text', id='idlastname', name='lastname', placeholder= i18n.__('lastnameInput'))
+                            input(type='text', id='idlastname', name='lastname', placeholder= i18n.__('lastnameInput'),required=true)
                         td
                             label(for='idfirstname',width='33%') #{i18n.__('firstname')}
                         td
-                            input(type='text', id='idfirstname', name='firstname', placeholder= i18n.__('firsnameInput'))
-
-                        td
-                            label(for='idGroupName',width='33%') #{i18n.__('groupName')}
-                        td
-                            input(type='text', id='idGroupName', name='groupName', placeholder= i18n.__('goupNameInput'))
+                            input(type='text', id='idfirstname', name='firstname', placeholder= i18n.__('firsnameInput'),required=true)
 
                     tr(width='33%')
                         td
+                            label(for='idGroupName',width='33%') #{i18n.__('groupName')}
+                        td
+                            input(type='text', id='idGroupName', name='groupName', placeholder= i18n.__('goupNameInput'),required=true)
+                        td
                             label(for='idBikeNumber') #{i18n.__('bikeNumber')}
                         td
-                            input(type='text', id='idBikeNumber',name='bikeNumber', placeholder= i18n.__('bikeNumberInput'))
+                            input(type='number', id='idBikeNumber',name='bikeNumber', placeholder= i18n.__('bikeNumberInput'),required=true)
                     tr(width='33%')
                         td
                             label(for='idTelephon',width='33%') #{i18n.__('telephon')}
                         td
-                            input(type='text', id='idTelephon', name='telephone', placeholder= i18n.__('telephonInput'))
-                    tr(width='33%')
+                            input(type='text', id='idTelephon', name='telephone', placeholder= i18n.__('telephonInput'),required=true)
                         td
                             label(for='idMail') #{i18n.__('mail')}
                         td
-                            input(type='text', id='idMail',name='mail', placeholder= i18n.__('mailInput'))
+                            input(type='text', id='idMail',name='mail', placeholder= i18n.__('mailInput'),required=true)
 
                     tr(width='33%')
                         td

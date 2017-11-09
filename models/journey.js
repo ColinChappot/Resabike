@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table journey
 module.exports = (sequelize, DataTypes) =>{
     var Journey = sequelize.define('Journey', {
         id_journey: {

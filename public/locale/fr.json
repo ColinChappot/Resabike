@@ -53,5 +53,9 @@
 	"send": "Envoyer",
 	"registerMsg": "Si vous ne possédez pas de compte cliquez ici",
 	"historicTitle": "Vos hitoires",
-	"back": "Retournez à la page principale"
+	"back": "Retournez à la page principale",
+	"SMS": "Si vous souhaiter recevoir une confirmation par SMS merci de le spécifier dans les remarques",
+	"error": "Le nom d'utilisateur ou mot de passe est incorrecte",
+	"error2": "Réservation pour ces stations impossible",
+	"feedback": "Votre feedback pour Resabike"
 }

@@ -1,6 +1,7 @@
 var models = require('../models');
-
+//Request to table Role
 module.exports = {
+    // insert in the table Role
     insertRole(name){
         return new Promise(function (resolve, reject) {
             models.Role.create({
@@ -10,6 +11,7 @@ module.exports = {
             })
         })
     },
+    // delete in the table Role
     deleteRole(body){
         return new Promise(function (resolve, reject) {
             models.Role.destroy({
@@ -19,6 +21,7 @@ module.exports = {
             })
         })
     },
+    // update in the table Role
     updateRole(body){
         return new Promise(function (resolve, reject) {
             models.Role.update(
@@ -28,7 +31,9 @@ module.exports = {
                 resolve(role.dataValues)
             })
         })
-    }, findOrCreateRole(name){
+    },
+    //Find the value in the table Role or create it
+    findOrCreateRole(name){
         return new Promise(function (resolve, reject) {
             models.Role.findOrCreate({
                 where: {name: name},

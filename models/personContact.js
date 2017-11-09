@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table PersonContact
 module.exports = (sequelize, DataTypes) =>{
     var PersonContact = sequelize.define('PersonContact', {
         id_personContact: {
@@ -18,7 +19,7 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     PersonContact.associate=(models) =>{
-        PersonContact.hasOne(models.Zone,{foreignKey: {name:'idPersonContact', allowNull:false}});
+        PersonContact.belongsTo(models.Zone,{foreignKey: {name:'idZone', allowNull:false}});
     }
 
     return PersonContact;

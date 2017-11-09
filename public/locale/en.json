@@ -26,7 +26,7 @@
 	"reservationTitle": "make your resevation",
 	"lastname": "Last name",
 	"lastnameInput": "Write your last name here",
-	"firstname": "irst name",
+	"firstname": "first name",
 	"firsnameInput": "write your first name",
 	"groupName": "Group name",
 	"goupNameInput": "Write your group name here",
@@ -45,7 +45,7 @@
 	"status": "Status",
 	"b_delete": "Delete",
 	"welcomeTitle": "Welcom to Resabike !",
-	"resabikeP": "REsabike offer to share your passion with your friends and familly ! REserveyour place for your VTT now and reach our lovely mountain ! ",
+	"resabikeP": "Resabike offer to share your passion with your friends and familly ! REserveyour place for your VTT now and reach our lovely mountain ! ",
 	"supportP": "If your have a problem or if you need to contact support dont hesit and contac us on ",
 	"feedbackP": "Here you can let your feed back on our service, dont hesite too ! ",
 	"login": "login",
@@ -53,5 +53,9 @@
 	"send": "Send",
 	"registerMsg": "If you havent account click here",
 	"historicTitle": "Your Stories",
-	"back": "back home"
+	"back": "back home",
+	"SMS": "If you wish to receive a confirmation by SMS please specify in the comments",
+	"error": "Username or password is incorrect",
+	"error2": "Booking for these stations impossible",
+	"feedback": "feedback"
 }

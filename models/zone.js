@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Zone
 module.exports = (sequelize, DataTypes) =>{
 var Zone = sequelize.define('Zone', {
     id_zone: {

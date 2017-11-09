@@ -53,6 +53,9 @@
 	"send": "Senden",
 	"registerMsg": "Wenn Sie kein Konto haben, klicken Sie hier",
 	"historicTitle": "Deine Geschichten",
-	"back": "Zurück zuhause"
-
+	"back": "Zurück zuhause",
+	"SMS": "Wenn Sie eine Bestätigung per SMS erhalten möchten, geben Sie dies bitte in den Kommentaren an.",
+	"error": "Benutzername oder Passwort sind falsch",
+	"error2": "Buchung für diese Stationen unmöglich",
+	"feedback": "Dein Feedback zu Resabike"
 }

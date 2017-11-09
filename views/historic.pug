@@ -7,16 +7,16 @@ block content
         h1 #{i18n.__('historicTitle')}
         br
         table
+            thead
+                th #{i18n.__('date')}
+                th #{i18n.__('departure')}
+                th #{i18n.__('duration')}
+                th #{i18n.__('destiantion')}
+                th #{i18n.__('groupName')}
+                th #{i18n.__('bikeNumber')}
+                th #{i18n.__('remarks')}
+                th #{i18n.__('status')}
             each reservation in reservations
-                thead
-                    th #{i18n.__('date')}
-                    th #{i18n.__('departure')}
-                    th #{i18n.__('duration')}
-                    th #{i18n.__('destiantion')}
-                    th #{i18n.__('groupName')}
-                    th #{i18n.__('bikeNumber')}
-                    th #{i18n.__('remarks')}
-                    th #{i18n.__('status')}
                 tbody
                     td #{reservation.dataValues.date.dataValues.day}.#{reservation.date.dataValues.month}.#{reservation.date.dataValues.year}
                     td #{reservation.dataValues.from}

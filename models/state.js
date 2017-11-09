@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table State
 module.exports = (sequelize, DataTypes) =>{
     var State = sequelize.define('State', {
         id_state: {

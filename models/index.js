@@ -1,4 +1,5 @@
 'use strict';
+//Mangage every table of the database
 
 var fs        = require('fs');
 var path      = require('path');

@@ -6,24 +6,27 @@ block content
 
             - var listZone = zones;
 
-                h1 Zone
+                h3 Zones
 
-                each zone in listZone
-                    .zone
 
-                        br
-                        table
+                    table
+                        thead
+                            tr(width='20%')
+                                th id
+                                th name
+
+                        each zone in listZone
                             tbody
-                                td id Zone
-                                td Name
-                                td
-                                    form(action ='/sadmin/sa_line/'+zone.id_zone , method='GET')
-                                        button(type ='Submit') show line
-
+                                tr(width='20%')
+                                    td #{zone.id_zone}
+                                    td #{zone.name}
+                                    td
+                                        form(action ='/sadmin/sa_line/' + zone.id_zone , method='GET')
+                                            button(type ='Submit') show line
 
         div
             br
-            h2 Add new Zone
+            h4 Add new Zone
             form(action ='/sadmin', method='POST')
                 table
 

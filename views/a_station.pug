@@ -5,9 +5,7 @@ block content
         form(action ='/admin/a_line/' , method='GET')
             button(type ='Submit') Back to line
         br
-        form(action ='/admin/a_line/a_station/delete', method='Post')
-            input(hidden=true, type='text', value=line.id_line, name='id_line')
-            button(type ='Submit') delete
+
         Label line
 
 
@@ -23,3 +21,8 @@ block content
                             td  #{station.name}
                             td  #{station.stopid}
 
+        br
+        center
+            form(action ='/admin/a_line/a_station/delete', method='Post')
+                input(hidden=true, type='text', value=line.id_line, name='id_line')
+                button(type ='Submit') delete

@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Role
 module.exports = (sequelize, DataTypes) =>{
     var Role = sequelize.define('Role', {
         id_role: {

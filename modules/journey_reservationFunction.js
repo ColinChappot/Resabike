@@ -1,6 +1,8 @@
 var models = require('../models');
 
+//Request to table Journey_Reservation
 module.exports = {
+    // insert in the table Journey_Reservation
     insertJourney_Reservation(journey, reservation){
         return new Promise(function (resolve, reject) {
             models.Journey_Reservation.create({
@@ -11,6 +13,7 @@ module.exports = {
             })
         })
     },
+        // delete in the table Journey_Reservation
     deleteJourney_Reservation(idreservation){
         return new Promise(function (resolve, reject) {
             models.Journey_Reservation.destroy({
@@ -20,6 +23,7 @@ module.exports = {
             })
         })
     },
+    // Get all journey_reservation by an id_journey in the table Journey_Reservation
     GetAllJourney_Reservation(id_journey) {
         return new Promise(function (resolve, reject) {
             models.Journey_Reservation.findAll({
@@ -29,6 +33,7 @@ module.exports = {
             })
         })
     },
+    // Check the number of bike confirmed for a journey
     CheckNbBike(body, date) {
         return new Promise(function (resolve, reject) {
             models.Journey_Reservation.findAll({

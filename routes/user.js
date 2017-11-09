@@ -1,5 +1,4 @@
 var express = require('express');
-var models = require('../models');
 var router = express.Router();
 var session = require('express-session');
 var stationFunction = require('../modules/stationFunction');
@@ -9,38 +8,51 @@ var lineFunction = require('../modules/lineFunction');
 var dateFunction = require('../modules/dateFunction');
 var timeFunction = require('../modules/timeFunction');
 var journey_reservationFunction = require('../modules/journey_reservationFunction');
+var line_stationFunction = require('../modules/line_stationFunction');
 var personConctactFunction = require('../modules/personContactFunction');
 var emailFunction = require('../modules/email');
 var i18n = require('i18n');
 
-//modif to acces push
 
-//Permet d'accèder à la page
+//Access to the search of lines
 router.get('/', function(req, res, next) {
-    // if(session.login.idRole != 4)
-    // {
-    //       res.redirect('/login/redirect')
-    // }
-    res.render('user', {i18n: i18n});
-    // res.render('user', { zones: zones});
+    if(session.login.idRole != 4)
+    {
+          res.redirect('/login/redirect')
+    }
+    res.render('user', {i18n: i18n, error: false});
 });
 
 
 
-//Permet d'accèder aux réservation
+//Display the line selected for the reservation
 router.post('/', function(req, res, next) {
-//router.get('/reservation', function(req, res, next) {
     if(session.login.idRole != 4)
     {
         res.redirect('/login/redirect')
     }
-
-    lineFunction.APIJourney(req.body).then(function (journeys) {
-                res.render('reservation', {journeys: journeys[0], i18n:i18n})
+stationFunction.GetOneStationByName(req.body.from).then(function (from) {
+    stationFunction.GetOneStationByName(req.body.to).then(function (to) {
+        line_stationFunction.CheckZoneStation(from,to).then(function (ok) {
+            if(ok === true)
+            {
+                lineFunction.APIJourney(req.body).then(function (journeys) {
+                    res.render('reservation', {journeys: journeys[1], i18n:i18n})
+                })
+            }
+            else
+            {
+                res.render('user', {error: true, i18n:i18n})
+            }
+        })
     })
+})
+
+
+
 });
 
-//permet de poster les informations pour la reservation d une personne, madebyJeff
+//Create the rerservation fo the user and send him email
 router.post('/reservation', (req, res, next) => {
     if(session.login.idRole != 4)
     {
@@ -48,10 +60,9 @@ router.post('/reservation', (req, res, next) => {
     }
 
     let idzone ;
-    let confirmation;
 
     lineFunction.APIJourney(req.body).then(function (journeys) {
-        journeys[0].legs.forEach(function (trajet) {
+        journeys[1].legs.forEach(function (trajet) {
             if (trajet.stops != null) {
                 lineFunction.GetOneLineByName(trajet.line).then(function (line) {
                     idzone = line.idZone;
@@ -64,7 +75,7 @@ router.post('/reservation', (req, res, next) => {
                                         reservationFunction.insertReservation(req.body, 2, date, time, session.login.id_login).then(function (reservation) {
                                             journey_reservationFunction.insertJourney_Reservation(journey, reservation).then(function () {
                                                 personConctactFunction.GetOnePersonContact(idzone).then(function (person) {
-                                                    emailFunction.Waiting(person).then(function (text) {
+                                                    emailFunction.Waiting(person,trajet).then(function (text) {
                                                         emailFunction.sendMail(req.body.mail,'waiting',text).then(function () {
                                                             res.redirect('/user/historic')
                                                         })
@@ -77,7 +88,7 @@ router.post('/reservation', (req, res, next) => {
                                         reservationFunction.insertReservation(req.body, 1, date, time, session.login.id_login).then(function (reservation) {
                                             journey_reservationFunction.insertJourney_Reservation(journey, reservation).then(function () {
                                                 personConctactFunction.GetOnePersonContact(idzone).then(function (person) {
-                                                    emailFunction.confirm(person).then(function (text) {
+                                                    emailFunction.confirm(person,trajet).then(function (text) {
                                                         emailFunction.sendMail(req.body.mail,'confirmation',text).then(function () {
                                                             res.redirect('/user/historic')
                                                         })
@@ -99,7 +110,7 @@ router.post('/reservation', (req, res, next) => {
 
 
 
-//permet de voir les ancienne réservation
+//Access to the historic of reservation of the user
 router.get('/historic', function(req, res, next) {
 
     if(session.login.idRole != 4)
@@ -118,20 +129,20 @@ router.get('/historic', function(req, res, next) {
 
 
 
-//Permet d'accèder à la page
+//Access to the API to diplay the information for the reservation
 router.post('/data', function(req, res, next) {
     if(session.login.idRole != 4)
     {
         res.redirect('/login/redirect')
     }
-   stationFunction.GetOneStationLike(req.body.term).then(function (stations) {
+   stationFunction.GetAllStationLike(req.body.term).then(function (stations) {
        res.send(stations)
    })
 
 });
 
 
-//permet de delete une réservation
+//Delete a reservation
 router.post('/historic/delete', function(req, res, next) {
     if(session.login.idRole !=4 )
     {
@@ -144,5 +155,8 @@ router.post('/historic/delete', function(req, res, next) {
         })
     })
 });
+
+
+
 
 module.exports = router;

@@ -2,54 +2,68 @@ extends layout
 
 block content
 
+
     div
         p Zone : #{data.name}
-        table
-            thead
-                tr
-                    th Name
-                    th Departure
-                    th Destination
-            tbody
-                each line in data.line
-                    tr
-                        td #{line.dataValues.name}
-                        td #{line.dataValues.fromStation}
-                        td #{line.dataValues.toStation}
 
+        each date in data.dateTab
+            table
+                thead
+                    tr
+                        th Name
+                        th Departure
+                        th Destination
+                tbody
+                    each line in data.line
                         tr
-                            th
-                            th id voyage
-                            th HeureDeparture
-                            th Number of bike confirmed
-                            each journey in line.dataValues.journey
-                                if(journey.dataValues.journey_tab.length != 0)
-                                    tr
-                                        td
-                                        td #{journey.dataValues.journeyNumber}
-                                        td #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.hour} : #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.minute}
-                                        - var nbBikeConfirmed = 0
-                                        each journey_tab in journey.dataValues.journey_tab
-                                            - if(journey_tab.dataValues.reservation_tab.state.dataValues.id_state == 1 )
-                                            - nbBikeConfirmed += journey_tab.dataValues.reservation_tab.bikeNumber;
-                                        td #{nbBikeConfirmed}
-                                        - nbBikeConfirmed = 0
+                            td #{line.dataValues.name}
+                            td #{line.dataValues.fromStation}
+                            td #{line.dataValues.toStation}
+
+                            tr
+                                th
+                                th id voyage
+                                th Date
+                                th HeureDeparture
+                                th Number of bike confirmed
+                                each journey in line.dataValues.journey
+                                    if(journey.dataValues.journey_tab.length !== 0)
                                         tr
-                                            th
-                                            th
-                                            th
-                                            th firstname
-                                            th lastname
-                                            th groupe name
-                                            th number of bike
-                                            th remarks
-                                        each journey_tab in journey.dataValues.journey_tab
+                                            td
+                                            td #{journey.dataValues.journeyNumber}
+                                            td #{date}
+                                            td #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.hour} : #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.minute}
+                                            - var nbBikeConfirmed = 0
+                                            each journey_tab in journey.dataValues.journey_tab
+                                                if(journey_tab.dataValues.reservation_tab.state.dataValues.id_state === 1 )
+                                                    - var dateReservation = journey_tab.reservation_tab.date.dataValues.day+"."+journey_tab.reservation_tab.date.dataValues.month+"."+journey_tab.reservation_tab.date.dataValues.year
+                                                    if(date === dateReservation)
+                                                        - nbBikeConfirmed += journey_tab.dataValues.reservation_tab.dataValues.bikeNumber;
+                                            td #{nbBikeConfirmed}
+                                            - nbBikeConfirmed = 0
                                             tr
-                                                td
-                                                td
-                                                td #{journey_tab.dataValues.reservation_tab.dataValues.firstname}
-                                                td #{journey_tab.dataValues.reservation_tab.dataValues.lastname}
-                                                td #{journey_tab.dataValues.reservation_tab.dataValues.groupName}
-                                                td #{journey_tab.dataValues.reservation_tab.dataValues.bikeNumber}
-                                                td #{journey_tab.dataValues.reservation_tab.dataValues.remarks}
+                                                th
+                                                th
+                                                th
+                                                th firstname
+                                                th lastname
+                                                th groupe name
+                                                th number of bike
+                                                th remarks
+                                                th telephone
+                                                th mail
+                                            each journey_tab in journey.dataValues.journey_tab
+                                                - var dateReservationNow = journey_tab.reservation_tab.date.dataValues.day+"."+journey_tab.reservation_tab.date.dataValues.month+"."+journey_tab.reservation_tab.date.dataValues.year
+                                                if(date === dateReservationNow)
+                                                    tr
+                                                        td
+                                                        td
+                                                        td #{dateReservationNow}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.firstname}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.lastname}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.groupName}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.bikeNumber}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.remarks}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.telephone}
+                                                        td #{journey_tab.dataValues.reservation_tab.dataValues.mail}
 

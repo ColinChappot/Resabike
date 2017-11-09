@@ -28,16 +28,18 @@ var server = http.createServer(app);
 
 models.sequelize.sync({}).then(function() {
 
-
+    //Create the needed roles
     role.findOrCreateRole('driver');
     role.findOrCreateRole('zoneAdmin');
     role.findOrCreateRole('superAdmin');
     role.findOrCreateRole('user');
 
+    //Create the needed States
     state.insertState('confirm');
     state.insertState('waiting');
     state.insertState('refuse');
 
+    //Create a super Admin
     login.FindOrCreate('root','root',3);
 
     server.listen(port);

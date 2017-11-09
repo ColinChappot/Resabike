@@ -3,24 +3,32 @@ extends layout
 block content
     div
         br
-        h2 #{i18n.__('loginTitle')}
+        h3 #{i18n.__('loginTitle')}
         br
         form(action ='/login', method='POST')
             table
                 tr(width='33%')
                     label(for='idLogin',width='33%') #{i18n.__('username')}
 
-                    input(type='text', id='idLogin', name='username', placeholder= i18n.__('usernameInput') )
+                    input(type='text', id='idLogin', name='username', placeholder= i18n.__('usernameInput'),required=true)
 
 
                 tr(width='33%')
                     label(for='idpassword') #{i18n.__('password')}
-                    input(type='password', id='idpassword',name='password', placeholder=i18n.__('passwordInput'))
+                    input(type='password', id='idpassword',name='password', placeholder=i18n.__('passwordInput'),required=true)
             button(type='submit', align='right' ) #{i18n.__('loginButton')}
+    #erreur
+        if(erreur === true)
+            center
+                font(color="red") #{i18n.__('error')}
 
     div
-        br
-        h4 #{i18n.__('registerMsg')}
-        form(action ='/login/registration', method='get', align='center')
-             button(type='submit', .buttonAdded) #{i18n.__('b_go_register')}
+        table
+            tr
+                td
+                    h6 #{i18n.__('registerMsg')}
+                    form(action ='/login/registration', method='get')
+                        button(type='submit', .buttonAdded) #{i18n.__('b_go_register')}
+
+
 

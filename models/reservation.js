@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Reservation
 module.exports = (sequelize, DataTypes) =>{
     const Reservation = sequelize.define('Reservation', {
         id_reservation: {

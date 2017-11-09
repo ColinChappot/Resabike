@@ -7,12 +7,12 @@ block content
             table
                 tr(width='33%')
                     label(for='idFirstName',width='33%') #{i18n.__('username')}
-                    input(type='text', id='idFirstName', name='username', placeholder=i18n.__('usernameInput'))
+                    input(type='text', id='idFirstName', name='username', placeholder=i18n.__('usernameInput'),required=true)
 
 
                 tr(width='33%')
                     label(for='idLastName') #{i18n.__('password')}
-                    input(type='password', id='idLastName',name='password', placeholder=i18n.__('passwordInput'))
+                    input(type='password', id='idLastName',name='password', placeholder=i18n.__('passwordInput'),required=true)
                 button(type='submit') #{i18n.__('buttonRegister')}
 
 

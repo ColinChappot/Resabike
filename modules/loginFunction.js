@@ -1,7 +1,8 @@
 
 var models = require('../models');
-
+//Request to table Login
 module.exports = {
+    // insert in the table Login
     insertLoginRole(username,password, zone, role){
         return new Promise(function (resolve, reject) {
             models.Login.create({
@@ -14,6 +15,7 @@ module.exports = {
             })
         })
     },
+    // insert in the table Login without any zone (only for the super admin and users)
     insertLogin(username,password, role){
         return new Promise(function (resolve, reject) {
             models.Login.create({
@@ -25,6 +27,8 @@ module.exports = {
             })
         })
     },
+
+    //Find the value in the table Login or create it
     FindOrCreate(username, password, role){
         return new Promise(function (resolve, reject) {
             models.Login.findOrCreate({
@@ -35,7 +39,7 @@ module.exports = {
             })
         })
     },
-
+    // delete in the table Login
     deleteLogin(idzone){
         return new Promise(function (resolve, reject) {
             models.Login.destroy({
@@ -45,7 +49,7 @@ module.exports = {
             })
         })
     },
-
+    // update in the table Login
     updateLogin(body, zone, role){
         return new Promise(function (resolve, reject) {
             models.Login.update(
@@ -57,6 +61,7 @@ module.exports = {
             })
         })
     },
+    // Get all Login by an idzone and an idrole in the table Login
     GetOneLogin(idzone, idrole) {
         return new Promise(function (resolve, reject) {
             models.Login.findOne({
@@ -67,6 +72,8 @@ module.exports = {
             })
         })
     },
+
+    //Check if the Login is correct
     CheckLogin(body) {
         return new Promise(function (resolve, reject) {
             models.Login.findOne({

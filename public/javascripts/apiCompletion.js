@@ -1,3 +1,5 @@
+
+//Make the request to the API for creating the lines by the admin and super admin
 function autocomp(id){
     $('#'+id).autocomplete({
         source: function (request, response) {

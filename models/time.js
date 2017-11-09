@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Time
 module.exports = (sequelize, DataTypes) =>{
     var Time = sequelize.define('Time', {
         id_time: {

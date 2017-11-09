@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Station
 module.exports = (sequelize, DataTypes) =>{
     var Station = sequelize.define('Station', {
         id_station: {

@@ -1,11 +1,10 @@
 var express = require('express');
-var models = require('../models');
 var loginFunction = require('../modules/loginFunction');
 var session = require('express-session');
 var router = express.Router();
 var i18n = require('i18n');
 
-//Permet de changer le language
+//Change the language for the user
 router.get('/changeLang/:lang', function(req, res, next) {
     res.cookie('i18n', req.params.lang);
     i18n.setLocale(i18n, req.params.lang);
@@ -15,10 +14,10 @@ router.get('/changeLang/:lang', function(req, res, next) {
 
 /* Logout handler */
 router.get('/', function(req, res, next) {
-    res.render('login', {i18n: i18n});
+    res.render('login', {i18n: i18n, erreur: false});
 });
 
-//permet de modifier la personne de contact
+//Check if the login is correct and redirect the user
 router.post('/', (req, res, next) => {
 
     loginFunction.CheckLogin(req.body).then(function (check) {
@@ -31,19 +30,19 @@ router.post('/', (req, res, next) => {
         }
         else
         {
-            res.redirect('/login')
+            res.render('login', {i18n: i18n, erreur: true})
         }
     })
 
 
 });
 
-/* Logout handler */
+//Access to the login creation
 router.get('/registration', function(req, res, next) {
     res.render('registration',  {i18n: i18n});
 });
 
-//permet de modifier la personne de contact
+//Create a new login for the user
 router.post('/registration', (req, res, next) => {
    loginFunction.insertLogin(req.body.username,req.body.password,4).then(function () {
        res.render('login', {i18n: i18n});

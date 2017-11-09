@@ -1,7 +1,8 @@
 var models = require('../models');
 
-
+//Request to table Journey_Reservation
 module.exports = {
+    // insert in the table PersonContact
     insertPersonContact(id_zone){
         return new Promise(function (resolve, reject) {
             models.PersonContact.create({
@@ -11,7 +12,7 @@ module.exports = {
             })
         })
     },
-
+    // delete in the table Login
     deletePersonContact(idzone){
         return new Promise(function (resolve, reject) {
             models.PersonContact.destroy({
@@ -21,6 +22,7 @@ module.exports = {
             })
         })
     },
+    // update in the table Login
     updatePersonContact(body, idzone){
         return new Promise(function (resolve, reject) {
             models.PersonContact.update(
@@ -34,6 +36,7 @@ module.exports = {
             })
         })
     },
+    // Get all Login by an idzone in the table Login
     GetOnePersonContact(idzone) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.findOne({

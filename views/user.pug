@@ -36,11 +36,16 @@ block content
                         td
                             input.form-control(type='date', name='date', id='date')
                         td
-                            input(type='text', id='from', name='from', placeholder=i18n.__('departureInput'),size='35',onkeydown='autocomp(this.id)')
+                            input(type='text', id='from', name='from', placeholder=i18n.__('departureInput'),size='35',onkeydown='autocomp(this.id)', required=true)
                         td
-                           input(type='text', id='to', name='to', placeholder=i18n.__('destinationInput'),size='35',onkeydown='autocomp(this.id)')
+                           input(type='text', id='to', name='to', placeholder=i18n.__('destinationInput'),size='35',onkeydown='autocomp(this.id)',required=true)
                         td
                             button(onclick='search(this.id)', id=i18n.__('reserver'), type='none') #{i18n.__('b_search')}
+
+            #error
+                if(error===true)
+                    center
+                        font(color="red") #{i18n.__('error2')}
 
         br
         div(name='mydivs' )

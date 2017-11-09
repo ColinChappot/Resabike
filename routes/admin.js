@@ -17,7 +17,7 @@ var emailFunction = require('../modules/email')
 
 
 
-//permet d'accèder à une zone spécifique
+//Access to a specific zone
 router.get('/a_line', function(req, res, next) {
     if(session.login.idRole != 2)
     {
@@ -31,7 +31,7 @@ router.get('/a_line', function(req, res, next) {
     })
 });
 
-//permet de créer une ligne dans la zone
+//Creation of a line in the zone
 router.post('/a_line', (req, res, next) => {
     if(session.login.idRole != 2)
     {
@@ -68,7 +68,7 @@ router.post('/a_line', (req, res, next) => {
     })
 });
 
-//permet d'accèder à une ligne
+//Access to a specific line
 router.get('/a_line/a_station/:idline', function(req, res, next) {
     if(session.login.idRole != 2)
     {
@@ -90,7 +90,7 @@ router.get('/a_line/a_station/:idline', function(req, res, next) {
     })
 });
 
-//permet d'accèder à la personne de contact
+//Access to the contact person of the zone
 router.get('/contact', function(req, res, next) {
     if(session.login.idRole != 2)
     {
@@ -99,12 +99,12 @@ router.get('/contact', function(req, res, next) {
     var idzone = session.login.idZone;
     loginFunction.GetOneLogin(idzone, 1).then(function (driver) {
         personContactFunction.GetOnePersonContact(idzone).then(function (contact) {
-            res.render('contact', {zone: idzone, contact: contact, driver: driver});
+            res.render('contact', {zone: idzone, contact: contact, driver: driver, messageContact:"", messageDriver:""});
         })
     })
 });
 
-//permet de modifier la personne de contact
+//Modify the contact person of the zone
 router.post('/contact/update', (req, res, next) => {
     if(session.login.idRole != 2)
     {
@@ -112,24 +112,32 @@ router.post('/contact/update', (req, res, next) => {
     }
     var idzone = session.login.idZone;
     personContactFunction.updatePersonContact(req.body,idzone).then(function () {
-        res.redirect('/admin/a_line')
+        loginFunction.GetOneLogin(idzone, 1).then(function (driver) {
+            personContactFunction.GetOnePersonContact(idzone).then(function (contact) {
+                res.render('contact', {zone: idzone, contact: contact, driver: driver, messageContact:"Contact modified", messageDriver:""});
+            })
+        })
     })
 });
 
 
-//permet de modifier le driver
+//Modify the bus driver of the zone
 router.post('/contact/driver/update', (req, res, next) => {
     if(session.login.idRole != 2)
     {
         res.redirect('/login/redirect');
     }
     var idzone = session.login.idZone;
-            loginFunction.updateLogin(req.body, idzone, 1).then(function () {
-                res.redirect('/admin/a_line')
+        loginFunction.updateLogin(req.body, idzone, 1).then(function () {
+            loginFunction.GetOneLogin(idzone, 1).then(function (driver) {
+                personContactFunction.GetOnePersonContact(idzone).then(function (contact) {
+                    res.render('contact', {zone: idzone, contact: contact, driver: driver, messageContact:"", messageDriver:"Driver modified"});
+                })
             })
+        })
 });
 
-//permet de delete une ligne
+//Delete a line
 router.post('/a_line/a_station/delete', function(req, res, next) {
     if(session.login.idRole != 2)
     {
@@ -138,16 +146,27 @@ router.post('/a_line/a_station/delete', function(req, res, next) {
     let idline = req.body.id_line;
     lineFunction.GetOneLine(idline).then(function (line) {
         station_line.deleteLine_Station().then(function () {
-            journeyFunction.deleteJourney(line.id_line).then(function () {
-                lineFunction.deleteLine(idline).then(function () {
-                    res.redirect('/admin/a_line');
+            journeyFunction.GetAllJourney(line.id_line).then(function (journeys) {
+                journeys.forEach(function (journey) {
+                    journey_reservationFunction.GetAllJourney_Reservation(journey.id_journey).then(function (reservations) {
+                        reservations.forEach(function (reservation) {
+                            reservationFunction.deleteReservation(reservation.idReservation)
+                            journey_reservationFunction.deleteJourney_Reservation(reservation.idReservation)
+                        })
+                    })
+                })
+            }).then(function () {
+                journeyFunction.deleteJourney(line.id_line).then(function () {
+                    lineFunction.deleteLine(idline).then(function () {
+                        res.redirect('/admin/a_line');
+                    })
                 })
             })
         })
     })
 });
 
-//permet d'accèder aux réservations
+//Access to the reservations
 router.get('/', function(req, res, next) {
     if(session.login.idRole != 2)
     {
@@ -162,7 +181,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-//permet de refuser une réservation
+//Refuse a reservation
 router.post('/reservation/refuse', function(req, res, next) {
     if(session.login.idRole != 2)
     {
@@ -182,14 +201,12 @@ router.post('/reservation/refuse', function(req, res, next) {
     })
 });
 
-//permet de confirmer les réservation
+//Confirm a reservation
 router.post('/reservation/confirm', (req, res, next) => {
     if(session.login.idRole != 2)
     {
         res.redirect('/login/redirect');
     }
-
-
 
     let idreservation = req.body.idreservation;
     reservationFunction.updateReservation(idreservation, 1).then(function () {
@@ -203,7 +220,7 @@ router.post('/reservation/confirm', (req, res, next) => {
 
             lineFunction.APIJourney(body).then(function (trajet) {
                 personContactFunction.GetOnePersonContact(session.login.idZone).then(function (person) {
-                    emailFunction.confirm(person,trajet[0].legs[0]).then(function (text) {
+                    emailFunction.confirm(person,trajet[1].legs[0]).then(function (text) {
                         emailFunction.sendMail(reservation.mail,'confirmation',text).then(function () {
                             res.redirect('/admin');
                         })

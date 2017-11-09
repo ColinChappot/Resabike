@@ -4,7 +4,10 @@ block content
     div
         form(action ='/admin/a_line', method='GET')
             button(type ='Submit') back to AdminZones
-        p Driver Fiche for Zone
+        h5 Driver Fiche for Zone
+        center
+            font(color="green") #{messageDriver}
+
 
         table
             form(action ='/admin/contact/driver/update', method='POST')
@@ -16,11 +19,13 @@ block content
                         label(for='idPassword',width='33%') Password
                         input(type='text', id='idPassword', name='password', placeholder='Type the new Driver', value=driver.password, required=true)
                     tr
-                        button(type='submit') register Driver
+                        center
+                            button(type='submit') register Driver
 
     div
-        p Contact Fiche for Zone
-
+        h5 Contact Fiche for Zone
+        center
+            font(color="green") #{messageDriver}
         table
             form(action ='/admin/contact/update', method='POST')
                 tbody
@@ -37,6 +42,7 @@ block content
                         label(for='idTelephon',width='33%') telephon
                         input(type='text', id='idTelephon', name='telephone', placeholder='Type the new Lastname',, value=contact.telephone)
                     tr
-                        button(type='submit') register Contact
+                        center
+                            button(type='submit') register Contact
 
 

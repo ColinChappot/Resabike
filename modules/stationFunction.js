@@ -1,6 +1,7 @@
 var models = require('../models');
-
+//Request to table Station
 module.exports = {
+    // insert in the table Station
     insertStation(body){
         return new Promise(function (resolve, reject) {
             models.Station.findOrCreate({
@@ -11,6 +12,7 @@ module.exports = {
             })
         })
     },
+    // delete in the table Station
     deleteStation(body){
         return new Promise(function (resolve, reject) {
             models.Station.destroy({
@@ -20,6 +22,7 @@ module.exports = {
             })
         })
     },
+    // update in the table Station
     updateStation(body){
         return new Promise(function (resolve, reject) {
             models.Station.update(
@@ -30,24 +33,8 @@ module.exports = {
             })
         })
     },
-    GetAllStation() {
-        return new Promise(function (resolve, reject) {
-            models.Station.findAll(
-            ).then(function (station) {
-                resolve(station)
-            })
-        })
-    },
-    GetAllStationFromLine(idStation) {
-        return new Promise(function (resolve, reject) {
-            models.Station.findAll(
-                {   where: {id_station: idStation}}
-            ).then(function (station) {
-                resolve(station)
-            })
-        })
-    },
-    GetOneStationLike(text)
+    // Get All Station who contains the text in the table Station
+    GetAllStationLike(text)
     {
         return new Promise(function (resolve, reject) {
             models.Station.findAll(
@@ -57,7 +44,8 @@ module.exports = {
             })
         })
     },
-    GetONeStationByName(name) {
+    // Get all Station by a name in the table Station
+    GetOneStationByName(name) {
         return new Promise(function (resolve, reject) {
             models.Station.findOne(
                 {   where: {name: name},

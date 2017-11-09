@@ -1,6 +1,8 @@
 var models = require('../models');
 
+//Request to table Reservation
 module.exports = {
+    // insert in the table Reservation
     insertReservation(body,state, date,time,id_login){
         return new Promise(function (resolve, reject) {
             models.Reservation.create({
@@ -23,7 +25,7 @@ module.exports = {
             })
         })
     },
-
+    // delete in the table Reservation
     deleteReservation(id_reservation){
         return new Promise(function (resolve, reject) {
             models.Reservation.destroy({
@@ -33,6 +35,7 @@ module.exports = {
             })
         })
     },
+    // update in the table Reservation
     updateReservation(id_reservation, state){
         return new Promise(function (resolve, reject) {
             models.Reservation.update(
@@ -43,6 +46,8 @@ module.exports = {
             })
         })
     },
+
+    // Get One Reservation by an id_reservation in the table Reservation
     GetOneReservation(id_reservation){
         return new Promise(function (resolve, reject) {
             models.Reservation.findOne(
@@ -58,6 +63,7 @@ module.exports = {
             })
         })
     },
+    // Get one Reservation by an id_login in the table Reservation
     GetAllReservationUser(id_login) {
         return new Promise(function (resolve, reject) {
             models.Reservation.findAll({
@@ -71,44 +77,6 @@ module.exports = {
                     {model: models.State,
                         as:'state'
                     }]
-            }).then(function (reservation) {
-                resolve(reservation)
-            })
-        })
-    },
-    GetAllReservationByJourney(idReservation) {
-        return new Promise(function (resolve, reject) {
-            models.Reservation.findAll({
-                where: {id_reservation: idReservation},
-                include: [{
-                    model: models.Date,
-                    as: 'date'
-                },
-                    {model: models.Time,
-                     as: 'time'},
-                    {model: models.State,
-                        as:'state',
-
-                    }]
-            }).then(function (reservation) {
-                resolve(reservation)
-            })
-        })
-    },
-    GetAllReservationByJourneyConfirmed(body) {
-        return new Promise(function (resolve, reject) {
-            models.Reservation.findAll({
-                where: {id_reservation: body.idReservation, confirmation: true},
-                include: [{
-                    model: models.Date,
-                    as: 'date'
-                },
-                    {model: models.Time,
-                        as: 'time'},
-                    {model: models.State,
-                        as:'state'
-                    }]
-
             }).then(function (reservation) {
                 resolve(reservation)
             })

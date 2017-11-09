@@ -14,24 +14,26 @@ block script
 block content
 
     div
-        Label line
+        form(action ='/admin', method='get')
+            button(type ='Submit') View reservations
+        form(action ='/admin/contact', method='get')
+            button(type ='Submit') Change contact
+        h3 lines
 
-    each line in lines
         table
-
             thead
                 tr(width='20%')
                     th id
                     th name
                     th departure
                     th destination
-
+            each line in lines
                 tbody
                     tr(width='20%')
-                        td id #{line.id_line}
-                        td numéro #{line.name}
-                        td departure #{line.fromStation}
-                        td destination #{line.toStation}
+                        td #{line.id_line}
+                        td #{line.name}
+                        td #{line.fromStation}
+                        td #{line.toStation}
                         td
                             form(action ='/admin/a_line/a_station/'+line.id_line , method='GET')
                                 button(type ='Submit') show line

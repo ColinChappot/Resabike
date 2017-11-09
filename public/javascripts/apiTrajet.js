@@ -1,3 +1,7 @@
+
+
+// Make a request to the API and display it in the table for the user
+
 function search(i18n) {
     var from  = document.getElementById('from').value;
     var to = document.getElementById('to').value;

@@ -1,3 +1,5 @@
+
+//Make the autocompletion of the station for the user
 function autocomp(id){
     $('#'+id).autocomplete({
         source: function (request, response) {

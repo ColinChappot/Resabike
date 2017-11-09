@@ -1,6 +1,8 @@
 var models = require('../models');
 
+//Request to table Line_Station
 module.exports = {
+    // insert in the table Line_Station
     insertLine_Station(line, station){
         return new Promise(function (resolve, reject) {
             models.Line_Station.create({
@@ -11,6 +13,7 @@ module.exports = {
             })
         })
     },
+    // delete in the table Line_Station
     deleteLine_Station(idline){
         return new Promise(function (resolve, reject) {
             models.Line_Station.destroy({
@@ -20,31 +23,8 @@ module.exports = {
             })
         })
     },
-    GetAllLineStation(id_line) {
-        return new Promise(function (resolve, reject) {
-            models.Line_Station.findAll({
-                where: {idLine: id_line}
-            }).then(function (line) {
-                resolve(line)
-            })
-        })
-    },
-    GetOneLineStation(idline) {
-        return new Promise(function (resolve, reject) {
-            models.Line_Station.findAll({
-                where: {idLine: idline},
-                include: [{
-                    model: models.Line,
-                    as: 'line_tab',
-                },{
-                    model: models.Station,
-                    as: 'station_tab'
-                }]
-            }).then(function (line) {
-                resolve(line)
-            })
-        })
-    },
+
+    //Check if 2 station belong to the same zone and return true or false
     CheckZoneStation(from, to){
         return new Promise(function (resolve, reject) {
 

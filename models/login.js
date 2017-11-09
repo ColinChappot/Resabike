@@ -1,4 +1,5 @@
 'use strict';
+//Creation of the table Login
 module.exports = (sequelize, DataTypes) =>{
     var Login = sequelize.define('Login', {
         id_login: {
