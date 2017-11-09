@@ -51,5 +51,7 @@
 	"login": "se connecter",
 	"redirectLogin": "Pour bénificier plus rapidment de nos service connecter vous ici",
 	"send": "Envoyer",
-	"registerMsg": "Si vous ne possédez pas de compte cliquez ici"
+	"registerMsg": "Si vous ne possédez pas de compte cliquez ici",
+	"historicTitle": "Vos hitoires",
+	"back": "Retournez à la page principale"
 }

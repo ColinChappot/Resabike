@@ -51,5 +51,7 @@
 	"login": "login",
 	"redirectLogin": "to benefit our service log you via this button",
 	"send": "Send",
-	"registerMsg": "If you havent account click here"
+	"registerMsg": "If you havent account click here",
+	"historicTitle": "Your Stories",
+	"back": "back home"
 }

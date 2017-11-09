@@ -2,7 +2,9 @@ extends Layout
 
 block content
     div
-        label My historic
+        form(action ='/user', method='GET')
+           button(type ='Submit') #{i18n.__('back')}
+        h1 #{i18n.__('historicTitle')}
         br
         table
             each reservation in reservations

@@ -51,6 +51,8 @@
 	"login": "Anmelden",
 	"redirectLogin": "Nutzen Sie unseren Service, um sich über diesen Button anzumelden",
 	"send": "Senden",
-	"registerMsg": "Wenn Sie kein Konto haben, klicken Sie hier"
+	"registerMsg": "Wenn Sie kein Konto haben, klicken Sie hier",
+	"historicTitle": "Deine Geschichten",
+	"back": "Zurück zuhause"
 
 }
