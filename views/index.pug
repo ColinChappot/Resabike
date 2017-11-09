@@ -1,36 +1,39 @@
 extends layout
 block content
   h1(align='center') #{i18n.__('welcomeTitle')}
-  div
+  div(align='center')
     h4 #{i18n.__('resabikeP')}
+    br
+    h4 #{i18n.__('redirectLogin')}
+    center
+      h5
+        form(action ='/login/registration', method='get,')
+          button(type='submit') #{i18n.__('login')}
+          br
     img.responsive-img(src='image/Panorama_7.jpg', align='center')
+    br
     h4 #{i18n.__('supportP')}
+    br
+    br
     h4 resabikeccjzsupport@gmail.com
+    br
+    br
     h4 #{i18n.__('feedbackP')}
 
-
+block footer
   div
-    divMain.form-group
-        |
-        br
-        |
-        form.form-vertical(role='form', method='post', action='/email')
-          .form-group
-            .col-sm-10
-              input#sender.form-control(type='email', name='sender', placeholder='Votre adresse mail')
+    div(class="container")
+      divMain.form-group
           |
-          .form-group
-            .col-sm-10
-              input#destination.form-control(type='email', name='destination', placeholder='Adresse mail du destinataire')
+          br
           |
-          .form-group
-            .col-sm-10
-              input#subject.form-control(type='text', name='subject', placeholder="L'objet du mail")
-          |
-          .form-group
-            .col-sm-10
-              textarea#message.form-control(rows='11', name='message', placeholder='Le contenu de votre mail')
-          |
-          .form-group
-            .col-sm-10
-              button.btn.btn-primary(type='submit') Envoyer
+          form.form-vertical(role='form', method='post', action='/email')
+
+            .form-group
+              .col-sm-10
+                textarea#message.form-control(rows='11', name='message', placeholder='Le contenu de votre mail',style='border:none;color:#FFFFFF;background-color:#FFFFFF')
+            |
+            .form-group
+              .col-sm-10
+                center
+                  button.btn.btn-primary(type='submit') #{i18n.__('send')}

@@ -47,5 +47,9 @@
 	"welcomeTitle": "Bienvenue à Resabike !",
 	"resabikeP": "Resabike vous offre la possibilité de partager votre passion pour le VTT avec vois amis et votre famille !! Réserver des places de bus pour vos vélos afin de rejiondre nos chers montagne !! ",
 	"supportP": "En cas de problème ou de demander d'infrmation, n'héistez pas à nous joindre",
-	"feedbackP" : "Vous pouvez également nous envoyer votre feedback si vous êtes motivé nous le lirons avec plaisir !!  "
+	"feedbackP" : "Vous pouvez également nous envoyer votre feedback si vous êtes motivé nous le lirons avec plaisir !!  ",
+	"login": "se connecter",
+	"redirectLogin": "Pour bénificier plus rapidment de nos service connecter vous ici",
+	"send": "Envoyer",
+	"registerMsg": "Si vous ne possédez pas de compte cliquez ici"
 }

@@ -3,7 +3,7 @@ extends layout
 block content
     div
         br
-        p #{i18n.__('loginTitle')}
+        h2 #{i18n.__('loginTitle')}
         br
         form(action ='/login', method='POST')
             table
@@ -20,5 +20,7 @@ block content
 
     div
         br
-        form(action ='/login/registration', method='get')
-           button(type='submit', .buttonAdded) #{i18n.__('b_go_register')}
+        h4 #{i18n.__('registerMsg')}
+        form(action ='/login/registration', method='get', align='center')
+             button(type='submit', .buttonAdded) #{i18n.__('b_go_register')}
+

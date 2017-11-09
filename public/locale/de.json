@@ -45,8 +45,12 @@
 	"status": "Status",
 	"b_delete": "entfernen",
 	"welcomeTitle": "Willkommen in Resabike!",
-	"ResabikeP": "Resabike bietet Ihnen die Möglichkeit, Ihre Leidenschaft fürs Mountainbiken mit Freunden und Familie zu teilen !! Buchen Sie Bustickets für Ihre Fahrräder, um unseren lieben Berg zu erreichen!",
+	"resabikeP": "Resabike bietet Ihnen die Möglichkeit, Ihre Leidenschaft fürs Mountainbiken mit Freunden und Familie zu teilen !! Buchen Sie Bustickets für Ihre Fahrräder, um unseren lieben Berg zu erreichen!",
 	"supportP": "Bei Problemen oder Fragen, zögern Sie nicht, uns zu kontaktieren",
 	"feedbackP": "Sie können uns auch Ihr Feedback senden, wenn Sie motiviert sind, werden wir es gerne lesen!",
-	"resabikeP": "resabikeP"
+	"login": "Anmelden",
+	"redirectLogin": "Nutzen Sie unseren Service, um sich über diesen Button anzumelden",
+	"send": "Senden",
+	"registerMsg": "Wenn Sie kein Konto haben, klicken Sie hier"
+
 }
