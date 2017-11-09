@@ -56,5 +56,22 @@ module.exports = {
                 resolve(station)
             })
         })
+    },
+    GetONeStationByName(name) {
+        return new Promise(function (resolve, reject) {
+            models.Station.findOne(
+                {   where: {name: name},
+                include: [{
+                    model: models.Line_Station,
+                    as: "station_tab",
+                    include:[{
+                        model: models.Line,
+                        as: "line_tab"
+                    }]
+            }]}
+            ).then(function (station) {
+                resolve(station.dataValues)
+            })
+        })
     }
 }

@@ -29,19 +29,29 @@ module.exports = {
             })
         })
     },
-    CheckNbBike(body) {
+    CheckNbBike(body, date) {
         return new Promise(function (resolve, reject) {
             models.Journey_Reservation.findAll({
                 where: {idJourney: body.id_journey},
                 include: [{
                     model: models.Reservation,
-                    as: 'reservation_tab'
+                    as: 'reservation_tab',
+                    include: [{
+                        model: models.Date,
+                        as: 'date'
+                    },
+                        {model: models.Time,
+                        as: 'time'}
+                    ]
                 }]
             }).then(function (journey_resservation) {
                 var bikenum =0;
 
                 journey_resservation.forEach(function (reservation) {
-                    bikenum += reservation.dataValues.reservation_tab.dataValues.bikeNumber
+                    if(reservation.dataValues.reservation_tab.date.dataValues == date )
+                    {
+                        bikenum += reservation.dataValues.reservation_tab.dataValues.bikeNumber
+                    }
                 })
                 resolve(bikenum)
             })

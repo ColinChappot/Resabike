@@ -86,24 +86,24 @@ router.post('/sa_line/:idzone', (req, res, next) => {
     let idzone = req.params.idzone;
 
     lineFunction.APILine(req.body).then(function (data) {
-        if (data.connections[0].legs.length <= 2)
+        if (data.connections[1].legs.stops !== null)
         {
-         lineFunction.insertLine(data.connections[0], idzone).then(function (line) {
-               stationFunction.insertStation(data.connections[0].legs[0]).then(function (station) {
-                   station_line.insertLine_Station(line, station).then(function () {
-                       data.connections[0].legs[0].stops.forEach(function (stops) {
-                           stationFunction.insertStation(stops).then(function (station) {
-                               station_line.insertLine_Station(line, station)
-                           })
-                       })
-                   }).then(function () {
-                       stationFunction.insertStation(data.connections[0].legs[1]).then(function (station) {
-                           station_line.insertLine_Station(line, station).then(function () {
-                               res.redirect('/sadmin/sa_line/'+idzone);
-                           })
-                       })
-                   })
-               })
+            lineFunction.insertLine(data.connections[1], idzone).then(function (line) {
+                stationFunction.insertStation(data.connections[1].legs[0]).then(function (station) {
+                    station_line.insertLine_Station(line, station).then(function () {
+                        data.connections[1].legs[0].stops.forEach(function (stops) {
+                            stationFunction.insertStation(stops).then(function (station) {
+                                station_line.insertLine_Station(line, station)
+                            })
+                        })
+                    }).then(function () {
+                        stationFunction.insertStation(data.connections[1].legs[0].exit).then(function (station) {
+                            station_line.insertLine_Station(line, station).then(function () {
+                                res.redirect('/sadmin/sa_line/'+idzone);
+                            })
+                        })
+                    })
+                })
             })
         }
         else

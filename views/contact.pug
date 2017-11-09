@@ -11,10 +11,10 @@ block content
                 tbody
                     tr
                         label(for='idUsername',width='33%') Username
-                        input(type='text', id='idUsername', name='username', placeholder='Type the new firstname Driver', value=driver.username)
+                        input(type='text', id='idUsername', name='username', placeholder='Type the new firstname Driver', value=driver.username, required=true)
                     tr
                         label(for='idPassword',width='33%') Password
-                        input(type='text', id='idPassword', name='password', placeholder='Type the new Driver', value=driver.password)
+                        input(type='text', id='idPassword', name='password', placeholder='Type the new Driver', value=driver.password, required=true)
                     tr
                         button(type='submit') register Driver
 

@@ -10,16 +10,16 @@ block content
             button(type ='Submit') delete
         Label line
 
-            each station in stations
+
                 table
 
                     thead
                         tr(width='20%')
                             th name
                             th stopId
-
-                    tbody
-                        tr(width='20%')
-                            td name #{station.name}
-                            td departure #{station.stopid}
+                    each station in stations
+                        tbody
+                            tr(width='20%')
+                                td  #{station.name}
+                                td  #{station.stopid}
 

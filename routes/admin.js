@@ -40,18 +40,19 @@ router.post('/a_line', (req, res, next) => {
     let idzone = session.login.idZone;
 
     lineFunction.APILine(req.body).then(function (data) {
-        if (data.connections[0].legs.length <= 2)
+        if (data.connections[1].legs.stops !== null)
         {
-            lineFunction.insertLine(data.connections[0], idzone).then(function (line) {
-                stationFunction.insertStation(data.connections[0].legs[0]).then(function (station) {
+
+            lineFunction.insertLine(data.connections[1], idzone).then(function (line) {
+                stationFunction.insertStation(data.connections[1].legs[0]).then(function (station) {
                     station_line.insertLine_Station(line, station).then(function () {
-                        data.connections[0].legs[0].stops.forEach(function (stops) {
+                        data.connections[1].legs[0].stops.forEach(function (stops) {
                             stationFunction.insertStation(stops).then(function (station) {
                                 station_line.insertLine_Station(line, station)
                             })
                         })
                     }).then(function () {
-                        stationFunction.insertStation(data.connections[0].legs[1]).then(function (station) {
+                        stationFunction.insertStation(data.connections[1].legs[0].exit).then(function (station) {
                             station_line.insertLine_Station(line, station).then(function () {
                                 res.redirect('/admin/a_line');
                             })
@@ -169,7 +170,7 @@ router.post('/reservation/refuse', function(req, res, next) {
     reservationFunction.updateReservation(idreservation, 3).then(function () {
         reservationFunction.GetOneReservation(idreservation).then(function (reservation) {
             personContactFunction.GetOnePersonContact(session.login.idZone).then(function (person) {
-                emailFunction.cancel(reservation).then(function (text) {
+                emailFunction.cancel(reservation,person).then(function (text) {
                     emailFunction.sendMail(reservation.mail,'Reservation cancel',text ).then(function () {
                         res.redirect('/admin');
                     })
@@ -185,12 +186,29 @@ router.post('/reservation/confirm', (req, res, next) => {
     {
         res.redirect('/login/redirect');
     }
+
+
+
     let idreservation = req.body.idreservation;
     reservationFunction.updateReservation(idreservation, 1).then(function () {
+        reservationFunction.GetOneReservation(idreservation).then(function (reservation) {
 
-        //envoi du mail de confirmation
+                var body= new Object();
+                body.date = reservation.date.dataValues.day+"."+reservation.date.dataValues.month+"."+reservation.date.dataValues.year;
+                body.from = reservation.from;
+                body.to = reservation.to;
+                body.time = reservation.time.dataValues.hour+":"+reservation.time.dataValues.minute;
 
-        res.redirect('/admin');
+            lineFunction.APIJourney(body).then(function (trajet) {
+                personContactFunction.GetOnePersonContact(session.login.idZone).then(function (person) {
+                    emailFunction.confirm(person,trajet[0].legs[0]).then(function (text) {
+                        emailFunction.sendMail(reservation.mail,'confirmation',text).then(function () {
+                            res.redirect('/admin');
+                        })
+                    })
+                })
+            })
+        })
     })
 
 

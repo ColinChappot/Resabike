@@ -64,6 +64,7 @@ module.exports = {
                                 include: [{
                                     model: models.Reservation,
                                     as: 'reservation_tab',
+                                    where: {idState: 2},
                                     include:[{
                                         model: models.Date,
                                         as: 'date'
@@ -78,6 +79,8 @@ module.exports = {
                         }]
                     }]
         }).then(function (zone) {
+
+
                 resolve(zone.dataValues)
             })
         })

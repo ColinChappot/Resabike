@@ -9,7 +9,7 @@ var router = express.Router();
 
 /* Logout handler */
 router.get('/', function(req, res, next) {
-    res.render('login');
+    res.render('login', {erreur:""});
 });
 
 //permet de modifier la personne de contact
@@ -25,11 +25,9 @@ router.post('/', (req, res, next) => {
         }
         else
         {
-            res.redirect('/login')
+            res.render('login', {erreur:'Utilisateur ou mot de passe incorrecte'})
         }
     })
-
-
 });
 
 /* Logout handler */

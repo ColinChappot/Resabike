@@ -5,16 +5,16 @@ block content
         label My reservations
         br
         table
+            thead
+                th date
+                th departure
+                th time
+                th destination
+                th groupname
+                th bikeNumber
+                th remarks
+                th status
             each reservation in reservations
-                thead
-                    th date
-                    th departure
-                    th time
-                    th destination
-                    th groupname
-                    th bikeNumber
-                    th remarks
-                    th status
                 tbody
                     td #{reservation.dataValues.date.dataValues.day}.#{reservation.date.dataValues.month}.#{reservation.date.dataValues.year}
                     td #{reservation.dataValues.from}

@@ -36,14 +36,14 @@ module.exports = {
     updateReservation(id_reservation, state){
         return new Promise(function (resolve, reject) {
             models.Reservation.update(
-                {   state: state},
+                {   idState: state},
                 {   where: {id_reservation: id_reservation}
                 }).then(function (reservation) {
                 resolve(reservation.dataValues)
             })
         })
     },
-    GetOneReservation(id_reservation, state){
+    GetOneReservation(id_reservation){
         return new Promise(function (resolve, reject) {
             models.Reservation.findOne(
                 {   where: {id_reservation: id_reservation},
@@ -87,7 +87,8 @@ module.exports = {
                     {model: models.Time,
                      as: 'time'},
                     {model: models.State,
-                        as:'state'
+                        as:'state',
+
                     }]
             }).then(function (reservation) {
                 resolve(reservation)
@@ -107,7 +108,7 @@ module.exports = {
                     {model: models.State,
                         as:'state'
                     }]
-          //      order: [ [ { model: models.Data, as: 'date' }, 'day', 'DESC' ] ]
+
             }).then(function (reservation) {
                 resolve(reservation)
             })

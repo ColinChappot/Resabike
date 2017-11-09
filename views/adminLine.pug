@@ -12,19 +12,19 @@ block content
                     th Destination
             tbody
                 each line in data.line
-                    tr
-                        td #{line.dataValues.name}
-                        td #{line.dataValues.fromStation}
-                        td #{line.dataValues.toStation}
-
                         tr
-                            th
-                            th id voyage
-                            th HeureDeparture
-                            th Number of bike confirmed
-                            each journey in line.dataValues.journey
+                            td #{line.dataValues.name}
+                            td #{line.dataValues.fromStation}
+                            td #{line.dataValues.toStation}
+                        each journey in line.dataValues.journey
+                            tr(style="border-top: 1px solid black")
+                                th
+                                th id voyage
+                                th HeureDeparture
+                                th Number of bike confirmed
+
                                 if(journey.dataValues.journey_tab.length != 0)
-                                    tr
+                                    tr(style="border-bottom: 1px solid black")
                                         td
                                         td #{journey.dataValues.journeyNumber}
                                         td #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.hour} : #{journey.dataValues.journey_tab[0].dataValues.reservation_tab.dataValues.time.dataValues.minute}
@@ -34,6 +34,7 @@ block content
                                                 - nbBikeConfirmed += journey_tab.dataValues.reservation_tab.bikeNumber;
                                         td #{nbBikeConfirmed}
                                         - nbBikeConfirmed = 0
+
                                         tr
                                             th
                                             th

@@ -33,19 +33,19 @@ block content
                        td
                            label(for='idNewZone',width='20%') Zone
                        td
-                           input(type='text', id='idNewZone', name='name', placeholder='Type your New Zone here')
+                           input(type='text', id='idNewZone', name='name', placeholder='Type your New Zone here', required=true)
 
 
                     tr(width='20%')
                         td
                             label(for='idNewZoneUserName') UserName
                         td
-                            input(type='text', id='idNewZoneUserName',name='username', placeholder='Type the new Username here')
+                            input(type='text', id='idNewZoneUserName',name='username', placeholder='Type the new Username here', required=true)
 
                     tr(width='20%')
                         td
                             label(for='idNewZonePassword',width='20%') Password
                         td
-                            input(type='password', id='idNewZonePassword', name='password', placeholder='Type the new Passwprd')
+                            input(type='password', id='idNewZonePassword', name='password', placeholder='Type the new Passwprd', required=true)
 
                 button(type ='Submit') add now

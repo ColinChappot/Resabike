@@ -32,12 +32,14 @@ block content
                         td
                             input.form-control(type='date', name='date', id='date')
                         td
-                            input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)')
+                            input(type='text', id='from', name='from', placeholder='choose your departure',size='35',onkeydown='autocomp(this.id)', required=true)
                         td
-                           input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)')
+                           input(type='text', id='to', name='to', placeholder='Choose your destination',size='35',onkeydown='autocomp(this.id)', required=true)
                         td
                             button(onclick='search()' type='none') search
 
+        center
+            font(color="red") #{erreur}
         br
         div(name='mydivs' )
             table(id='auto')
