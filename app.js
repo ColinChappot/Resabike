@@ -13,7 +13,6 @@ var index = require('./routes/index');
 //PUG added
 var login = require('./routes/login');
 var user = require('./routes/user');
-var test = require('./routes/test');
 var sadmin = require('./routes/sadmin');
 var admin = require('./routes/admin');
 var driver = require('./routes/driver');
@@ -37,7 +36,6 @@ app.use('/', index);
 //PUG added
 app.use('/login', login);
 app.use('/user', user);
-app.use('/test', test);
 app.use('/sadmin', sadmin);
 app.use('/admin', admin)
 app.use('/driver', driver)

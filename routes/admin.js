@@ -137,9 +137,11 @@ router.post('/a_line/a_station/delete', function(req, res, next) {
     }
     let idline = req.body.id_line;
     lineFunction.GetOneLine(idline).then(function (line) {
-        station_line.deleteLine_Station(idline).then(function () {
-            lineFunction.deleteLine(idline).then(function () {
-                res.redirect('/admin/a_line');
+        station_line.deleteLine_Station().then(function () {
+            journeyFunction.deleteJourney(line.id_line).then(function () {
+                lineFunction.deleteLine(idline).then(function () {
+                    res.redirect('/admin/a_line');
+                })
             })
         })
     })

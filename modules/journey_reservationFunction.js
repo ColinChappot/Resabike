@@ -20,10 +20,10 @@ module.exports = {
             })
         })
     },
-    GetAllStation(body) {
+    GetAllJourney_Reservation(id_journey) {
         return new Promise(function (resolve, reject) {
             models.Journey_Reservation.findAll({
-                where: {idJourney: body.id_journey}
+                where: {idJourney: id_journey}
             }).then(function (journey) {
                 resolve(journey)
             })

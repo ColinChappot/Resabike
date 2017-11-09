@@ -5,7 +5,10 @@ var lineFunction = require('../modules/lineFunction');
 var stationFunction = require('../modules/stationFunction');
 var station_line = require('../modules/line_stationFunction');
 var loginFunction = require('../modules/loginFunction');
+var reservationFunction = require('../modules/reservationFunction');
 var personcontactFunction = require('../modules/personContactFunction')
+var journeyFunction = require('../modules/journeyFunction')
+var journey_reservationFunction = require('../modules/journey_reservationFunction')
 var session = require('express-session');
 
 //Permet d'accèder à la page
@@ -59,22 +62,18 @@ router.post('/sa_line/delete', function(req, res, next) {
         res.redirect('/login/redirect')
     }
     let idzone = req.body.id_zone
-    lineFunction.GetAllLine(idzone).then(function (lines) {
-        lines.forEach(function (lines) {
-            station_line.deleteLine_Station(lines.idline).then(function () {
-            })
-        })
-    }).then(function () {
-        lineFunction.deleteLine(idzone).then(function () {
-            personcontactFunction.deletePersonContact(idzone).then(function () {
-                zoneFunction.deleteZone(idzone).then(function () {
-                    loginFunction.deleteLogin(idzone).then(function () {
-                        res.redirect('/sadmin');
+        zoneFunction.GetZoneWithAllChild(idzone).then(function (zone) {
+            if(zone.line === null)
+            {
+                personcontactFunction.deletePersonContact(idzone).then(function () {
+                    zoneFunction.deleteZone(idzone).then(function () {
+                        loginFunction.deleteLogin(idzone).then(function () {
+                            res.redirect('/sadmin');
+                        })
                     })
                 })
-            })
+            }
         })
-    })
 });
 
 //permet de créer une ligne dans la zone
@@ -145,9 +144,22 @@ router.post('/sa_line/sa_station/delete', function(req, res, next) {
     }
     let idline = req.body.id_line;
     lineFunction.GetOneLine(idline).then(function (line) {
-        station_line.deleteLine_Station(idline).then(function () {
-            lineFunction.deleteLine(idline).then(function () {
-                res.redirect('/sadmin/sa_line/' + line.idZone);
+        station_line.deleteLine_Station().then(function () {
+          journeyFunction.GetAllJourney(line.id_line).then(function (journeys) {
+              journeys.forEach(function (journey) {
+                  journey_reservationFunction.GetAllJourney_Reservation(journey.id_journey).then(function (reservations) {
+                      reservations.forEach(function (reservation) {
+                          reservationFunction.deleteReservation(reservation.idReservation)
+                          journey_reservationFunction.deleteJourney_Reservation(reservation.idReservation)
+                      })
+                  })
+                  })
+              }).then(function () {
+                  journeyFunction.deleteJourney(line.id_line).then(function () {
+                      lineFunction.deleteLine(idline).then(function () {
+                          res.redirect('/sadmin/sa_line/' + line.idZone);
+                      })
+                  })
             })
         })
     })

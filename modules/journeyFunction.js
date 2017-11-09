@@ -14,10 +14,10 @@ module.exports = {
             })
         })
     },
-    deleteJourney(body){
+    deleteJourney(idLine){
         return new Promise(function (resolve, reject) {
             models.Journey.destroy({
-                where:{id_journey: body.id_journey  }
+                where:{idLine: idLine  }
             }).then(function (nbrRow) {
                 resolve(nbrRow)
             })
