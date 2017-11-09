@@ -75,7 +75,7 @@ module.exports = {
     },
     APILine(body) {
         return new Promise(function (resolve, reject) {
-            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.fromStation+'&to='+body.toStation+'&num=1').then(function (response) {
+            axios.get('https://timetable.search.ch/api/route.en.json?from='+body.fromStation+'&to='+body.toStation+'&num=2').then(function (response) {
                 console.log(response.data);
                 resolve(response.data)
                 })

@@ -44,6 +44,22 @@ module.exports = {
                 resolve(line)
             })
         })
+    },
+    CheckZoneStation(from, to){
+        return new Promise(function (resolve, reject) {
+
+            var ok = false;
+
+            from.station_tab.forEach(function (stationFrom) {
+                to.station_tab.forEach(function (stationTo) {
+                    if(stationFrom.line_tab.dataValues.idZone == stationTo.line_tab.dataValues.idZone)
+                    {
+                        ok = true;
+                    }
+                })
+            })
+            resolve(ok);
+        })
     }
 
 }

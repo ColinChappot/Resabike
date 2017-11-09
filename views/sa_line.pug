@@ -21,22 +21,19 @@ block content
                 button(type ='Submit') delete
             Label line
 
-        each line in lines
-            table
 
+            table
                 thead
                     tr(width='20%')
-                        th id
-                        th name
+                        th number
                         th departure
                         th destination
-
+                each line in lines
                     tbody
                         tr(width='20%')
-                            td id #{line.id_line}
-                            td numéro #{line.name}
-                            td departure #{line.fromStation}
-                            td destination #{line.toStation}
+                            td  #{line.name}
+                            td  #{line.fromStation}
+                            td  #{line.toStation}
                             td
                                 form(action ='/sadmin/sa_line/sa_station/'+line.id_line , method='GET')
                                     button(type ='Submit') show line
@@ -50,12 +47,12 @@ block content
                         td
                             label(for='idFromStation',width='20%') fromSation
                         td
-                            input(type='text', id='idFromStation', name='fromStation', placeholder='Type your New line here', onkeydown='autocomp(this.id)')
+                            input(type='text', id='idFromStation', name='fromStation', placeholder='Type your New line here', onkeydown='autocomp(this.id)', required=true)
                     tr(width='20%')
                         td
                             label(for='idToStation',width='20%') tostation
                         td
-                            input(type='text', id='idToStation', name='toStation', placeholder='Type your New line here', onkeydown='autocomp(this.id)')
+                            input(type='text', id='idToStation', name='toStation', placeholder='Type your New line here', onkeydown='autocomp(this.id)', required=true)
 
 
                 button(type ='Submit') add new line now
