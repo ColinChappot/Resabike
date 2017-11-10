@@ -12,6 +12,7 @@ function search(i18n,error) {
     var month = new Date().getMonth()+1
     var year = new Date().getFullYear()
     var hour = new Date().getHours()
+    var check =0;
 
 
     var num = 25; // nombre de return
@@ -21,16 +22,12 @@ function search(i18n,error) {
     if (from && to) { // si la station "from" et la station "to" ne sont pas vide
         $.get('https://timetable.search.ch/api/route.en.json', {from: from, to: to, date: date, time: time, num: num, pre: pre}, function(data) {
             $('#auto tbody').empty();
-            if(data.connection == null)
-            {
-                line = '<tr><td>'+error+' </td><tr>'
-                $('#auto tbody').append(line);
-            }
+
             $(data.connections).each(function () {
                 var departure,arrival, line = '<tr><td>';
                 departure = moment(this.departure);
                 arrival = moment(this.arrival);
-
+                check++;
 
                 if(test == true)
                 {
@@ -81,6 +78,11 @@ function search(i18n,error) {
                     $('#auto tbody').append(line);
                 }
             });
+            if(check === 0)
+            {
+                line = '<tr><td>'+error+' </td><tr>'
+                $('#auto tbody').append(line);
+            }
         }, 'json');
     }
 };

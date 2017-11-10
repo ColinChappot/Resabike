@@ -71,7 +71,7 @@ router.post('/reservation', (req, res, next) => {
                                 journey_reservationFunction.CheckNbBike(journey).then(function (nbBike) {
                                     nbBike = nbBike + req.body.bikeNumber;
                                     if (nbBike > 6) {
-                                        reservationFunction.insertReservation(req.body, 2, date, time, session.login.id_login).then(function (reservation) {
+                                        reservationFunction.insertReservation(req.body, 2, date, time, session.login.id_login,trajet).then(function (reservation) {
                                             journey_reservationFunction.insertJourney_Reservation(journey, reservation).then(function () {
                                                 personConctactFunction.GetOnePersonContact(idzone).then(function (person) {
                                                     emailFunction.Waiting(person,trajet).then(function (text) {
@@ -84,7 +84,7 @@ router.post('/reservation', (req, res, next) => {
                                         })
                                     }
                                     else {
-                                        reservationFunction.insertReservation(req.body, 1, date, time, session.login.id_login).then(function (reservation) {
+                                        reservationFunction.insertReservation(req.body, 1, date, time, session.login.id_login,trajet).then(function (reservation) {
                                             journey_reservationFunction.insertJourney_Reservation(journey, reservation).then(function () {
                                                 personConctactFunction.GetOnePersonContact(idzone).then(function (person) {
                                                     emailFunction.confirm(person,trajet).then(function (text) {

@@ -3,7 +3,7 @@ var models = require('../models');
 //Request to table Reservation
 module.exports = {
     // insert in the table Reservation
-    insertReservation(body,state, date,time,id_login){
+    insertReservation(body,state, date,time,id_login,trajet){
         return new Promise(function (resolve, reject) {
             models.Reservation.create({
                 lastname: body.lastname,
@@ -12,8 +12,8 @@ module.exports = {
                 mail: body.mail,
                 bikeNumber: body.bikeNumber,
                 groupName: body.groupName,
-                from: body.from,
-                to: body.to,
+                from: trajet.name,
+                to: trajet.exit.name,
                 remarks: body.remarks,
                 state: state,
                 idDate: date.id_date,
