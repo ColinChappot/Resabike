@@ -40,7 +40,7 @@ block content
                         td
                            input(type='text', id='to', name='to', placeholder=i18n.__('destinationInput'),size='35',onkeydown='autocomp(this.id)',required=true)
                         td
-                            button(onclick='search(this.id)', id=i18n.__('reserver'), type='none') #{i18n.__('b_search')}
+                            button(onclick='search(this.id,this.value)', id=i18n.__('reserver'), value=i18n.__('errorSearch'), type='none') #{i18n.__('b_search')}
 
             #error
                 if(error===true)

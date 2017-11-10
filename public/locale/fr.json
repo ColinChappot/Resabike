@@ -3,7 +3,7 @@
 	"test": "testfr",
 	"loginTitle": "Bienvenue sur la page de login",
 	"username": "Nom d'utilisateur",
-	"usernameInput": "Ecris ton nom d'utilisateur ici !  ex: jean.deleze or killer209",
+	"usernameInput": "Ecris ton nom d'utilisateur ici !",
 	"passwordInput": "Ecris ton mot de passe ici",
 	"password": "Mot de passe",
 	"redidrectionRegister": "Vous ne possédez pas de compte ?",
@@ -57,5 +57,6 @@
 	"SMS": "Si vous souhaiter recevoir une confirmation par SMS merci de le spécifier dans les remarques",
 	"error": "Le nom d'utilisateur ou mot de passe est incorrecte",
 	"error2": "Réservation pour ces stations impossible",
-	"feedback": "Votre feedback pour Resabike"
+	"feedback": "Votre feedback pour Resabike",
+	"errorSearch": "La station de départ ou d'arrivée n'est pas reconnue"
 }

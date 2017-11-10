@@ -3,7 +3,7 @@
 	"test": "testfr",
 	"loginTitle": "Willkommen auf der Login-Seite",
 	"username": "Benutzername",
-	"usernameInput": "Schreibe hier deinen Benutzernamen! ex: jean.deleze oder killer209",
+	"usernameInput": "Schreibe hier deinen Benutzernamen!",
 	"passwordInput": "Schreib dein Passwort hier",
 	"password": "Passwort",
 	"redidrectionRegister": "Haben Sie kein Konto?",
@@ -57,5 +57,6 @@
 	"SMS": "Wenn Sie eine Bestätigung per SMS erhalten möchten, geben Sie dies bitte in den Kommentaren an.",
 	"error": "Benutzername oder Passwort sind falsch",
 	"error2": "Buchung für diese Stationen unmöglich",
-	"feedback": "Dein Feedback zu Resabike"
+	"feedback": "Dein Feedback zu Resabike",
+	"errorSearch": "Der Abfahrts- oder Ankunftsbahnhof wird nicht erkannt"
 }

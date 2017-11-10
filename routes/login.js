@@ -49,7 +49,7 @@ router.post('/registration', (req, res, next) => {
    })
 });
 
-/* Logout handler */
+//Redirect to the right url
 router.get('/redirect', function(req, res, next) {
 
 

@@ -1,8 +1,7 @@
 
-
 // Make a request to the API and display it in the table for the user
 
-function search(i18n) {
+function search(i18n,error) {
     var from  = document.getElementById('from').value;
     var to = document.getElementById('to').value;
     var date = document.getElementById('date').value;
@@ -15,8 +14,6 @@ function search(i18n) {
     var hour = new Date().getHours()
 
 
-
-
     var num = 25; // nombre de return
     var pre = -1; // c'est le nombre de station précédent l'horaire donnée qui sont affiché. On a mis -1 parce que l'api retourne une station précédent par défaut
 
@@ -24,6 +21,11 @@ function search(i18n) {
     if (from && to) { // si la station "from" et la station "to" ne sont pas vide
         $.get('https://timetable.search.ch/api/route.en.json', {from: from, to: to, date: date, time: time, num: num, pre: pre}, function(data) {
             $('#auto tbody').empty();
+            if(data.connection == null)
+            {
+                line = '<tr><td>'+error+' </td><tr>'
+                $('#auto tbody').append(line);
+            }
             $(data.connections).each(function () {
                 var departure,arrival, line = '<tr><td>';
                 departure = moment(this.departure);
@@ -41,7 +43,9 @@ function search(i18n) {
                 }
                 else
                 {
-                    line += departure.format('DD.MM.YYYY') +'</td><td>'+departure.format('HH:mm')+ '</td><td>' + this.from +  '</td><td>' +(this.duration/60)+ ' min'+'</td><td>' +  this.to +  '</td><td>' + arrival.format('HH:mm') + '</td>'
+                    line += departure.format('DD.MM.YYYY') +'</td><td>'+departure.format('HH:mm')+
+                        '</td><td>' + this.from +  '</td><td>' +(this.duration/60)+ ' min'+'</td><td>'
+                        +  this.to +  '</td><td>' + arrival.format('HH:mm') + '</td>'
                     if(year < departure.format('YYYY'))
                     {
                         line = display(line,this.from,this.to,departure.format('DD.MM.YYYY'),departure.format('HH:mm'),i18n)

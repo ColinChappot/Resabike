@@ -58,7 +58,6 @@ router.post('/reservation', (req, res, next) => {
     {
         res.redirect('/login/redirect')
     }
-
     let idzone ;
 
     lineFunction.APIJourney(req.body).then(function (journeys) {

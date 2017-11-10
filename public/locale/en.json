@@ -3,7 +3,7 @@
 	"test": "testEn",
 	"loginTitle": "Welcome to login page",
 	"username": "User Name",
-	"usernameInput": "Write your username ex: jean.deleze or killer209",
+	"usernameInput": "Write your username",
 	"password": "Password",
 	"passwordInput": "Write your passsword here",
 	"redidrectionRegister": "You don't have account ?",
@@ -57,5 +57,6 @@
 	"SMS": "If you wish to receive a confirmation by SMS please specify in the comments",
 	"error": "Username or password is incorrect",
 	"error2": "Booking for these stations impossible",
-	"feedback": "feedback"
+	"feedback": "Your opinion for Resabike",
+	"errorSearch": "The departure or arrival station is not recognized"
 }
